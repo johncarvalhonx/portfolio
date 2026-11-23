@@ -536,7 +536,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
 .contact-grid{max-width:1040px;margin:0 auto}
 @media (prefers-reduced-motion: reduce){.card .card-ico{transition:none}}
 /* botoes de vidro: reflexo curvo no topo, separado da tinta */
-.aero-btn::before{content:"";position:absolute;left:7%;right:7%;top:1px;height:52%;border-radius:999px 999px 50% 50%/100% 100% 60% 60%;background:linear-gradient(180deg,rgba(255,255,255,.62) 0%,rgba(255,255,255,.2) 60%,rgba(255,255,255,0) 100%);pointer-events:none;z-index:-1}
+.aero-btn::before{content:"";position:absolute;left:5px;right:5px;top:2px;height:calc(50% - 2px);border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.62) 0%,rgba(255,255,255,.2) 60%,rgba(255,255,255,0) 100%);pointer-events:none;z-index:-1}
 .aero-btn[style*="text-shadow"]{text-shadow:0 1px 1px rgba(0,30,80,.7),0 0 10px rgba(0,40,110,.55)!important}
 .aero-btn{transition:filter .15s ease,transform .15s ease,box-shadow .25s ease}
 .aero-btn:hover{filter:brightness(1.08) saturate(1.15)}
