@@ -464,18 +464,27 @@ a{color:#0a5aa8}a:hover{color:#063d75}
 .aero-btn::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse 80% 70% at 50% 115%,var(--glow,rgba(150,240,255,.85)),rgba(255,255,255,0) 70%);opacity:0;transition:opacity .3s ease;pointer-events:none;z-index:-1}
 .aero-btn:hover::after{opacity:1}
 .tab-thumb{isolation:isolate;overflow:hidden;transition:transform .5s cubic-bezier(.34,1.35,.5,1)}
-/* filtro de projetos: slide no sentido do clique */
-.grid-out .card{opacity:0;transition:opacity .2s ease,transform .2s cubic-bezier(.5,0,.9,.6)}
-.grid-out.dir-r .card{transform:translate3d(64px,0,0)}
-.grid-out.dir-l .card{transform:translate3d(-64px,0,0)}
-.grid-a.dir-r .card{animation:slideFromLeftA .5s cubic-bezier(.2,.85,.25,1) backwards}
-.grid-b.dir-r .card{animation:slideFromLeftB .5s cubic-bezier(.2,.85,.25,1) backwards}
-.grid-a.dir-l .card{animation:slideFromRightA .5s cubic-bezier(.2,.85,.25,1) backwards}
-.grid-b.dir-l .card{animation:slideFromRightB .5s cubic-bezier(.2,.85,.25,1) backwards}
-@keyframes slideFromLeftA{from{opacity:0;transform:translate3d(-72px,0,0)}to{opacity:1;transform:none}}
-@keyframes slideFromLeftB{from{opacity:0;transform:translate3d(-72px,0,0)}to{opacity:1;transform:none}}
-@keyframes slideFromRightA{from{opacity:0;transform:translate3d(72px,0,0)}to{opacity:1;transform:none}}
-@keyframes slideFromRightB{from{opacity:0;transform:translate3d(72px,0,0)}to{opacity:1;transform:none}}
+/* filtro de projetos: a grade inteira desliza como uma pagina arrastada; a antiga sai colada na nova */
+.proj-track{position:relative}
+.proj-track.sliding{overflow:clip;overflow-clip-margin:var(--gutter)}
+.proj-ghost{position:absolute;top:0;left:0;right:0;pointer-events:none}
+.pg-in-next-a{animation:pgInNextA .56s cubic-bezier(.22,.9,.3,1) both}
+.pg-in-prev-a{animation:pgInPrevA .56s cubic-bezier(.22,.9,.3,1) both}
+.pg-out-next-a{animation:pgOutNextA .56s cubic-bezier(.22,.9,.3,1) both}
+.pg-out-prev-a{animation:pgOutPrevA .56s cubic-bezier(.22,.9,.3,1) both}
+@keyframes pgInNextA{from{transform:translate3d(calc(100% + 48px),0,0)}to{transform:none}}
+@keyframes pgInPrevA{from{transform:translate3d(calc(-100% - 48px),0,0)}to{transform:none}}
+@keyframes pgOutNextA{from{transform:none}to{transform:translate3d(calc(-100% - 48px),0,0)}}
+@keyframes pgOutPrevA{from{transform:none}to{transform:translate3d(calc(100% + 48px),0,0)}}
+.pg-in-next-b{animation:pgInNextB .56s cubic-bezier(.22,.9,.3,1) both}
+.pg-in-prev-b{animation:pgInPrevB .56s cubic-bezier(.22,.9,.3,1) both}
+.pg-out-next-b{animation:pgOutNextB .56s cubic-bezier(.22,.9,.3,1) both}
+.pg-out-prev-b{animation:pgOutPrevB .56s cubic-bezier(.22,.9,.3,1) both}
+@keyframes pgInNextB{from{transform:translate3d(calc(100% + 48px),0,0)}to{transform:none}}
+@keyframes pgInPrevB{from{transform:translate3d(calc(-100% - 48px),0,0)}to{transform:none}}
+@keyframes pgOutNextB{from{transform:none}to{transform:translate3d(calc(-100% - 48px),0,0)}}
+@keyframes pgOutPrevB{from{transform:none}to{transform:translate3d(calc(100% + 48px),0,0)}}
+@media (prefers-reduced-motion: reduce){.proj-page{animation:none!important}.proj-ghost{display:none}}
 @media (prefers-reduced-motion: reduce){.grid-a .card,.grid-b .card{animation:none!important}.grid-out .card{transition:none;transform:none!important}.tab-thumb{transition:none}}
 .aero-btn:hover{filter:brightness(1.1) saturate(1.1);transform:translateY(-1px)}
 .aero-btn:active{transform:translateY(1px);filter:brightness(.95)}
@@ -1126,35 +1135,69 @@ a{color:#0a5aa8}a:hover{color:#063d75}
         </div>
       </div>
 
-      <div class="grid-3 {{gridAnim}}" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: clamp(18px, 1.6vw, 32px)">
-        <sc-for list="{{projects}}" as="p" hint-placeholder-count="6">
-          <article class="card" style="animation-delay: {{p.delay}}ms; display: flex; flex-direction: column; border-radius: 24px; overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.78)); border: 1px solid #ffffff; box-shadow: 0 0 0 1px rgba(90,160,220,.25), 0 12px 32px rgba(10,80,160,.16), inset 0 1px 0 #ffffff; backdrop-filter: blur(12px)">
-            <div class="card-art" style="position: relative; height: 170px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: {{p.bg}}">
-              <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 52%; background: linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.04))"></span>
-              <span aria-hidden="true" style="position: absolute; left: -40px; bottom: -70px; width: 260px; height: 140px; border-radius: 50%; background: rgba(255,255,255,.18)"></span>
-              <span aria-hidden="true" style="position: absolute; right: 26px; top: 22px; width: 30px; height: 30px; border-radius: 50%; background: radial-gradient(circle at 30% 26%, rgba(255,255,255,1) 0 10%, rgba(255,255,255,.25) 26%, rgba(255,255,255,.06) 55%, rgba(255,255,255,.7) 100%)"></span>
-              <span aria-hidden="true" style="position: absolute; right: 64px; top: 70px; width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle at 30% 26%, rgba(255,255,255,1) 0 12%, rgba(255,255,255,.2) 30%, rgba(255,255,255,.7) 100%)"></span>
-              <span aria-hidden="true" class="card-ico" style="position: relative; width: 92px; height: 92px; border-radius: 26px; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.14)); border: 1px solid rgba(255,255,255,.9); box-shadow: 0 10px 24px rgba(0,40,100,.3), inset 0 1px 0 #ffffff">
-                <svg width="46" height="46" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 1px 2px rgba(0,30,80,.45))"><path d="{{p.icon}}"></path></svg>
-              </span>
-            </div>
-            <div style="flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 20px 22px 22px">
-              <span style="align-self: flex-start; padding: 4px 10px; border-radius: 999px; font-size: 13px; font-weight: 700; letter-spacing: .4px; background: {{p.chipBg}}; color: {{p.chipFg}}; border: 1px solid {{p.chipBorder}}">{{p.cat}}</span>
-              <div style="display: flex; flex-direction: column; gap: 3px">
-                <h3 style="margin: 0; font-size: 22px; font-weight: 800; color: #0b3a66; letter-spacing: -.2px">{{p.title}}</h3>
+      <div class="proj-track {{trackClass}}">
+        <div class="grid-3 proj-page {{gridAnim}}" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: clamp(18px, 1.6vw, 32px)">
+          <sc-for list="{{projects}}" as="p" hint-placeholder-count="6">
+            <article class="card" style="animation-delay: {{p.delay}}ms; display: flex; flex-direction: column; border-radius: 24px; overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.78)); border: 1px solid #ffffff; box-shadow: 0 0 0 1px rgba(90,160,220,.25), 0 12px 32px rgba(10,80,160,.16), inset 0 1px 0 #ffffff; backdrop-filter: blur(12px)">
+              <div class="card-art" style="position: relative; height: 170px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: {{p.bg}}">
+                <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 52%; background: linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.04))"></span>
+                <span aria-hidden="true" style="position: absolute; left: -40px; bottom: -70px; width: 260px; height: 140px; border-radius: 50%; background: rgba(255,255,255,.18)"></span>
+                <span aria-hidden="true" style="position: absolute; right: 26px; top: 22px; width: 30px; height: 30px; border-radius: 50%; background: radial-gradient(circle at 30% 26%, rgba(255,255,255,1) 0 10%, rgba(255,255,255,.25) 26%, rgba(255,255,255,.06) 55%, rgba(255,255,255,.7) 100%)"></span>
+                <span aria-hidden="true" style="position: absolute; right: 64px; top: 70px; width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle at 30% 26%, rgba(255,255,255,1) 0 12%, rgba(255,255,255,.2) 30%, rgba(255,255,255,.7) 100%)"></span>
+                <span aria-hidden="true" class="card-ico" style="position: relative; width: 92px; height: 92px; border-radius: 26px; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.14)); border: 1px solid rgba(255,255,255,.9); box-shadow: 0 10px 24px rgba(0,40,100,.3), inset 0 1px 0 #ffffff">
+                  <svg width="46" height="46" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 1px 2px rgba(0,30,80,.45))"><path d="{{p.icon}}"></path></svg>
+                </span>
               </div>
-              <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #2e5578; flex: 1">{{p.desc}}</p>
-              <div style="display: flex; flex-wrap: wrap; gap: 6px">
-                <sc-for list="{{p.stack}}" as="s" hint-placeholder-count="3">
-                  <span style="padding: 4px 10px; border-radius: 8px; font-size: 13px; font-weight: 600; color: #134a7a; background: linear-gradient(180deg, #ffffff, #e6f2fb); border: 1px solid #b9d7ee">{{s}}</span>
-                </sc-for>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 20px 22px 22px">
+                <span style="align-self: flex-start; padding: 4px 10px; border-radius: 999px; font-size: 13px; font-weight: 700; letter-spacing: .4px; background: {{p.chipBg}}; color: {{p.chipFg}}; border: 1px solid {{p.chipBorder}}">{{p.cat}}</span>
+                <div style="display: flex; flex-direction: column; gap: 3px">
+                  <h3 style="margin: 0; font-size: 22px; font-weight: 800; color: #0b3a66; letter-spacing: -.2px">{{p.title}}</h3>
+                </div>
+                <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #2e5578; flex: 1">{{p.desc}}</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px">
+                  <sc-for list="{{p.stack}}" as="s" hint-placeholder-count="3">
+                    <span style="padding: 4px 10px; border-radius: 8px; font-size: 13px; font-weight: 600; color: #134a7a; background: linear-gradient(180deg, #ffffff, #e6f2fb); border: 1px solid #b9d7ee">{{s}}</span>
+                  </sc-for>
+                </div>
+                <a class="aero-btn glass glass-blue" href="{{p.url}}" style="margin-top: 6px; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,25,70,.75)">
+                  Ver no GitHub
+                </a>
               </div>
-              <a class="aero-btn glass glass-blue" href="{{p.url}}" style="margin-top: 6px; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,25,70,.75)">
-                Ver no GitHub
-              </a>
-            </div>
-          </article>
-        </sc-for>
+            </article>
+          </sc-for>
+        </div>
+        <sc-if value="{{hasGhost}}" hint-placeholder-val="{{ false }}">
+        <div aria-hidden="true" class="grid-3 proj-page proj-ghost {{ghostAnim}}" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: clamp(18px, 1.6vw, 32px)">
+          <sc-for list="{{ghostProjects}}" as="g" hint-placeholder-count="6">
+            <article class="card" style="animation-delay: {{g.delay}}ms; display: flex; flex-direction: column; border-radius: 24px; overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.78)); border: 1px solid #ffffff; box-shadow: 0 0 0 1px rgba(90,160,220,.25), 0 12px 32px rgba(10,80,160,.16), inset 0 1px 0 #ffffff; backdrop-filter: blur(12px)">
+              <div class="card-art" style="position: relative; height: 170px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: {{g.bg}}">
+                <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 52%; background: linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.04))"></span>
+                <span aria-hidden="true" style="position: absolute; left: -40px; bottom: -70px; width: 260px; height: 140px; border-radius: 50%; background: rgba(255,255,255,.18)"></span>
+                <span aria-hidden="true" style="position: absolute; right: 26px; top: 22px; width: 30px; height: 30px; border-radius: 50%; background: radial-gradient(circle at 30% 26%, rgba(255,255,255,1) 0 10%, rgba(255,255,255,.25) 26%, rgba(255,255,255,.06) 55%, rgba(255,255,255,.7) 100%)"></span>
+                <span aria-hidden="true" style="position: absolute; right: 64px; top: 70px; width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle at 30% 26%, rgba(255,255,255,1) 0 12%, rgba(255,255,255,.2) 30%, rgba(255,255,255,.7) 100%)"></span>
+                <span aria-hidden="true" class="card-ico" style="position: relative; width: 92px; height: 92px; border-radius: 26px; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.14)); border: 1px solid rgba(255,255,255,.9); box-shadow: 0 10px 24px rgba(0,40,100,.3), inset 0 1px 0 #ffffff">
+                  <svg width="46" height="46" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 1px 2px rgba(0,30,80,.45))"><path d="{{g.icon}}"></path></svg>
+                </span>
+              </div>
+              <div style="flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 20px 22px 22px">
+                <span style="align-self: flex-start; padding: 4px 10px; border-radius: 999px; font-size: 13px; font-weight: 700; letter-spacing: .4px; background: {{g.chipBg}}; color: {{g.chipFg}}; border: 1px solid {{g.chipBorder}}">{{g.cat}}</span>
+                <div style="display: flex; flex-direction: column; gap: 3px">
+                  <h3 style="margin: 0; font-size: 22px; font-weight: 800; color: #0b3a66; letter-spacing: -.2px">{{g.title}}</h3>
+                </div>
+                <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #2e5578; flex: 1">{{g.desc}}</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px">
+                  <sc-for list="{{g.stack}}" as="s" hint-placeholder-count="3">
+                    <span style="padding: 4px 10px; border-radius: 8px; font-size: 13px; font-weight: 600; color: #134a7a; background: linear-gradient(180deg, #ffffff, #e6f2fb); border: 1px solid #b9d7ee">{{s}}</span>
+                  </sc-for>
+                </div>
+                <a tabindex="-1" class="aero-btn glass glass-blue" href="{{g.url}}" style="margin-top: 6px; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,25,70,.75)">
+                  Ver no GitHub
+                </a>
+              </div>
+            </article>
+          </sc-for>
+        </div>
+        </sc-if>
       </div>
     </section>
 
@@ -1388,15 +1431,24 @@ class Component extends DCLogic {
   }
 
   pickTab(label) {
-    const cur = this.state.sel || this.state.cat;
+    const cur = this.state.cat;
     if (label === cur) return;
     const order = ['Todos', 'Desktop', 'APIs & Web', 'Mobile'];
-    const dir = order.indexOf(label) > order.indexOf(cur) ? 'dir-r' : 'dir-l';
+    const dir = order.indexOf(label) > order.indexOf(cur) ? 'next' : 'prev';
+    const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const track = document.querySelector('.proj-track');
+    const oldH = track ? track.offsetHeight : 0;
     if (this.swapT) clearTimeout(this.swapT);
-    this.setState({ sel: label, leaving: true, dir });
-    this.swapT = setTimeout(() => {
-      this.setState({ cat: label, leaving: false, anim: this.state.anim ? 0 : 1 });
-    }, 200);
+    this.setState({ sel: label, cat: label, ghost: calm ? null : cur, dir, slide: this.state.slide ? 0 : 1 });
+    if (calm || !track) return;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const page = track.querySelector('.proj-page:not(.proj-ghost)');
+      const newH = page ? page.offsetHeight : oldH;
+      if (track.animate && Math.abs(newH - oldH) > 1) {
+        track.animate([{ height: oldH + 'px' }, { height: newH + 'px' }], { duration: 560, easing: 'cubic-bezier(.22,.9,.3,1)' });
+      }
+    }));
+    this.swapT = setTimeout(() => this.setState({ ghost: null }), 620);
   }
 
   tick() {
@@ -1480,7 +1532,9 @@ class Component extends DCLogic {
       pick: () => this.pickTab(label)
     }));
     const thumbX = Math.max(0, tabLabels.indexOf(sel)) * 100;
-    const gridAnim = (this.state.leaving ? 'grid-out' : (this.state.anim ? 'grid-b' : 'grid-a')) + (this.state.dir ? ' ' + this.state.dir : '');
+    const sfx = this.state.slide ? '-b' : '-a';
+    const gridAnim = this.state.ghost ? 'pg-in-' + this.state.dir + sfx : '';
+    const ghostAnim = this.state.ghost ? 'pg-out-' + this.state.dir + sfx : '';
 
     const chip = {
       'Desktop': { chipBg: 'linear-gradient(180deg, #ffffff, #e2f3ff)', chipFg: '#0b4a85', chipBorder: '#a9d4f5' },
@@ -1496,11 +1550,11 @@ class Component extends DCLogic {
       { name: 'ecomonitormobile', title: 'EcoMonitor Mobile', cat: 'Mobile', desc: 'Monitoramento ambiental: app Android que consome API própria de clima e qualidade do ar.', stack: ['Kotlin', 'Python', 'FastAPI'], bg: 'linear-gradient(160deg, #2a8226 0%, #62c242 55%, #c8f59a 100%)', icon: 'M7 2h10v20H7z M11 18h2 M12 6c-2.2 2-2.2 5 0 7c2.2-2 2.2-5 0-7z' },
       { name: 'sustainable-habits-tracker', title: 'Sustainable Habits', cat: 'APIs & Web', desc: 'API REST para acompanhar hábitos sustentáveis, com autenticação JWT e resumos periódicos.', stack: ['Python', 'FastAPI', 'Docker'], bg: 'linear-gradient(160deg, #0f7055 0%, #2fa874 50%, #9be8b8 100%)', icon: 'M5 19c0-8 6-14 14-14c0 8-6 14-14 14z M5 19l7-7' }
     ];
-    const cols = typeof window === 'undefined' ? 3 : (window.innerWidth > 1180 ? 3 : (window.innerWidth > 700 ? 2 : 1));
-    const slideDelay = (i) => { const c = i % cols; return (this.state.dir === 'dir-r' ? (cols - 1 - c) : c) * 60; };
-    const projects = all
-      .filter((p) => cat === 'Todos' || p.cat === cat)
-      .map((p, i) => Object.assign({}, p, chip[p.cat], { url: base + p.name, title: p.title || p.name, delay: slideDelay(i) }));
+    const build = (cc) => all
+      .filter((p) => cc === 'Todos' || p.cat === cc)
+      .map((p) => Object.assign({}, p, chip[p.cat], { url: base + p.name, title: p.title || p.name, delay: 0 }));
+    const projects = build(cat);
+    const ghostProjects = this.state.ghost ? build(this.state.ghost) : [];
 
     const blueOrb = 'radial-gradient(circle at 50% 115%, #8fe3ff 0%, #2a9be8 40%, #0d5fb8 100%)';
     const greenOrb = 'radial-gradient(circle at 50% 115%, #d2ff9a 0%, #4fc23a 40%, #1f7a14 100%)';
@@ -1592,7 +1646,11 @@ class Component extends DCLogic {
       tools,
       jobs,
       certs,
-      contacts: contacts.filter((c) => c.label !== 'E-mail')
+      contacts: contacts.filter((c) => c.label !== 'E-mail'),
+      ghostProjects,
+      ghostAnim,
+      hasGhost: !!this.state.ghost,
+      trackClass: this.state.ghost ? 'sliding' : ''
     };
   }
 }
