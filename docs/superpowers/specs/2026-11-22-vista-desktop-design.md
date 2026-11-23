@@ -177,3 +177,12 @@ calendário (implementação própria, sem biblioteca), ordem de implementação
 - Relógio com painel analógico + calendário; volume só visual.
 - A pasta não versionada `portfolio/` (cópia antiga) fica de fora do commit.
 - O rodapé existente continua como navegação do site; a barra Vista é só do desktop.
+
+## Adendo: moldura de monitor (2026-11-22)
+
+Pedido posterior do João: a tela não deve aparecer "solta"; ela fica dentro de um monitor da época.
+- **Escolha minha:** LCD widescreen 16:10 de 2007 (bisel preto brilhante, queixo com selo genérico "JC 1610W",
+  botões, LED azul e botão de energia; pescoço e base prateados). CRT descartado por não combinar com o Vista.
+- A moldura é só visual (`aria-hidden`), sem marcas reais. Reflexo diagonal e vinheta sobre a tela, com `pointer-events: none`.
+- Tamanho: a tela mantém 16:10 e cabe na altura da janela do navegador (`--sh`), até 820px de altura.
+- Celular (< 768px): bisel fino, sem queixo e sem base, tela em pé (`80svh`, mín. 520px).

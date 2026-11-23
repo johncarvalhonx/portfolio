@@ -24,8 +24,8 @@ pe(t, 'pointerdown', r0.left + 100, r0.top + 15); pe(t, 'pointermove', r0.left +
 out.cancel = Math.round(R().left - r0.left); // 50
 // redimensionar pela alca se
 r0 = R(); const se = document.querySelector('.vd-rs[data-edge="se"]');
-pe(se, 'pointerdown', r0.right, r0.bottom); pe(se, 'pointermove', r0.right + 100, r0.bottom + 40); pe(se, 'pointerup', r0.right + 100, r0.bottom + 40);
-r1 = R(); out.resizeGrow = [Math.round(r1.width - r0.width), Math.round(r1.height - r0.height)]; // 100,40
+pe(se, 'pointerdown', r0.right, r0.bottom); pe(se, 'pointermove', r0.right + 100, r0.bottom + 20); pe(se, 'pointerup', r0.right + 100, r0.bottom + 20);
+r1 = R(); out.resizeGrow = [Math.round(r1.width - r0.width), Math.round(r1.height - r0.height)]; // 100,20
 pe(se, 'pointerdown', r1.right, r1.bottom); pe(se, 'pointermove', r1.right - 3000, r1.bottom - 3000); pe(se, 'pointerup', 0, 0);
 r1 = R(); out.resizeMin = [Math.round(r1.width), Math.round(r1.height)]; // 520,360 (+/- borda)
 // maximizar / restaurar

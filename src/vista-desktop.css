@@ -1,7 +1,31 @@
 /* ===== Desktop Windows Vista (seção Trajetória) =====
    Motor em src/vista-desktop.js; app em src/apps/trajetoria.js. Classes com prefixo vd-. */
 .vd-sr-only{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-#trajetoria.vd-section{position:relative;height:calc(100svh - 88px);min-height:600px;max-height:900px;padding:0;margin:0;background:#031a15}
+#trajetoria.vd-section{position:relative;display:flex;justify-content:center;padding:20px 16px 12px;margin:0;box-sizing:border-box;
+ --bz:22px;--chin:46px;--stand:58px;--sh:min(820px,max(380px,calc(100svh - 88px - 32px - var(--bz) - var(--chin) - var(--stand))))}
+/* ---- moldura: monitor LCD widescreen de 2007 ---- */
+.vd-monitor,.vd-monitor *{box-sizing:border-box}
+.vd-monitor{display:flex;flex-direction:column;align-items:center;width:min(100%,calc(var(--sh) * 1.6 + 2 * var(--bz)));filter:drop-shadow(0 18px 22px rgba(0,40,90,.28))}
+.vd-body{position:relative;width:100%;padding:var(--bz) var(--bz) 0;border-radius:16px 16px 9px 9px;
+ background:linear-gradient(180deg,#34373c 0%,#16171a 6%,#08090a 45%,#0f1012 100%);
+ box-shadow:inset 0 0 0 1px #5b5f66,inset 0 2px 1px rgba(255,255,255,.28),inset 0 -3px 4px rgba(255,255,255,.08),0 1px 0 rgba(255,255,255,.5)}
+.vd-body::before{content:"";position:absolute;left:3%;right:3%;top:2px;height:9px;border-radius:50%/100% 100% 0 0;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0));pointer-events:none}
+.vd-screen{position:relative;width:100%;aspect-ratio:16 / 10;border-radius:3px;overflow:hidden;background:#000;
+ box-shadow:0 0 0 2px #000,0 0 0 3px #2b2e33,inset 0 0 22px rgba(0,0,0,.85)}
+.vd-screen::after{content:"";position:absolute;inset:0;z-index:100;pointer-events:none;border-radius:3px;
+ background:linear-gradient(118deg,rgba(255,255,255,.11) 0%,rgba(255,255,255,.05) 34%,rgba(255,255,255,0) 34.4%),radial-gradient(ellipse at 50% 50%,rgba(0,0,0,0) 62%,rgba(0,0,0,.28) 100%);
+ box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.vd-chin{position:relative;height:var(--chin);display:flex;align-items:center;gap:14px;padding:0 18px 0 26px}
+.vd-badge{font:600 11px/1 "Segoe UI",Tahoma,Arial,sans-serif;letter-spacing:.2em;color:#9aa1a9;text-shadow:0 -1px 0 #000,0 1px 0 rgba(255,255,255,.12)}
+.vd-ctl{margin-left:auto;display:flex;gap:6px}
+.vd-ctl i{width:16px;height:9px;border-radius:2px;background:linear-gradient(180deg,#4a4e54,#1d1f22);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 1px 0 #000}
+.vd-led{width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#d6f4ff,#2fa4ff 55%,#0b5aa8);box-shadow:0 0 6px 2px rgba(60,160,255,.75)}
+.vd-pwr{width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 50% 28%,#6a6f76,#2a2c30 65%,#16171a);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 0 0 1px #000,0 1px 0 rgba(255,255,255,.12);position:relative}
+.vd-pwr::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;border:1.5px solid #9aa1a9;border-top-color:transparent;box-sizing:border-box}
+.vd-neck{width:clamp(90px,13%,160px);height:44px;margin-top:-1px;clip-path:polygon(9% 0,91% 0,100% 100%,0 100%);
+ background:linear-gradient(90deg,#5c6168,#aeb4bb 28%,#eef0f3 50%,#a6acb3 72%,#50555b)}
+.vd-base{width:clamp(180px,28%,340px);height:16px;margin-top:-6px;border-radius:50%;
+ background:linear-gradient(180deg,#f2f4f6,#b2b8bf 45%,#6d7279);box-shadow:inset 0 1px 0 #fff,0 2px 0 #3a3e43}
 .vd,.vd *{box-sizing:border-box}
 .vd{position:relative;width:100%;height:100%;overflow:hidden;user-select:none;-webkit-user-select:none;font-family:"Segoe UI",Tahoma,"Open Sans",Arial,sans-serif;font-size:13px;color:#000;line-height:1.3;--vd-bar:40px;-webkit-tap-highlight-color:transparent}
 :where(.vd) button{font:inherit;color:inherit;cursor:default;margin:0;-webkit-appearance:none;appearance:none}
@@ -161,7 +185,11 @@
 .vd-cal-grid span.out{color:#b5c0ca}
 
 @media (max-width:767px){
- #trajetoria.vd-section{height:80svh;min-height:520px}
+ #trajetoria.vd-section{padding:12px 10px 16px;--bz:8px;--chin:0px;--stand:0px}
+ .vd-monitor{width:100%}
+ .vd-body{border-radius:12px}
+ .vd-screen{aspect-ratio:auto;height:max(520px,80svh)}
+ .vd-chin,.vd-neck,.vd-base{display:none}
  .vd-tb{flex:0 0 34px;padding:0 8px}.vd-tb span{display:none}
  .vd-icon{width:76px}
  .vd-ex-side{display:none}

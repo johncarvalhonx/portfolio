@@ -1241,7 +1241,19 @@ a{color:#0a5aa8}a:hover{color:#063d75}
     <!-- TRAJETÓRIA: desktop Windows Vista (motor em src/vista-desktop.js, app em src/apps/trajetoria.js) -->
     <section id="trajetoria" class="vd-section" aria-labelledby="traj-titulo">
       <h2 id="traj-titulo" class="vd-sr-only">Trajetória</h2>
-      <div id="vista-desktop"></div>
+      <div class="vd-monitor">
+        <div class="vd-body">
+          <div class="vd-screen"><div id="vista-desktop"></div></div>
+          <div class="vd-chin" aria-hidden="true">
+            <span class="vd-badge">JC 1610W</span>
+            <span class="vd-ctl"><i></i><i></i><i></i></span>
+            <span class="vd-led"></span>
+            <span class="vd-pwr"></span>
+          </div>
+        </div>
+        <div class="vd-neck" aria-hidden="true"></div>
+        <div class="vd-base" aria-hidden="true"></div>
+      </div>
     </section>
   </main>
 
