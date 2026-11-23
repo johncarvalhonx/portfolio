@@ -16,7 +16,21 @@ const VD_ICON_WEB = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="fals
 const VD_ICON_MAIL = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="5" width="19" height="14" rx="1.5" fill="#f4f7fb" stroke="#5a7a96"/><path d="M3 6.5l9 6.5 9-6.5" fill="none" stroke="#5a7a96"/></svg>';
 const VD_ICON_GAME = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="3" fill="#8b98a6" stroke="#5a6a7a"/><circle cx="9" cy="9" r="1.6" fill="#fff"/><circle cx="15" cy="15" r="1.6" fill="#fff"/></svg>';
 
-const VD_ORB_FLAG = '<svg viewBox="0 0 30 30" aria-hidden="true" focusable="false"><path d="M3 6.2c3.2-1.7 6-1.4 8.6 0l-1.4 7.2c-2.6-1.4-5.1-1.5-8.200 0z" fill="#ff6a3d"/><path d="M13 7.2c2.6 1.3 5.4 1.5 8.6.2l-1.4 7c-3 1.2-5.8 1.1-8.6-.2z" fill="#6fe04b"/><path d="M2 16.2c3.1-1.5 5.7-1.3 8.2.1l-1.4 7.2c-2.6-1.3-5.1-1.4-8 .1z" fill="#2f9bff"/><path d="M11.4 17.5c2.6 1.3 5.4 1.4 8.4.2l-1.4 7c-3 1.2-5.700 1.100-8.400-.2z" fill="#ffd02a"/></svg>';
+const VD_ORB_FLAG = '<svg viewBox="-0.6 1.6 24 21" aria-hidden="true" focusable="false"><defs>' +
+  '<linearGradient id="vdo-r" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffa070"/><stop offset="1" stop-color="#ee3f1a"/></linearGradient>' +
+  '<linearGradient id="vdo-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cdf575"/><stop offset="1" stop-color="#55ab17"/></linearGradient>' +
+  '<linearGradient id="vdo-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#86d6ff"/><stop offset="1" stop-color="#1b7ddf"/></linearGradient>' +
+  '<linearGradient id="vdo-y" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff27e"/><stop offset="1" stop-color="#f5b109"/></linearGradient></defs>' +
+  '<path d="M2.6 3.9C5.2 2.5 8.4 2.7 11.6 4.4L10.6 10.9C7.7 9.3 4.6 9.1 1.6 10.4Z" fill="url(#vdo-r)"/>' +
+  '<path d="M12.8 4.9C15.8 6.4 19.1 6.6 22.6 5L21.6 11.4C18.3 13 15.1 12.8 11.8 11.3Z" fill="url(#vdo-g)"/>' +
+  '<path d="M1.4 11.6C4.4 10.3 7.6 10.5 10.4 12.1L9.4 18.6C6.6 17 3.5 16.8 .4 18.1Z" fill="url(#vdo-b)"/>' +
+  '<path d="M11.6 12.6C14.9 14.1 18.1 14.3 21.4 12.7L20.4 19.1C17.2 20.6 14 20.5 10.6 19Z" fill="url(#vdo-y)"/></svg>';
+
+/* glifos dos botões de legenda: branco com contorno escuro fino, como no Vista */
+const VD_GLYPH_MIN = '<svg viewBox="0 0 12 10" aria-hidden="true" focusable="false"><rect x="2.5" y="6" width="7" height="2.6" rx=".3" fill="#fff" stroke="#1b2a38"/></svg>';
+const VD_GLYPH_MAX = '<svg viewBox="0 0 12 10" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M1.5 1h9v8h-9zM3.5 3.6h5v3.4h-5z" fill="#fff" stroke="#1b2a38"/></svg>';
+const VD_GLYPH_RESTORE = '<svg viewBox="0 0 12 10" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M4 .5h7.2v5.8H4zM5.6 2.4h4v2.3h-4z" fill="#fff" stroke="#1b2a38"/><path fill-rule="evenodd" d="M.8 3.4H8v6H.8zM2.4 5.3h4v2.5h-4z" fill="#fff" stroke="#1b2a38"/></svg>';
+const VD_GLYPH_CLOSE = '<svg viewBox="0 0 12 10" aria-hidden="true" focusable="false"><path d="M2.3 1.2l7.4 7.6M9.7 1.2L2.3 8.8" stroke="#1b2a38" stroke-width="3.3"/><path d="M2.6 1.5l6.8 7M9.4 1.5L2.6 8.5" stroke="#fff" stroke-width="1.7"/></svg>';
 
 const VD_SPEAKER = (level) => '<svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 7h3l4-3.5v11L5 11H2z" fill="#fff"/>' +
   (level === 0 ? '<path d="M11.5 6.5l5 5M16.5 6.5l-5 5" stroke="#ff8a7a" stroke-width="1.6" stroke-linecap="round"/>' :
@@ -214,9 +228,9 @@ class VistaDesktop {
     el.setAttribute('aria-label', app.title);
     el.innerHTML =
       '<div class="vd-title">' + app.icon + '<b></b><div class="vd-caps">' +
-      '<button class="vd-cap min" type="button" aria-label="Minimizar"><svg width="12" height="10" viewBox="0 0 12 10" aria-hidden="true"><rect x="1" y="6" width="9" height="3" fill="#fff" stroke="#2a3b4b"/></svg></button>' +
-      '<button class="vd-cap max" type="button" aria-label="Maximizar"><svg width="12" height="10" viewBox="0 0 12 10" aria-hidden="true"><rect x="1.5" y="1.5" width="9" height="7" fill="none" stroke="#2a3b4b" stroke-width="1.6"/><rect x="2" y="2" width="8" height="2" fill="#fff" opacity=".8"/></svg></button>' +
-      '<button class="vd-cap x" type="button" aria-label="Fechar"><svg width="14" height="12" viewBox="0 0 14 12" aria-hidden="true"><path d="M2.5 1.5l9 9M11.5 1.5l-9 9" stroke="#3a0a02" stroke-width="3.6" stroke-linecap="round"/><path d="M2.5 1.5l9 9M11.5 1.5l-9 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></button>' +
+      '<button class="vd-cap min" type="button" aria-label="Minimizar">' + VD_GLYPH_MIN + '</button>' +
+      '<button class="vd-cap max" type="button" aria-label="Maximizar">' + VD_GLYPH_MAX + '</button>' +
+      '<button class="vd-cap x" type="button" aria-label="Fechar">' + VD_GLYPH_CLOSE + '</button>' +
       '</div></div><div class="vd-client"></div>';
     el.querySelector('.vd-title b').textContent = app.title;
     rec.el = el;
@@ -286,7 +300,11 @@ class VistaDesktop {
     rec.el.dataset.state = state;
     rec.tb.classList.toggle('min', state === 'min');
     const mx = rec.el.querySelector('.vd-cap.max');
-    if (mx) mx.setAttribute('aria-label', state === 'max' ? 'Restaurar' : 'Maximizar');
+    if (mx && state !== 'min') {
+      const isMax = state === 'max';
+      if (mx.dataset.glyph !== String(isMax)) { mx.innerHTML = isMax ? VD_GLYPH_RESTORE : VD_GLYPH_MAX; mx.dataset.glyph = String(isMax); }
+      mx.setAttribute('aria-label', isMax ? 'Restaurar' : 'Maximizar');
+    }
   }
 
   minimize(id) {
