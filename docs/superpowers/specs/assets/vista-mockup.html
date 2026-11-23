@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Vista mockup</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;background:#222;font-family:"Segoe UI","Frutiger Linotype",Tahoma,Arial,sans-serif;font-size:13px;color:#000}
+.vd{position:relative;width:1280px;height:720px;overflow:hidden;margin:0 auto;user-select:none}
+.vd-wall{position:absolute;inset:0;background:#031a15}
+.vd-wall svg{position:absolute;inset:0;width:100%;height:100%}
+/* ---- icons ---- */
+.vd-icons{position:absolute;left:10px;top:10px;display:flex;flex-direction:column;gap:6px}
+.vd-icon{width:84px;padding:5px 2px 4px;border:1px solid transparent;border-radius:3px;text-align:center;color:#fff;text-shadow:0 1px 2px #000,0 0 3px rgba(0,0,0,.9);font-size:12px;line-height:1.2;cursor:default}
+.vd-icon svg{display:block;margin:0 auto 4px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.5))}
+.vd-icon:hover{background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(190,225,255,.12));border-color:rgba(255,255,255,.35);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.vd-icon.sel{background:linear-gradient(180deg,rgba(140,190,255,.42),rgba(90,150,235,.32));border-color:rgba(160,205,255,.8);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
+/* ---- window ---- */
+.vd-win{position:absolute;left:150px;top:36px;width:840px;height:560px;border-radius:8px 8px 3px 3px;
+ background:linear-gradient(180deg,rgba(170,215,235,.78),rgba(120,178,208,.72));
+ backdrop-filter:blur(10px) saturate(1.4);-webkit-backdrop-filter:blur(10px) saturate(1.4);
+ border:1px solid rgba(0,0,0,.65);box-shadow:inset 0 0 0 1px rgba(255,255,255,.65),0 10px 34px rgba(0,0,0,.6),0 0 0 1px rgba(0,0,0,.2);
+ display:flex;flex-direction:column;padding:0 7px 7px;transition:transform .28s cubic-bezier(.4,0,.6,1),opacity .28s}
+.vd-win.min{transform:translate(-190px,300px) scale(.12);opacity:0;pointer-events:none}
+.vd-win::before{content:"";position:absolute;left:0;right:0;top:0;height:44px;border-radius:8px 8px 0 0;background:linear-gradient(180deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,.12) 50%,rgba(255,255,255,0) 51%);pointer-events:none}
+.vd-title{position:relative;height:30px;display:flex;align-items:center;gap:7px;padding-left:4px}
+.vd-title b{font-weight:400;font-size:12.5px;text-shadow:0 0 10px #fff,0 0 6px #fff,0 0 3px #fff,0 0 2px #fff}
+.vd-caps{position:absolute;right:-2px;top:-1px;display:flex;gap:0}
+.vd-cap{height:19px;width:29px;border:1px solid rgba(0,0,0,.55);border-top:0;display:flex;align-items:center;justify-content:center;
+ background:linear-gradient(180deg,#f2f6f9 0%,#c9d6df 45%,#90a4b4 50%,#c3d3df 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.6)}
+.vd-cap:first-child{border-radius:0 0 0 5px}
+.vd-cap.x{width:47px;border-radius:0 0 5px 0;border-left:0;background:linear-gradient(180deg,#f3b3a6 0%,#dc6e55 45%,#c1311a 50%,#e0654a 100%)}
+.vd-cap:hover{filter:brightness(1.12)}
+.vd-cap.x:hover{background:linear-gradient(180deg,#ffc9bd 0%,#f08266 45%,#e0391c 50%,#ff7a58 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.7),0 0 8px rgba(255,90,60,.8)}
+.vd-chrome{position:relative;background:linear-gradient(180deg,#f4f7fb,#e3ebf4);border:1px solid #6f8396;border-bottom:0;padding:5px 6px;display:flex;align-items:center;gap:7px}
+.vd-nav{display:flex;gap:2px}
+.vd-orbbtn{width:26px;height:26px;border-radius:50%;border:1px solid #1e5f93;background:radial-gradient(circle at 50% 110%,#7fd0ff,#2b8fe0 45%,#14609f);box-shadow:inset 0 1px 0 rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center}
+.vd-orbbtn.off{background:linear-gradient(#f2f5f8,#c5d0da);border-color:#8da0b1}
+.vd-addr{flex:1;height:24px;background:#fff;border:1px solid #8ea3b5;border-radius:2px;display:flex;align-items:center;gap:6px;padding:0 8px;font-size:12px;color:#222;box-shadow:inset 0 1px 2px rgba(0,0,0,.12)}
+.vd-addr i{font-style:normal;color:#6a7f92;font-size:9px}
+.vd-search{width:190px;height:24px;background:#fff;border:1px solid #8ea3b5;border-radius:2px;padding:0 8px;display:flex;align-items:center;color:#8a99a7;font-style:italic;font-size:12px;box-shadow:inset 0 1px 2px rgba(0,0,0,.12)}
+.vd-cmd{background:linear-gradient(180deg,#f2f6fb,#dde7f2 55%,#d2deeb);border:1px solid #6f8396;border-top:1px solid #c9d6e3;border-bottom:1px solid #b5c6d6;height:30px;display:flex;align-items:center;gap:4px;padding:0 8px;font-size:12px;color:#1b2f43}
+.vd-cmd span{padding:3px 9px;border-radius:3px;border:1px solid transparent}
+.vd-cmd span:hover{border-color:#9fb6cc;background:linear-gradient(#fff,#e0ebf6)}
+.vd-body{flex:1;display:flex;background:#fff;border:1px solid #6f8396;border-top:0;min-height:0}
+.vd-nav2{width:170px;background:linear-gradient(180deg,#f7fafd,#e9f0f8);border-right:1px solid #d4dfea;padding:12px 10px;font-size:12px;color:#17324d;display:flex;flex-direction:column;gap:2px}
+.vd-nav2 h4{margin:6px 0 4px;font-size:12px;color:#1a4a7a}
+.vd-nav2 div{padding:3px 6px;border-radius:3px}
+.vd-nav2 div.on{background:linear-gradient(#e7f3fe,#c4def5);border:1px solid #9cc0e4;padding:2px 5px}
+.vd-main{flex:1;display:flex;overflow:hidden}
+.vd-col{padding:22px 26px;overflow:hidden}
+.vd-col h3{margin:0 0 14px;font-size:15px;color:#1d5a8f}
+.vd-job{border-left:2px solid #b7d3ea;margin-left:6px;padding:0 0 18px 18px;position:relative}
+.vd-job::before{content:"";position:absolute;left:-7px;top:2px;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#d9ffb8,#3fbf2a 60%,#1f7a12);border:2px solid #fff;box-shadow:0 0 0 1px #2f9a1f}
+.vd-job small{color:#2f6a24;font-weight:600;display:block}
+.vd-job strong{display:block;font-size:15px;color:#0b3a66}
+.vd-job em{font-style:normal;color:#1d5a8f;display:block}
+.vd-job p{margin:4px 0 0;color:#2e5578;line-height:1.5}
+.vd-status{height:24px;background:linear-gradient(#f2f6fb,#dde7f2);border:1px solid #6f8396;border-top:1px solid #c9d6e3;font-size:12px;color:#334;display:flex;align-items:center;padding:0 10px;margin-top:0}
+/* ---- taskbar ---- */
+.vd-bar{position:absolute;left:0;right:0;bottom:0;height:40px;
+ background:linear-gradient(180deg,rgba(92,98,108,.93) 0%,rgba(52,57,65,.94) 40%,rgba(14,17,22,.96) 50%,rgba(26,30,36,.95) 100%);
+ border-top:1px solid rgba(255,255,255,.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 -1px 0 rgba(0,0,0,.5);
+ backdrop-filter:blur(8px);display:flex;align-items:center;padding-left:72px;gap:6px}
+.vd-orb{position:absolute;left:6px;bottom:-4px;width:58px;height:58px;border-radius:50%;border:0;padding:0;cursor:pointer;z-index:5;
+ background:radial-gradient(circle at 50% 12%,rgba(255,255,255,.55) 0 8%,rgba(255,255,255,0) 40%),radial-gradient(circle at 50% 118%,#9bf0ff 0%,#3ba6ec 38%,#1260b4 68%,#0a3a80 100%);
+ box-shadow:0 0 0 1px rgba(0,0,0,.75),inset 0 0 0 1px rgba(255,255,255,.5),inset 0 -6px 10px rgba(130,230,255,.5),0 2px 6px rgba(0,0,0,.6);transition:filter .2s,box-shadow .2s}
+.vd-orb::before{content:"";position:absolute;left:5px;right:5px;top:3px;height:27px;border-radius:50%/60%;background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,.05))}
+.vd-orb:hover,.vd-orb.on{filter:brightness(1.15) saturate(1.2);box-shadow:0 0 0 1px rgba(0,0,0,.75),inset 0 0 0 1px rgba(255,255,255,.6),inset 0 -6px 12px rgba(150,240,255,.8),0 0 14px 2px rgba(120,210,255,.9)}
+.vd-orb svg{position:absolute;left:14px;top:14px}
+.vd-ql{display:flex;gap:2px;padding-right:6px;border-right:1px solid rgba(255,255,255,.18);margin-right:2px}
+.vd-q{width:28px;height:28px;border-radius:3px;display:flex;align-items:center;justify-content:center}
+.vd-q:hover{background:linear-gradient(rgba(255,255,255,.3),rgba(255,255,255,.08));box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+.vd-tb{height:32px;min-width:150px;max-width:170px;display:flex;align-items:center;gap:7px;padding:0 10px;border-radius:4px;color:#fff;font-size:12px;text-shadow:0 0 3px rgba(0,0,0,.9);
+ background:linear-gradient(180deg,rgba(255,255,255,.34) 0%,rgba(255,255,255,.12) 48%,rgba(255,255,255,.04) 50%,rgba(255,255,255,.14) 100%);
+ border:1px solid rgba(255,255,255,.55);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 1px 2px rgba(0,0,0,.5);cursor:default}
+.vd-tb.min{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03) 50%,rgba(255,255,255,.06));border-color:rgba(255,255,255,.28)}
+.vd-tb:hover{background:linear-gradient(180deg,rgba(190,235,255,.5) 0%,rgba(120,200,240,.28) 48%,rgba(60,150,210,.2) 50%,rgba(120,210,255,.3) 100%);border-color:rgba(190,235,255,.8)}
+.vd-tray{margin-left:auto;height:100%;display:flex;align-items:center;gap:7px;padding:0 0 0 10px;color:#fff;font-size:12px;text-shadow:0 0 3px #000}
+.vd-clock{text-align:center;line-height:1.15;padding:0 8px}
+.vd-show{width:12px;height:100%;border-left:1px solid rgba(255,255,255,.35);background:linear-gradient(90deg,rgba(255,255,255,.1),rgba(255,255,255,.28))}
+/* ---- start menu ---- */
+.vd-start{position:absolute;left:4px;bottom:36px;width:410px;height:470px;display:flex;z-index:4;border-radius:7px 7px 0 0;
+ background:linear-gradient(180deg,rgba(60,90,100,.72),rgba(10,26,34,.82));border:1px solid rgba(255,255,255,.55);box-shadow:inset 0 0 0 1px rgba(0,0,0,.4),0 6px 30px rgba(0,0,0,.7);backdrop-filter:blur(12px);padding:6px 6px 38px}
+.vd-sl{width:236px;background:#fff;border:1px solid #6e7f8f;border-radius:4px;display:flex;flex-direction:column;padding:6px 4px;gap:1px;font-size:12px}
+.vd-si{display:flex;align-items:center;gap:9px;padding:5px 7px;border-radius:3px;border:1px solid transparent;color:#111}
+.vd-si small{display:block;color:#667;font-size:11px}
+.vd-si:hover{background:linear-gradient(#e9f6ff,#bfe0f8);border-color:#8fc3ea}
+.vd-sep{height:1px;background:#d7dde3;margin:5px 4px}
+.vd-sr{flex:1;padding:6px 6px;color:#fff;font-size:13px;display:flex;flex-direction:column;gap:2px;text-shadow:0 1px 2px #000}
+.vd-sr div{padding:5px 10px;border-radius:3px}
+.vd-sr div:hover{background:rgba(255,255,255,.2)}
+.vd-srch{position:absolute;left:6px;bottom:6px;width:236px;height:26px;background:#fff;border:1px solid #6e7f8f;border-radius:3px;font-size:12px;color:#8a99a7;display:flex;align-items:center;padding:0 8px;font-style:italic}
+.vd-pw{position:absolute;right:10px;bottom:5px;display:flex;gap:2px}
+.vd-pw span{width:28px;height:24px;border:1px solid rgba(0,0,0,.6);background:linear-gradient(#aab6c0,#5c6a78 48%,#2e3946 50%,#56687a);border-radius:3px 0 0 3px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4)}
+.vd-pw span+span{border-radius:0 3px 3px 0;width:18px}
+.hide{display:none}
+</style></head><body>
+<div class="vd" id="vd">
+ <div class="vd-wall">
+  <svg viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice">
+   <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#02120f"/><stop offset=".55" stop-color="#06322b"/><stop offset="1" stop-color="#0a5a4a"/></linearGradient>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7ff2a0" stop-opacity="0"/><stop offset=".5" stop-color="#8af5a8" stop-opacity=".85"/><stop offset="1" stop-color="#2cc7a8" stop-opacity="0"/></linearGradient>
+    <linearGradient id="g2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#16a89a" stop-opacity="0"/><stop offset=".6" stop-color="#5de0c4" stop-opacity=".75"/><stop offset="1" stop-color="#b6ffe8" stop-opacity="0"/></linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#d9ffe6" stop-opacity=".95"/><stop offset=".35" stop-color="#6ff0b0" stop-opacity=".5"/><stop offset="1" stop-color="#2fb89a" stop-opacity="0"/></radialGradient>
+    <filter id="b1"><feGaussianBlur stdDeviation="14"/></filter><filter id="b2"><feGaussianBlur stdDeviation="5"/></filter><filter id="b3"><feGaussianBlur stdDeviation="40"/></filter>
+   </defs>
+   <rect width="1280" height="720" fill="url(#bg)"/>
+   <ellipse cx="760" cy="640" rx="620" ry="150" fill="url(#glow)" filter="url(#b3)" opacity=".9"/>
+   <ellipse cx="1000" cy="120" rx="360" ry="150" fill="#1fa58f" opacity=".35" filter="url(#b3)"/>
+   <path d="M-40 190 C 160 150 330 330 520 520 S 820 690 1000 700 L 1000 740 L -40 740Z" fill="url(#g1)" filter="url(#b1)" opacity=".9"/>
+   <path d="M-40 250 C 200 230 380 420 560 560 S 900 700 1100 690" fill="none" stroke="#c6ffd8" stroke-width="5" opacity=".75" filter="url(#b2)"/>
+   <path d="M-40 300 C 220 300 420 480 600 600 S 960 705 1180 690" fill="none" stroke="#9ff7c4" stroke-width="22" opacity=".45" filter="url(#b1)"/>
+   <path d="M300 0 C 420 120 520 280 700 420 S 1040 600 1320 560 L 1320 720 L 560 720Z" fill="url(#g2)" filter="url(#b1)" opacity=".55"/>
+   <path d="M420 -20 C 520 120 640 230 800 330 S 1100 460 1320 400" fill="none" stroke="#baffe6" stroke-width="3" opacity=".55" filter="url(#b2)"/>
+   <path d="M640 -20 C 700 90 780 160 900 220 S 1120 300 1320 270" fill="none" stroke="#5ee8c8" stroke-width="16" opacity=".35" filter="url(#b1)"/>
+  </svg>
+ </div>
+
+ <div class="vd-icons">
+  <div class="vd-icon" id="ic-trash"><svg width="48" height="48" viewBox="0 0 48 48"><defs><linearGradient id="tg" x1="0" x2="1"><stop offset="0" stop-color="#b9d0e4"/><stop offset=".5" stop-color="#e9f4fc"/><stop offset="1" stop-color="#9cb6cc"/></linearGradient></defs><path d="M10 12h28l-3 31a3 3 0 0 1-3 2.6H16a3 3 0 0 1-3-2.6z" fill="url(#tg)" stroke="#5f7f9a" stroke-width="1.4" fill-opacity=".85"/><path d="M8 11h32" stroke="#5f7f9a" stroke-width="3" stroke-linecap="round"/><path d="M18 8h12v3H18z" fill="#cfe1ef" stroke="#5f7f9a"/><path d="M17 18v22M24 18v22M31 18v22" stroke="#7d9bb4" stroke-width="1.4" opacity=".7"/><path d="M20 4l4 6-6-1z" fill="#44b04a"/></svg>Lixeira</div>
+  <div class="vd-icon sel" id="ic-folder"><svg width="48" height="48" viewBox="0 0 48 48"><defs><linearGradient id="fg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe58a"/><stop offset="1" stop-color="#f2b53a"/></linearGradient><linearGradient id="fg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2b8"/><stop offset=".5" stop-color="#ffd35c"/><stop offset="1" stop-color="#eba624"/></linearGradient></defs><path d="M4 10a3 3 0 0 1 3-3h12l4 4h18a3 3 0 0 1 3 3v26a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" fill="url(#fg1)" stroke="#b27b14" stroke-width="1.2"/><path d="M4 18a3 3 0 0 1 3-3h34a3 3 0 0 1 3 3v21a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" fill="url(#fg2)" stroke="#b27b14" stroke-width="1.2"/><path d="M6 19h36" stroke="#fff" stroke-opacity=".7"/></svg>Trajetória profissional</div>
+ </div>
+
+ <div class="vd-win" id="win">
+  <div class="vd-title">
+   <svg width="18" height="18" viewBox="0 0 48 48"><path d="M4 18a3 3 0 0 1 3-3h34a3 3 0 0 1 3 3v21a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" fill="#ffd35c" stroke="#b27b14" stroke-width="2"/><path d="M4 10a3 3 0 0 1 3-3h12l4 4h18v6H4z" fill="#f2b53a" stroke="#b27b14" stroke-width="2"/></svg>
+   <b>Trajetória profissional</b>
+   <div class="vd-caps">
+    <div class="vd-cap" id="b-min"><svg width="12" height="10" viewBox="0 0 12 10"><rect x="1" y="6" width="9" height="3" fill="#fff" stroke="#2a3b4b"/></svg></div>
+    <div class="vd-cap"><svg width="12" height="10" viewBox="0 0 12 10"><rect x="1.5" y="1.5" width="9" height="7" fill="none" stroke="#2a3b4b" stroke-width="1.6"/><rect x="2" y="2" width="8" height="2" fill="#fff" opacity=".8"/></svg></div>
+    <div class="vd-cap x"><svg width="14" height="12" viewBox="0 0 14 12"><path d="M2.5 1.5l9 9M11.5 1.5l-9 9" stroke="#3a0a02" stroke-width="3.6" stroke-linecap="round"/><path d="M2.5 1.5l9 9M11.5 1.5l-9 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+   </div>
+  </div>
+  <div class="vd-chrome">
+   <div class="vd-nav"><div class="vd-orbbtn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="vd-orbbtn off"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="#8fa3b5" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+   <div class="vd-addr">📁 Computador <i>▶</i> João Carvalho <i>▶</i> Trajetória profissional <i>▶</i></div>
+   <div class="vd-search">Pesquisar</div>
+  </div>
+  <div class="vd-cmd"><span>Organizar ▾</span><span>Exibições ▾</span><span>Imprimir</span></div>
+  <div class="vd-body">
+   <div class="vd-nav2"><h4>Links Favoritos</h4><div>Documentos</div><div>Imagens</div><div>Música</div><div class="on">Trajetória</div><h4>Pastas</h4><div>Experiência</div><div>Formação</div></div>
+   <div class="vd-main">
+    <div class="vd-col" style="flex:1.5"><h3>Experiência</h3>
+     <div class="vd-job"><small>out 2025 – atual</small><strong>Analista de Sistemas Sênior</strong><em>Claro Brasil</em><p>Backend, APIs e integrações; sustentação de serviços em produção; instrumentação de logging e alertas.</p></div>
+     <div class="vd-job"><small>jan 2023 – atual</small><strong>Desenvolvedor Backend</strong><em>Autônomo</em><p>APIs e ferramentas em Python; integrações com serviços externos.</p></div>
+     <div class="vd-job"><small>ago – out 2025</small><strong>Analista de Sistemas</strong><em>Polícia Civil (DIPOL/DTI)</em></div>
+    </div>
+    <div class="vd-col" style="flex:1;background:#f1f7fc;border-left:1px solid #d6e6f3"><h3>Formação</h3><strong style="color:#0b3a66">Bacharelado em Ciência da Computação</strong><div style="color:#2e5578;margin-bottom:18px">UNIP, São Paulo</div><h3>Certificações na Udemy</h3><div style="color:#17406a;line-height:2">✔ Programação concorrente e assíncrona<br>✔ Python do básico ao avançado<br>✔ React com TypeScript</div></div>
+   </div>
+  </div>
+  <div class="vd-status">7 itens</div>
+ </div>
+
+ <div class="vd-start hide" id="start">
+  <div class="vd-sl">
+   <div class="vd-si"><span>🌐</span><div><b>Internet</b><small>Navegador</small></div></div>
+   <div class="vd-si"><span>✉️</span><div><b>E-mail</b><small>joao@…</small></div></div>
+   <div class="vd-sep"></div>
+   <div class="vd-si"><span>📁</span>Trajetória profissional</div>
+   <div class="vd-si"><span>💣</span>Campo Minado <small style="margin-left:auto">em breve</small></div>
+   <div class="vd-si"><span>🃏</span>Paciência <small style="margin-left:auto">em breve</small></div>
+   <div style="flex:1"></div><div class="vd-sep"></div>
+   <div class="vd-si"><span>▶</span><b>Todos os Programas</b></div>
+  </div>
+  <div class="vd-sr"><div style="font-weight:600;font-size:15px;padding:10px">João Carvalho</div><div>Documentos</div><div>Imagens</div><div>Músicas</div><div>Jogos</div><div>Computador</div><div>Painel de Controle</div></div>
+  <div class="vd-srch">Iniciar pesquisa</div><div class="vd-pw"><span></span><span></span></div>
+ </div>
+
+ <div class="vd-bar">
+  <button class="vd-orb" id="orb" aria-label="Iniciar"><svg width="30" height="30" viewBox="0 0 30 30"><path d="M3 6.2c3.2-1.7 6-1.4 8.6 0l-1.4 7.2c-2.6-1.4-5.1-1.5-8.2 0z" fill="#ff6a3d"/><path d="M13 7.2c2.6 1.3 5.4 1.5 8.6.2l-1.4 7c-3 1.2-5.8 1.1-8.6-.2z" fill="#6fe04b"/><path d="M2 16.2c3.1-1.5 5.7-1.3 8.2.1l-1.4 7.2c-2.6-1.3-5.1-1.4-8 .1z" fill="#2f9bff"/><path d="M11.4 17.5c2.6 1.3 5.4 1.4 8.4.2l-1.4 7c-3 1.2-5.7 1.1-8.4-.2z" fill="#ffd02a"/></svg></button>
+  <div class="vd-ql"><div class="vd-q" title="Mostrar área de trabalho"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="11" fill="#7fc4f5" stroke="#fff" stroke-width="1.3"/><path d="M6 17h8" stroke="#fff" stroke-width="1.6"/></svg></div><div class="vd-q" title="Alternar janelas"><svg width="20" height="20" viewBox="0 0 20 20"><rect x="2" y="7" width="11" height="9" fill="#9fd3f7" stroke="#fff"/><rect x="7" y="3" width="11" height="9" fill="#5aa9e6" stroke="#fff"/></svg></div></div>
+  <div class="vd-tb" id="tb"><svg width="18" height="18" viewBox="0 0 48 48"><path d="M4 18a3 3 0 0 1 3-3h34a3 3 0 0 1 3 3v21a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" fill="#ffd35c" stroke="#b27b14" stroke-width="2"/><path d="M4 10a3 3 0 0 1 3-3h12l4 4h18v6H4z" fill="#f2b53a" stroke="#b27b14" stroke-width="2"/></svg>Trajetória profissional</div>
+  <div class="vd-tray">
+   <span style="opacity:.9">◂</span>
+   <svg width="18" height="18" viewBox="0 0 18 18"><path d="M2 7h3l4-3.5v11L5 11H2z" fill="#fff"/><path d="M11 6.5c1.5 1.4 1.5 3.6 0 5M13 4.5c2.6 2.4 2.6 6.6 0 9" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg>
+   <svg width="18" height="18" viewBox="0 0 18 18"><rect x="2" y="3" width="14" height="9" rx="1" fill="#79bdf2" stroke="#fff"/><path d="M6 15h6" stroke="#fff" stroke-width="1.6"/></svg>
+   <div class="vd-clock">14:32<br><span style="font-size:11px;opacity:.9">22/11/2026</span></div>
+   <div class="vd-show"></div>
+  </div>
+ </div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+$('orb').onclick=e=>{e.stopPropagation();$('start').classList.toggle('hide');$('orb').classList.toggle('on')};
+document.addEventListener('click',()=>{ $('start').classList.add('hide');$('orb').classList.remove('on')});
+$('b-min').onclick=()=>{$('win').classList.add('min');$('tb').classList.add('min')};
+$('tb').onclick=()=>{$('win').classList.toggle('min');$('tb').classList.toggle('min')};
+$('ic-folder').ondblclick=()=>{$('win').classList.remove('min');$('tb').classList.remove('min')};
+</script></body></html>
