@@ -464,12 +464,19 @@ a{color:#0a5aa8}a:hover{color:#063d75}
 .aero-btn::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse 80% 70% at 50% 115%,var(--glow,rgba(150,240,255,.85)),rgba(255,255,255,0) 70%);opacity:0;transition:opacity .3s ease;pointer-events:none;z-index:-1}
 .aero-btn:hover::after{opacity:1}
 .tab-thumb{isolation:isolate;overflow:hidden;transition:transform .5s cubic-bezier(.34,1.35,.5,1)}
-.grid-a .card{animation:cardInA .6s cubic-bezier(.2,.8,.2,1) backwards}
-.grid-b .card{animation:cardInB .6s cubic-bezier(.2,.8,.2,1) backwards}
-.grid-out .card{opacity:0;transform:translateY(-10px) scale(.97);filter:blur(3px);transition:opacity .2s ease,transform .2s ease,filter .2s ease}
-@keyframes cardInA{from{opacity:0;transform:translateY(22px) scale(.95);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
-@keyframes cardInB{from{opacity:0;transform:translateY(22px) scale(.95);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
-@media (prefers-reduced-motion: reduce){.grid-a .card,.grid-b .card{animation:none}.grid-out .card{transition:none}.tab-thumb{transition:none}}
+/* filtro de projetos: slide no sentido do clique */
+.grid-out .card{opacity:0;transition:opacity .2s ease,transform .2s cubic-bezier(.5,0,.9,.6)}
+.grid-out.dir-r .card{transform:translate3d(64px,0,0)}
+.grid-out.dir-l .card{transform:translate3d(-64px,0,0)}
+.grid-a.dir-r .card{animation:slideFromLeftA .5s cubic-bezier(.2,.85,.25,1) backwards}
+.grid-b.dir-r .card{animation:slideFromLeftB .5s cubic-bezier(.2,.85,.25,1) backwards}
+.grid-a.dir-l .card{animation:slideFromRightA .5s cubic-bezier(.2,.85,.25,1) backwards}
+.grid-b.dir-l .card{animation:slideFromRightB .5s cubic-bezier(.2,.85,.25,1) backwards}
+@keyframes slideFromLeftA{from{opacity:0;transform:translate3d(-72px,0,0)}to{opacity:1;transform:none}}
+@keyframes slideFromLeftB{from{opacity:0;transform:translate3d(-72px,0,0)}to{opacity:1;transform:none}}
+@keyframes slideFromRightA{from{opacity:0;transform:translate3d(72px,0,0)}to{opacity:1;transform:none}}
+@keyframes slideFromRightB{from{opacity:0;transform:translate3d(72px,0,0)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.grid-a .card,.grid-b .card{animation:none!important}.grid-out .card{transition:none;transform:none!important}.tab-thumb{transition:none}}
 .aero-btn:hover{filter:brightness(1.1) saturate(1.1);transform:translateY(-1px)}
 .aero-btn:active{transform:translateY(1px);filter:brightness(.95)}
 .aero-btn:focus-visible,.tab:focus-visible,.glink:focus-visible{outline:3px solid #ffcf3a;outline-offset:3px}
@@ -1381,9 +1388,12 @@ class Component extends DCLogic {
   }
 
   pickTab(label) {
-    if (label === (this.state.sel || this.state.cat)) return;
+    const cur = this.state.sel || this.state.cat;
+    if (label === cur) return;
+    const order = ['Todos', 'Desktop', 'APIs & Web', 'Mobile'];
+    const dir = order.indexOf(label) > order.indexOf(cur) ? 'dir-r' : 'dir-l';
     if (this.swapT) clearTimeout(this.swapT);
-    this.setState({ sel: label, leaving: true });
+    this.setState({ sel: label, leaving: true, dir });
     this.swapT = setTimeout(() => {
       this.setState({ cat: label, leaving: false, anim: this.state.anim ? 0 : 1 });
     }, 200);
@@ -1470,7 +1480,7 @@ class Component extends DCLogic {
       pick: () => this.pickTab(label)
     }));
     const thumbX = Math.max(0, tabLabels.indexOf(sel)) * 100;
-    const gridAnim = this.state.leaving ? 'grid-out' : (this.state.anim ? 'grid-b' : 'grid-a');
+    const gridAnim = (this.state.leaving ? 'grid-out' : (this.state.anim ? 'grid-b' : 'grid-a')) + (this.state.dir ? ' ' + this.state.dir : '');
 
     const chip = {
       'Desktop': { chipBg: 'linear-gradient(180deg, #ffffff, #e2f3ff)', chipFg: '#0b4a85', chipBorder: '#a9d4f5' },
@@ -1486,9 +1496,11 @@ class Component extends DCLogic {
       { name: 'ecomonitormobile', title: 'EcoMonitor Mobile', cat: 'Mobile', desc: 'Monitoramento ambiental: app Android que consome API própria de clima e qualidade do ar.', stack: ['Kotlin', 'Python', 'FastAPI'], bg: 'linear-gradient(160deg, #2a8226 0%, #62c242 55%, #c8f59a 100%)', icon: 'M7 2h10v20H7z M11 18h2 M12 6c-2.2 2-2.2 5 0 7c2.2-2 2.2-5 0-7z' },
       { name: 'sustainable-habits-tracker', title: 'Sustainable Habits', cat: 'APIs & Web', desc: 'API REST para acompanhar hábitos sustentáveis, com autenticação JWT e resumos periódicos.', stack: ['Python', 'FastAPI', 'Docker'], bg: 'linear-gradient(160deg, #0f7055 0%, #2fa874 50%, #9be8b8 100%)', icon: 'M5 19c0-8 6-14 14-14c0 8-6 14-14 14z M5 19l7-7' }
     ];
+    const cols = typeof window === 'undefined' ? 3 : (window.innerWidth > 1180 ? 3 : (window.innerWidth > 700 ? 2 : 1));
+    const slideDelay = (i) => { const c = i % cols; return (this.state.dir === 'dir-r' ? (cols - 1 - c) : c) * 60; };
     const projects = all
       .filter((p) => cat === 'Todos' || p.cat === cat)
-      .map((p, i) => Object.assign({}, p, chip[p.cat], { url: base + p.name, title: p.title || p.name, delay: i * 70 }));
+      .map((p, i) => Object.assign({}, p, chip[p.cat], { url: base + p.name, title: p.title || p.name, delay: slideDelay(i) }));
 
     const blueOrb = 'radial-gradient(circle at 50% 115%, #8fe3ff 0%, #2a9be8 40%, #0d5fb8 100%)';
     const greenOrb = 'radial-gradient(circle at 50% 115%, #d2ff9a 0%, #4fc23a 40%, #1f7a14 100%)';
