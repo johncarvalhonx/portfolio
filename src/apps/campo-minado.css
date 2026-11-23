@@ -1,0 +1,28 @@
+/* ===== Campo Minado (visual do Vista) ===== */
+.ms{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;border:1px solid #6f8396;border-top:0;
+ background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(190,220,255,.45),rgba(190,220,255,0) 70%),linear-gradient(180deg,#6f97d2 0%,#4672b8 55%,#335c9c 100%)}
+.ms .vd-menubar{border-left:0;border-right:0}
+.ms-field{flex:1;display:flex;align-items:center;justify-content:center;padding:16px}
+.ms-board{display:grid;gap:1px;padding:1px;background:#1b3d70;border-radius:3px;box-shadow:0 0 0 1px rgba(255,255,255,.35),0 4px 14px rgba(0,20,60,.45);touch-action:manipulation}
+.ms-c{position:relative;width:25px;height:25px;border-radius:2px;display:flex;align-items:center;justify-content:center;cursor:default;
+ background:linear-gradient(180deg,#8cc2fb 0%,#4b8fe6 46%,#2f72d0 52%,#4f93ea 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 0 0 1px rgba(255,255,255,.22);
+ font:700 15px/1 "Segoe UI",Tahoma,Arial,sans-serif}
+.ms-c:hover:not(.open){background:linear-gradient(180deg,#b5dcff 0%,#6eaaf5 46%,#4a8ae4 52%,#76b4fa 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),inset 0 0 0 1px rgba(255,255,255,.4),0 0 6px rgba(150,215,255,.9);z-index:1}
+.ms-c.press{background:linear-gradient(180deg,#3d79cc,#2a63b5);box-shadow:inset 0 1px 3px rgba(0,20,60,.6)}
+.ms-c.open{background:linear-gradient(180deg,#eef3f9,#d6e1ee);box-shadow:inset 0 0 0 1px rgba(255,255,255,.7);text-shadow:0 1px 0 #fff;animation:ms-open .14s ease-out}
+@keyframes ms-open{from{background:#9cc8f7}to{}}
+.ms-c svg{width:19px;height:19px;display:block;pointer-events:none}
+.ms-c.flag svg{filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))}
+.ms-c.n1{color:#1b48c7}.ms-c.n2{color:#2a7a18}.ms-c.n3{color:#c4201a}.ms-c.n4{color:#1b2f7a}
+.ms-c.n5{color:#7d1a0e}.ms-c.n6{color:#137c7c}.ms-c.n7{color:#222}.ms-c.n8{color:#777}
+.ms-c.mine{animation:ms-pop .2s ease-out}
+.ms-c.boom{background:radial-gradient(circle at 50% 50%,#ffb08a 0%,#f05a32 45%,#c22508 100%);box-shadow:inset 0 0 0 1px rgba(255,220,200,.6)}
+.ms-c.wrong .ms-x{position:absolute;inset:3px;width:auto;height:auto}
+@keyframes ms-pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+.ms-board.done .ms-c:hover:not(.open){background:linear-gradient(180deg,#8cc2fb 0%,#4b8fe6 46%,#2f72d0 52%,#4f93ea 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),inset 0 0 0 1px rgba(255,255,255,.22)}
+.ms-foot{flex:none;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 16px 8px}
+.ms-pill{display:flex;align-items:center;gap:6px}
+.ms-pill svg{width:22px;height:22px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.45))}
+.ms-pill b{min-width:44px;height:24px;padding:0 10px;display:flex;align-items:center;justify-content:center;border-radius:12px;
+ font:700 14px/1 "Segoe UI",Tahoma,Arial,sans-serif;color:#fff;background:linear-gradient(180deg,rgba(10,30,70,.55),rgba(10,30,70,.35));box-shadow:inset 0 1px 2px rgba(0,0,0,.4),0 1px 0 rgba(255,255,255,.25);font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){.ms-c.open,.ms-c.mine{animation:none}}

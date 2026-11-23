@@ -28,6 +28,8 @@ No celular (< 768px) o desktop não aparece: só o conteúdo da Trajetória, num
 | `src/vista-desktop.js` | Motor (`VistaDesktop`): janelas, arrastar, barra, Iniciar, bandeja |
 | `src/vista-desktop.css` | Todo o visual (classes `vd-*`) |
 | `src/apps/trajetoria.js` | App "Trajetória profissional" (dados e conteúdo da janela) |
+| `src/apps/campo-minado.js` / `.css` | Jogo Campo Minado (visual do Vista) |
+| `src/apps/paciencia.js` / `.css` | Jogo Paciência — Klondike (visual do Vista) |
 | `assets/wallpaper.webp` | Papel de parede do desktop |
 
 O `build.py` injeta esses arquivos no `src/template.html` onde houver uma linha
@@ -60,8 +62,8 @@ this.vd.addDesktopIcon({ label: 'Campo Minado', icon: VD_CAMPO_MINADO.icon, appI
 this.vd.addStartEntry({ label: 'Campo Minado', icon: VD_CAMPO_MINADO.icon, appId: 'campo-minado' });
 ```
 
-(Hoje "Campo Minado" e "Paciência" já existem no Iniciar como entradas desabilitadas "em breve":
-troque o `appId: null` delas pelo id do app.)
+Peças prontas para apps: `vdMenuBar([...])` (barra de menus Jogo/Ajuda) e `vdDialog(host, {...})` (caixa de diálogo).
+O `render` recebe `win` com `close()`, `setTitle(t)`, `setSize(w, h)`, `isActive()` e `isMinimized()`.
 
 No console do navegador, `window.vistaDesktop` dá acesso ao motor (`open('id')`, `close('id')`, `getState('id')`…).
 
@@ -73,6 +75,6 @@ Com o site servido (`python -m http.server 5291`) e Chrome instalado (`pip insta
 python tests/browser_runner.py http://127.0.0.1:5291/index.html 1440 900 saida.png tests/vista-desktop.behavior.js
 ```
 
-Para o celular use `tests/vista-desktop.mobile.js` com o argumento `mobile` ao final do comando.
+Os jogos têm `tests/vista-desktop.games.js`. Para o celular use `tests/vista-desktop.mobile.js` com o argumento `mobile` ao final do comando.
 
 O script imprime um JSON com o resultado de cada verificação (arrastar, limites, redimensionar, painéis, app de teste…).

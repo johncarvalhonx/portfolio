@@ -267,7 +267,23 @@ class VistaDesktop {
     this.tbsEl.appendChild(tb);
     rec.tb = tb;
     // conteúdo do app
-    try { rec.inst = app.render(rec.client, { id, el, close: () => this.close(id), setTitle: (t) => { rec.el.querySelector('.vd-title b').textContent = t; tb.querySelector('span').textContent = t; } }) || null; } catch (e) { rec.client.textContent = 'Erro ao abrir o programa.'; }
+    const api = {
+      id, el,
+      close: () => this.close(id),
+      setTitle: (t) => { rec.el.querySelector('.vd-title b').textContent = t; tb.querySelector('span').textContent = t; },
+      // muda o tamanho da janela (ex.: tabuleiro do Campo Minado por dificuldade); mantém dentro do desktop
+      setSize: (w, h) => {
+        rec.w = Math.round(w); rec.h = Math.round(h);
+        this._clamp(rec);
+        const W = this.stage.clientWidth, H = this.stage.clientHeight;
+        if (W && rec.x + rec.w > W) rec.x = Math.max(0, W - rec.w);
+        if (H && rec.y + rec.h > H) rec.y = Math.max(0, H - rec.h);
+        this._apply(rec);
+      },
+      isActive: () => this.activeId === id && rec.state !== 'min',
+      isMinimized: () => rec.state === 'min'
+    };
+    try { rec.inst = app.render(rec.client, api) || null; } catch (e) { rec.client.textContent = 'Erro ao abrir o programa.'; }
     this.timers.push(setTimeout(() => el.classList.remove('opening'), 260));
     this._closePopups();
     this.focus(id);
@@ -566,4 +582,112 @@ function vdRenderStatic(root, app) {
   const el = root.querySelector('.vd-swin');
   const inst = app.render(root.querySelector('.vd-client'), { id: app.id, el, close() {}, setTitle(t) { root.querySelector('.vd-title b').textContent = t; } });
   return { destroy() { if (inst && typeof inst.destroy === 'function') inst.destroy(); root.innerHTML = ''; } };
+}
+
+/* ===== Peças reutilizáveis dos programas (barra de menus, caixa de diálogo) ===== */
+
+/* Barra de menus estilo Vista. menus = [{ label, items: [{ label, shortcut?, action?, checked?() , disabled?() } | 'sep'] }] */
+function vdMenuBar(menus) {
+  const bar = document.createElement('div');
+  bar.className = 'vd-menubar';
+  bar.setAttribute('role', 'menubar');
+  let openIdx = -1;
+  const tops = [];
+  const drops = [];
+  const close = () => {
+    if (openIdx < 0) return;
+    drops[openIdx].hidden = true;
+    tops[openIdx].classList.remove('on');
+    tops[openIdx].setAttribute('aria-expanded', 'false');
+    openIdx = -1;
+    document.removeEventListener('pointerdown', outside, true);
+    document.removeEventListener('keydown', esc, true);
+  };
+  const outside = (e) => { if (!bar.contains(e.target)) close(); };
+  const esc = (e) => { if (e.key === 'Escape') { e.stopPropagation(); close(); } };
+  const open = (i) => {
+    if (openIdx === i) return;
+    close();
+    openIdx = i;
+    const m = menus[i];
+    const dd = drops[i];
+    dd.innerHTML = '';
+    m.items.forEach((it) => {
+      if (it === 'sep') { const s = document.createElement('div'); s.className = 'vd-mi-sep'; dd.appendChild(s); return; }
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'vd-mi';
+      b.setAttribute('role', it.checked ? 'menuitemradio' : 'menuitem');
+      const on = it.checked ? !!it.checked() : false;
+      if (it.checked) b.setAttribute('aria-checked', String(on));
+      b.innerHTML = '<i aria-hidden="true">' + (on ? '●' : '') + '</i><span></span><kbd></kbd>';
+      b.querySelector('span').textContent = it.label;
+      b.querySelector('kbd').textContent = it.shortcut || '';
+      if (it.disabled && it.disabled()) b.disabled = true;
+      b.addEventListener('click', () => { close(); if (it.action) it.action(); });
+      dd.appendChild(b);
+    });
+    dd.hidden = false;
+    tops[i].classList.add('on');
+    tops[i].setAttribute('aria-expanded', 'true');
+    document.addEventListener('pointerdown', outside, true);
+    document.addEventListener('keydown', esc, true);
+  };
+  menus.forEach((m, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'vd-mb-item';
+    const t = document.createElement('button');
+    t.type = 'button';
+    t.className = 'vd-mb-top';
+    t.textContent = m.label;
+    t.setAttribute('aria-haspopup', 'true');
+    t.setAttribute('aria-expanded', 'false');
+    t.addEventListener('click', () => (openIdx === i ? close() : open(i)));
+    t.addEventListener('pointerenter', () => { if (openIdx >= 0 && openIdx !== i) open(i); });
+    const dd = document.createElement('div');
+    dd.className = 'vd-menu';
+    dd.setAttribute('role', 'menu');
+    dd.hidden = true;
+    wrap.appendChild(t);
+    wrap.appendChild(dd);
+    bar.appendChild(wrap);
+    tops.push(t);
+    drops.push(dd);
+  });
+  bar.closeMenus = close;
+  return bar;
+}
+
+/* Caixa de diálogo estilo Vista dentro da janela do programa.
+   opts = { title, heading, text, icon?: 'info'|'win'|'lose', buttons: [{ label, action, primary? }] } */
+function vdDialog(host, opts) {
+  const ov = document.createElement('div');
+  ov.className = 'vd-dlg-ov';
+  const icons = {
+    win: '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#ffd34d" stroke="#c98a07"/><path d="M9 16.5l5 5 9-11" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    lose: '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#e2563c" stroke="#9b2410"/><path d="M11 11l10 10M21 11L11 21" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></svg>',
+    info: '<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#3a8ee6" stroke="#1d5fa8"/><circle cx="16" cy="9.5" r="2.2" fill="#fff"/><path d="M16 14v10" stroke="#fff" stroke-width="3.6" stroke-linecap="round"/></svg>'
+  };
+  ov.innerHTML = '<div class="vd-dlg" role="dialog" aria-modal="true"><div class="vd-dlg-title"></div><div class="vd-dlg-body">' +
+    (opts.icon ? '<span class="vd-dlg-ico">' + icons[opts.icon] + '</span>' : '') +
+    '<div class="vd-dlg-txt"><b></b><p></p></div></div><div class="vd-dlg-foot"></div></div>';
+  ov.querySelector('.vd-dlg-title').textContent = opts.title || '';
+  ov.querySelector('.vd-dlg').setAttribute('aria-label', opts.title || opts.heading || '');
+  ov.querySelector('.vd-dlg-txt b').textContent = opts.heading || '';
+  ov.querySelector('.vd-dlg-txt p').textContent = opts.text || '';
+  const foot = ov.querySelector('.vd-dlg-foot');
+  const done = () => ov.remove();
+  let first = null;
+  (opts.buttons || [{ label: 'OK' }]).forEach((bt) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'vd-btn' + (bt.primary ? ' primary' : '');
+    b.textContent = bt.label;
+    b.addEventListener('click', () => { done(); if (bt.action) bt.action(); });
+    foot.appendChild(b);
+    if (bt.primary || !first) first = b;
+  });
+  host.appendChild(ov);
+  if (first) try { first.focus({ preventScroll: true }); } catch (e) { /* sem foco */ }
+  return { close: done };
 }

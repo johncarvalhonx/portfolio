@@ -226,3 +226,35 @@
 .vd-si span b{display:block;font-weight:600}
 .vd-win[data-fixed] .vd-cap.max{pointer-events:none}
 .vd-win[data-fixed] .vd-cap.max svg{opacity:.35}
+
+/* ---- peças dos programas: barra de menus, menus, botões e diálogos ---- */
+.vd-menubar{flex:none;display:flex;align-items:center;height:22px;padding:0 2px;font-size:12px;color:#000;position:relative;z-index:6;
+ background:linear-gradient(180deg,#f6f9fd,#e5ecf5 48%,#dbe4ef 52%,#e3eaf3);border:1px solid #6f8396;border-bottom-color:#a9b9c9}
+.vd-mb-item{position:relative}
+.vd-mb-top{height:20px;padding:0 8px;border:1px solid transparent;border-radius:3px;background:transparent;font-size:12px}
+.vd-mb-top:hover,.vd-mb-top.on{background:linear-gradient(180deg,#f2f9ff,#d6e9fb);border-color:#8eb9e2}
+.vd-menu{position:absolute;left:0;top:21px;min-width:210px;padding:2px;background:#f5f5f5;border:1px solid #979797;box-shadow:2px 3px 6px rgba(0,0,0,.35);
+ background-image:linear-gradient(90deg,#f1f1f1 0,#f1f1f1 26px,#e2e3e3 26px,#e2e3e3 27px,#fff 27px,#fbfbfb 100%)}
+.vd-menu[hidden]{display:none}
+.vd-mi{display:flex;align-items:center;width:100%;height:22px;padding:0 10px 0 0;border:1px solid transparent;border-radius:3px;background:transparent;font-size:12px;text-align:left;color:#000}
+.vd-mi i{flex:none;width:28px;text-align:center;font-style:normal;font-size:8px;color:#1b2a38}
+.vd-mi span{flex:1}
+.vd-mi kbd{font:inherit;color:#444;margin-left:24px}
+.vd-mi:hover:not(:disabled){background:linear-gradient(180deg,#f2f8fd,#dcebfb);border-color:#a8d0f5}
+.vd-mi:disabled{color:#9a9a9a}
+.vd-mi-sep{height:1px;margin:3px 2px 3px 30px;background:#e0e0e0;border-bottom:1px solid #fff}
+.vd-btn{min-width:76px;height:24px;padding:0 12px;white-space:nowrap;border:1px solid #707070;border-radius:3px;font-size:12px;color:#000;
+ background:linear-gradient(180deg,#f2f2f2 0%,#ebebeb 48%,#dddddd 52%,#cfcfcf 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.8)}
+.vd-btn:hover{border-color:#3c7fb1;background:linear-gradient(180deg,#eaf6fd 0%,#d9f0fc 48%,#bee6fd 52%,#a7d9f5 100%)}
+.vd-btn:active{border-color:#2c628b;background:linear-gradient(180deg,#e5f4fc 0%,#c4e5f6 48%,#98d1ef 52%,#68b3db 100%)}
+.vd-btn.primary{border-color:#3c7fb1;box-shadow:inset 0 0 0 1px #9cd6f8}
+.vd-dlg-ov{position:absolute;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:rgba(10,30,60,.18)}
+.vd-dlg{flex:none;width:400px;border-radius:6px;overflow:hidden;border:1px solid rgba(0,0,0,.6);box-shadow:0 8px 28px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.5);
+ background:linear-gradient(180deg,rgba(178,214,236,.96),rgba(130,182,214,.96));animation:vd-open .16s ease-out both}
+.vd-dlg-title{height:26px;display:flex;align-items:center;padding:0 10px;font-size:12px;text-shadow:0 0 8px #fff,0 0 4px #fff}
+.vd-dlg-body{display:flex;gap:12px;align-items:flex-start;margin:0 6px;padding:16px 14px;background:#fff;border:1px solid #6f8396;border-bottom:0}
+.vd-dlg-ico svg{width:32px;height:32px;display:block}
+.vd-dlg-txt b{display:block;font-size:14px;font-weight:400;color:#1d4c8c;margin-bottom:6px}
+.vd-dlg-txt p{margin:0;font-size:12px;line-height:1.45;color:#222;white-space:pre-line}
+.vd-dlg-foot{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;margin:0 6px 6px;padding:10px 12px;background:#f0f0f0;border:1px solid #6f8396;border-top:1px solid #dfdfdf}
+@media (prefers-reduced-motion:reduce){.vd-dlg{animation:none}}
