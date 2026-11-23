@@ -11,7 +11,7 @@ PORT = 9333
 
 async def main(url, w, h, out, js_file=None, mobile=False):
     prof = os.path.join(os.environ["TEMP"], "cdp-prof-%d" % int(time.time()))
-    proc = subprocess.Popen([CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--remote-debugging-port=%d" % PORT,
+    proc = subprocess.Popen([CHROME, "--headless=new", "--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--hide-scrollbars", "--remote-debugging-port=%d" % PORT,
                              "--user-data-dir=" + prof, "--no-first-run", "--window-size=%d,%d" % (w, h), "about:blank"],
                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     try:

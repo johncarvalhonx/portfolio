@@ -5,7 +5,7 @@ const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 await sleep(400);
 const out = {};
 out.icons = ['campo-minado', 'paciencia'].every(id => !!document.querySelector('.vd-icon[data-app="' + id + '"]'));
-out.startEntries = [...document.querySelectorAll('.vd-entries .vd-si')].filter(b => !b.disabled).length === 3;
+out.startEntries = ['Campo Minado', 'Paciência'].every(n => [...document.querySelectorAll('.vd-entries .vd-si')].some(b => !b.disabled && b.textContent.includes(n)));
 // Campo Minado
 d.open('campo-minado'); await sleep(300);
 const mw = document.querySelector('.vd-win[data-app="campo-minado"]'); const M = mw._game; const ms = M.state;

@@ -568,6 +568,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
 /* @include src/vista-desktop.css */
 /* @include src/apps/campo-minado.css */
 /* @include src/apps/paciencia.css */
+/* @include src/apps/xadrez.css */
 </style>
 </helmet>
 
@@ -1329,6 +1330,8 @@ a{color:#0a5aa8}a:hover{color:#063d75}
 /* @include src/apps/trajetoria.js */
 /* @include src/apps/campo-minado.js */
 /* @include src/apps/paciencia.js */
+/* @include src/apps/xadrez-motor.js */
+/* @include src/apps/xadrez.js */
 
 class Component extends DCLogic {
   constructor(props) {
@@ -1398,12 +1401,15 @@ class Component extends DCLogic {
         this.vd.addDesktopIcon({ label: 'Lixeira', icon: VD_ICON_TRASH, appId: null });
         this.vd.registerApp(VD_MINAS_APP);
         this.vd.registerApp(VD_PACIENCIA_APP);
+        this.vd.registerApp(VD_XADREZ_APP);
         this.vd.addDesktopIcon({ label: 'Trajetória profissional', icon: VD_ICON_FOLDER, appId: 'trajetoria' });
         this.vd.addDesktopIcon({ label: 'Campo Minado', icon: VD_ICON_MINES, appId: 'campo-minado' });
         this.vd.addDesktopIcon({ label: 'Paciência', icon: VD_ICON_CARDS, appId: 'paciencia' });
+        this.vd.addDesktopIcon({ label: 'Chess Titans', icon: VD_ICON_CHESS, appId: 'xadrez' });
         this.vd.addStartEntry({ label: 'Trajetória profissional', icon: VD_ICON_FOLDER, appId: 'trajetoria' });
         this.vd.addStartEntry({ label: 'Campo Minado', icon: VD_ICON_MINES, appId: 'campo-minado' });
         this.vd.addStartEntry({ label: 'Paciência', icon: VD_ICON_CARDS, appId: 'paciencia' });
+        this.vd.addStartEntry({ label: 'Chess Titans', icon: VD_ICON_CHESS, appId: 'xadrez' });
         this.vd.open('trajetoria');
       }
     }
