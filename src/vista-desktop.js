@@ -18,24 +18,6 @@ const VD_ICON_GAME = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="fal
 
 const VD_ORB_FLAG = '<svg viewBox="0 0 30 30" aria-hidden="true" focusable="false"><path d="M3 6.2c3.2-1.7 6-1.4 8.6 0l-1.4 7.2c-2.6-1.4-5.1-1.5-8.200 0z" fill="#ff6a3d"/><path d="M13 7.2c2.6 1.3 5.4 1.5 8.6.2l-1.4 7c-3 1.2-5.8 1.1-8.6-.2z" fill="#6fe04b"/><path d="M2 16.2c3.1-1.5 5.7-1.3 8.2.1l-1.4 7.2c-2.6-1.3-5.1-1.4-8 .1z" fill="#2f9bff"/><path d="M11.4 17.5c2.6 1.3 5.4 1.4 8.4.2l-1.4 7c-3 1.2-5.700 1.100-8.400-.2z" fill="#ffd02a"/></svg>';
 
-/* papel de parede "Aurora" recriado em SVG */
-const VD_WALLPAPER = '<svg viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><defs>' +
-  '<linearGradient id="vdw-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#02130f"/><stop offset=".5" stop-color="#06352d"/><stop offset="1" stop-color="#0b6350"/></linearGradient>' +
-  '<linearGradient id="vdw-g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8dffae" stop-opacity="0"/><stop offset=".5" stop-color="#9affb8" stop-opacity="1"/><stop offset="1" stop-color="#2cd7b0" stop-opacity="0"/></linearGradient>' +
-  '<linearGradient id="vdw-g2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#16b8a4" stop-opacity="0"/><stop offset=".6" stop-color="#5fffd0" stop-opacity=".9"/><stop offset="1" stop-color="#c2fff0" stop-opacity="0"/></linearGradient>' +
-  '<radialGradient id="vdw-glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#e6fff0" stop-opacity="1"/><stop offset=".35" stop-color="#7cffbc" stop-opacity=".65"/><stop offset="1" stop-color="#2fc8a6" stop-opacity="0"/></radialGradient>' +
-  '<filter id="vdw-b1" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14"/></filter><filter id="vdw-b2" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4"/></filter><filter id="vdw-b3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="40"/></filter></defs>' +
-  '<rect width="1280" height="720" fill="url(#vdw-bg)"/>' +
-  '<ellipse cx="760" cy="650" rx="640" ry="170" fill="url(#vdw-glow)" filter="url(#vdw-b3)"/>' +
-  '<ellipse cx="1020" cy="110" rx="380" ry="160" fill="#22b89f" opacity=".42" filter="url(#vdw-b3)"/>' +
-  '<path d="M-40 170 C 160 130 330 320 520 520 S 820 700 1000 710 L 1000 760 L -40 760Z" fill="url(#vdw-g1)" filter="url(#vdw-b1)"/>' +
-  '<path d="M-40 240 C 200 220 380 420 560 560 S 900 705 1100 695" fill="none" stroke="#d6ffe2" stroke-width="5" opacity=".95" filter="url(#vdw-b2)"/>' +
-  '<path d="M-40 290 C 220 290 420 480 600 600 S 960 712 1180 696" fill="none" stroke="#a8ffcc" stroke-width="24" opacity=".6" filter="url(#vdw-b1)"/>' +
-  '<path d="M300 -10 C 420 120 520 280 700 420 S 1040 600 1320 560 L 1320 730 L 560 730Z" fill="url(#vdw-g2)" filter="url(#vdw-b1)" opacity=".7"/>' +
-  '<path d="M420 -20 C 520 120 640 230 800 330 S 1100 460 1320 400" fill="none" stroke="#c8fff0" stroke-width="3" opacity=".75" filter="url(#vdw-b2)"/>' +
-  '<path d="M640 -20 C 700 90 780 160 900 220 S 1120 300 1320 270" fill="none" stroke="#66f0d2" stroke-width="18" opacity=".45" filter="url(#vdw-b1)"/>' +
-  '</svg>';
-
 const VD_SPEAKER = (level) => '<svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 7h3l4-3.5v11L5 11H2z" fill="#fff"/>' +
   (level === 0 ? '<path d="M11.5 6.5l5 5M16.5 6.5l-5 5" stroke="#ff8a7a" stroke-width="1.6" stroke-linecap="round"/>' :
     '<path d="M11 6.5c1.5 1.4 1.5 3.6 0 5" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>' +
@@ -55,7 +37,6 @@ class VistaDesktop {
     this.timers = [];
     this.cleanup = [];
     this.volume = 70;
-    this.mq = window.matchMedia ? window.matchMedia('(max-width: 767px)') : { matches: false };
     this.calm = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
     try {
       this.tf = new Intl.DateTimeFormat('pt-BR', { timeZone: this.tz, hour: '2-digit', minute: '2-digit', second: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric', hour12: false });
@@ -73,7 +54,7 @@ class VistaDesktop {
     const r = this.root;
     r.classList.add('vd');
     r.innerHTML =
-      VD_ICON_DEFS + '<div class="vd-wall">' + VD_WALLPAPER + '</div>' +
+      VD_ICON_DEFS + '<div class="vd-wall"></div>' +
       '<div class="vd-stage"><div class="vd-icons"></div></div>' +
       '<div class="vd-start" role="group" aria-label="Menu Iniciar" hidden>' +
         '<div class="vd-sl">' +
@@ -153,8 +134,6 @@ class VistaDesktop {
       if (e.key === 'Escape' && this._popupOpen()) { this._closePopups(); }
     });
     on(window, 'resize', () => this._relayout());
-    const mqh = () => { if (this.mq.matches) this.wins.forEach((rec) => { if (rec.state === 'normal' && rec.app.resizable !== false) this._setState(rec, 'max'); }); };
-    if (this.mq.addEventListener) { this.mq.addEventListener('change', mqh); this.cleanup.push(() => this.mq.removeEventListener('change', mqh)); }
     // barra de tarefas e popups
     this.orb.addEventListener('click', () => this.toggleStart());
     this.root.querySelector('[data-act="show"]').addEventListener('click', () => this.showDesktop());
@@ -179,10 +158,7 @@ class VistaDesktop {
     b.innerHTML = ic.icon + '<span></span>';
     b.querySelector('span').textContent = ic.label;
     if (ic.appId) b.dataset.app = ic.appId;
-    b.addEventListener('click', () => {
-      this._select(b);
-      if (this.mq.matches && ic.appId) this.open(ic.appId);
-    });
+    b.addEventListener('click', () => this._select(b));
     b.addEventListener('dblclick', () => { if (ic.appId) this.open(ic.appId); });
     b.addEventListener('keydown', (e) => {
       if ((e.key === 'Enter' || e.key === ' ') && ic.appId) { e.preventDefault(); this.open(ic.appId); }
@@ -279,7 +255,6 @@ class VistaDesktop {
     // conteúdo do app
     try { rec.inst = app.render(rec.client, { id, el, close: () => this.close(id), setTitle: (t) => { rec.el.querySelector('.vd-title b').textContent = t; tb.querySelector('span').textContent = t; } }) || null; } catch (e) { rec.client.textContent = 'Erro ao abrir o programa.'; }
     this.timers.push(setTimeout(() => el.classList.remove('opening'), 260));
-    if (this.mq.matches && !fixed) this._setState(rec, 'max');
     this._closePopups();
     this.focus(id);
   }
@@ -345,7 +320,7 @@ class VistaDesktop {
 
   toggleMaximize(id) {
     const rec = this.wins.get(id);
-    if (!rec || rec.app.resizable === false || rec.state === 'min' || this.mq.matches) return;
+    if (!rec || rec.app.resizable === false || rec.state === 'min') return;
     this._setState(rec, rec.state === 'max' ? 'normal' : 'max');
     this.focus(id);
   }
@@ -404,7 +379,7 @@ class VistaDesktop {
   }
 
   _dragStart(rec, e) {
-    if (this.mq.matches || (e.button !== undefined && e.button > 0)) return;
+    if (e.button !== undefined && e.button > 0) return;
     if (e.target.closest && e.target.closest('.vd-caps')) return;
     const stage = this.stage.getBoundingClientRect();
     if (rec.state === 'max') {
@@ -439,7 +414,7 @@ class VistaDesktop {
   }
 
   _resizeStart(rec, edge, e) {
-    if (this.mq.matches || rec.state !== 'normal' || (e.button !== undefined && e.button > 0)) return;
+    if (rec.state !== 'normal' || (e.button !== undefined && e.button > 0)) return;
     e.preventDefault();
     const app = rec.app, size = app.size || {};
     const minW = size.minW || 240, minH = size.minH || 160;
@@ -564,4 +539,13 @@ class VistaDesktop {
     this.root.innerHTML = '';
     this.root.classList.remove('vd');
   }
+}
+
+/* Versão sem desktop (celular): a janela do app desenhada direto na página, sem arrastar nem barra de tarefas. */
+function vdRenderStatic(root, app) {
+  root.innerHTML = VD_ICON_DEFS + '<div class="vd-win vd-swin active"><div class="vd-title">' + app.icon + '<b></b></div><div class="vd-client"></div></div>';
+  root.querySelector('.vd-title b').textContent = app.title;
+  const el = root.querySelector('.vd-swin');
+  const inst = app.render(root.querySelector('.vd-client'), { id: app.id, el, close() {}, setTitle(t) { root.querySelector('.vd-title b').textContent = t; } });
+  return { destroy() { if (inst && typeof inst.destroy === 'function') inst.destroy(); root.innerHTML = ''; } };
 }

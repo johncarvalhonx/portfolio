@@ -20,13 +20,15 @@ O GitHub Pages publica a partir da branch `main`.
 
 ## Desktop da Trajetória
 
-A seção Trajetória é um desktop Windows Vista (janelas, barra de tarefas, menu Iniciar).
+A seção Trajetória é um desktop Windows Vista (janelas, barra de tarefas, menu Iniciar) dentro de uma moldura de monitor.
+No celular (< 768px) o desktop não aparece: só o conteúdo da Trajetória, num cartão.
 
 | Arquivo | O que faz |
 |---|---|
 | `src/vista-desktop.js` | Motor (`VistaDesktop`): janelas, arrastar, barra, Iniciar, bandeja |
 | `src/vista-desktop.css` | Todo o visual (classes `vd-*`) |
 | `src/apps/trajetoria.js` | App "Trajetória profissional" (dados e conteúdo da janela) |
+| `assets/wallpaper.webp` | Papel de parede do desktop |
 
 O `build.py` injeta esses arquivos no `src/template.html` onde houver uma linha
 `/* @include src/arquivo */` — então edite o arquivo em `src/` e rode `python build.py`.
@@ -70,5 +72,7 @@ Com o site servido (`python -m http.server 5291`) e Chrome instalado (`pip insta
 ```
 python tests/browser_runner.py http://127.0.0.1:5291/index.html 1440 900 saida.png tests/vista-desktop.behavior.js
 ```
+
+Para o celular use `tests/vista-desktop.mobile.js` com o argumento `mobile` ao final do comando.
 
 O script imprime um JSON com o resultado de cada verificação (arrastar, limites, redimensionar, painéis, app de teste…).

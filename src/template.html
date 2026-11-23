@@ -1254,6 +1254,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
         <div class="vd-neck" aria-hidden="true"></div>
         <div class="vd-base" aria-hidden="true"></div>
       </div>
+      <div id="vista-static" class="vd-static"></div>
     </section>
   </main>
 
@@ -1348,18 +1349,10 @@ class Component extends DCLogic {
       setTimeout(() => document.querySelectorAll('section[id]').forEach((el) => this.spy.observe(el)), 0);
     }
     this.onScroll();
-    this.vdTimer = setTimeout(() => {
-      const mount = document.getElementById('vista-desktop');
-      if (!mount || this.vd) return;
-      this.vd = window.vistaDesktop = new VistaDesktop(mount);
-      this.vd.registerApp(VD_TRAJETORIA_APP);
-      this.vd.addDesktopIcon({ label: 'Lixeira', icon: VD_ICON_TRASH, appId: null });
-      this.vd.addDesktopIcon({ label: 'Trajetória profissional', icon: VD_ICON_FOLDER, appId: 'trajetoria' });
-      this.vd.addStartEntry({ label: 'Trajetória profissional', icon: VD_ICON_FOLDER, appId: 'trajetoria' });
-      this.vd.addStartEntry({ label: 'Campo Minado', appId: null });
-      this.vd.addStartEntry({ label: 'Paciência', appId: null });
-      this.vd.open('trajetoria');
-    }, 0);
+    this.vdMQ = window.matchMedia ? window.matchMedia('(max-width: 767px)') : null;
+    this.vdSync = () => this.syncVista();
+    if (this.vdMQ && this.vdMQ.addEventListener) this.vdMQ.addEventListener('change', this.vdSync);
+    this.vdTimer = setTimeout(this.vdSync, 0);
     const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if ('IntersectionObserver' in window && !calm) {
       document.documentElement.classList.add('js-reveal');
@@ -1375,11 +1368,37 @@ class Component extends DCLogic {
   componentWillUnmount() {
     if (this.timer) clearInterval(this.timer);
     if (this.vdTimer) clearTimeout(this.vdTimer);
+    if (this.vdMQ && this.vdMQ.removeEventListener) this.vdMQ.removeEventListener('change', this.vdSync);
+    if (this.vdStatic) { this.vdStatic.destroy(); this.vdStatic = null; }
     if (this.vd) { this.vd.destroy(); this.vd = null; window.vistaDesktop = null; }
     if (this.swapT) clearTimeout(this.swapT);
     if (this.onScroll) window.removeEventListener('scroll', this.onScroll);
     if (this.io) this.io.disconnect();
     if (this.spy) this.spy.disconnect();
+  }
+
+  // Desktop Vista em telas largas; no celular, só o conteúdo da Trajetória (sem desktop).
+  syncVista() {
+    const mount = document.getElementById('vista-desktop');
+    const stat = document.getElementById('vista-static');
+    if (!mount || !stat) return;
+    const mobile = !!(this.vdMQ && this.vdMQ.matches);
+    if (mobile) {
+      if (this.vd) { this.vd.destroy(); this.vd = null; window.vistaDesktop = null; }
+      if (!this.vdStatic) this.vdStatic = vdRenderStatic(stat, VD_TRAJETORIA_APP);
+    } else {
+      if (this.vdStatic) { this.vdStatic.destroy(); this.vdStatic = null; }
+      if (!this.vd) {
+        this.vd = window.vistaDesktop = new VistaDesktop(mount);
+        this.vd.registerApp(VD_TRAJETORIA_APP);
+        this.vd.addDesktopIcon({ label: 'Lixeira', icon: VD_ICON_TRASH, appId: null });
+        this.vd.addDesktopIcon({ label: 'Trajetória profissional', icon: VD_ICON_FOLDER, appId: 'trajetoria' });
+        this.vd.addStartEntry({ label: 'Trajetória profissional', icon: VD_ICON_FOLDER, appId: 'trajetoria' });
+        this.vd.addStartEntry({ label: 'Campo Minado', appId: null });
+        this.vd.addStartEntry({ label: 'Paciência', appId: null });
+        this.vd.open('trajetoria');
+      }
+    }
   }
 
   pickTab(label) {

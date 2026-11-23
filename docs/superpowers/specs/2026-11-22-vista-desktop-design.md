@@ -186,3 +186,11 @@ Pedido posterior do João: a tela não deve aparecer "solta"; ela fica dentro de
 - A moldura é só visual (`aria-hidden`), sem marcas reais. Reflexo diagonal e vinheta sobre a tela, com `pointer-events: none`.
 - Tamanho: a tela mantém 16:10 e cabe na altura da janela do navegador (`--sh`), até 820px de altura.
 - Celular (< 768px): bisel fino, sem queixo e sem base, tela em pé (`80svh`, mín. 520px).
+
+## Adendo: wallpaper e celular (2026-11-22)
+
+- **Wallpaper:** imagem fornecida pelo João (`assets/wallpaper.webp`, 1728×1139) no lugar do Aurora recriado em SVG; `cover`, centralizada.
+- **Celular (< 768px): sem desktop.** Não há monitor, ícones, barra de tarefas nem Iniciar. A seção mostra o título "Trajetória" e o conteúdo da janela
+  num cartão de vidro, na página (decisão minha: manter a informação visível em vez de esconder a seção).
+  Ao cruzar o breakpoint (girar o celular, redimensionar), a página alterna entre as duas versões; o estado das janelas não é preservado.
+- O motor deixou de ter qualquer lógica de celular (maximizar automático, toque único etc.); isso saiu do código.
