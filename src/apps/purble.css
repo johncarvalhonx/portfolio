@@ -87,7 +87,7 @@
 /* ---------- Fábrica de Bolos: azulejo, máquina com esteira, comanda e estações ---------- */
 .pp-scene-cakes{--aw:#ff86b8;--aw2:#ffe1ee;--edge:#e05592;--ink:#b0306a;--chip:#ffeaf3;--sh:rgba(176,48,106,.12);--sh2:rgba(176,48,106,.16);--gl1:rgba(255,255,255,.28);--gl2:rgba(0,0,0,.05);
  background:linear-gradient(rgba(233,71,143,.09) calc(1.5px * var(--k)),transparent calc(1.5px * var(--k))) 0 0/calc(28px * var(--k)) calc(28px * var(--k)),
- linear-gradient(90deg,rgba(233,71,143,.09) calc(1.5px * var(--k)),transparent calc(1.5px * var(--k))) 0 0/calc(28px * var(--k)) calc(28px * var(--k)),#fff5f9}
+ linear-gradient(90deg,rgba(233,71,143,.09) calc(1.5px * var(--k)),transparent calc(1.5px * var(--k))) 0 0/calc(28px * var(--k)) calc(28px * var(--k)),#ffeaf3}
 .pp-machine{position:absolute;left:28px;top:146px;width:910px;height:262px;box-sizing:border-box;border-radius:24px;background:rgba(255,255,255,.78);border:2px solid #f6cfe0;
  box-shadow:0 10px 24px rgba(176,48,106,.1),inset 0 3px 0 #fff;overflow:hidden}
 .pp-disp{position:absolute;top:0;width:100px;height:110px}
