@@ -95,33 +95,96 @@ function vdPpDoll(f, mystery) {
   return s + '</svg>';
 }
 
-/* ---- praça com as três casas ---- */
+/* ---- praça: vila de brinquedo com volume (fachada iluminada, lateral na sombra, telhado de telhas, toldo na cor do jogo) ---- */
 function vdPpTown() {
-  const house = (x, wall, roof, label, game, extra) =>
-    '<g class="pp-bld" data-game="' + game + '" tabindex="0" role="button" aria-label="' + label + '">' +
-    '<rect x="' + (x - 8) + '" y="196" width="196" height="210" rx="18" fill="#fff" opacity="0" class="pp-bld-hit"/>' +
-    '<rect x="' + x + '" y="250" width="180" height="150" rx="6" fill="' + wall + '" stroke="rgba(0,0,0,.3)" stroke-width="3"/>' +
-    '<path d="M' + (x - 14) + ' 256L' + (x + 90) + ' 176L' + (x + 194) + ' 256z" fill="' + roof + '" stroke="rgba(0,0,0,.35)" stroke-width="3" stroke-linejoin="round"/>' +
-    '<rect x="' + (x + 68) + '" y="330" width="44" height="70" rx="20" fill="#8a5a2a" stroke="#5a3414" stroke-width="3"/><circle cx="' + (x + 102) + '" cy="368" r="3.5" fill="#ffd34d"/>' +
-    '<rect x="' + (x + 16) + '" y="280" width="38" height="34" rx="4" fill="#bfe9ff" stroke="#3a7fb8" stroke-width="3"/><rect x="' + (x + 126) + '" y="280" width="38" height="34" rx="4" fill="#bfe9ff" stroke="#3a7fb8" stroke-width="3"/>' +
-    '<rect x="' + (x + 30) + '" y="214" width="120" height="30" rx="15" fill="#fffbe8" stroke="rgba(0,0,0,.3)" stroke-width="2.5"/>' +
-    '<text x="' + (x + 90) + '" y="235" text-anchor="middle" font-size="17" font-weight="700" fill="#4d2389" font-family="Segoe UI,Tahoma,Arial,sans-serif">' + label + '</text>' + extra + '</g>';
-  const cloud = (x, y, k) => '<g transform="translate(' + x + ' ' + y + ') scale(' + k + ')" fill="#fff"><ellipse cx="0" cy="0" rx="40" ry="18"/><ellipse cx="26" cy="-10" rx="26" ry="18"/><ellipse cx="-24" cy="-6" rx="22" ry="14"/></g>';
-  const mascot = (x, y, body, flip) =>
-    '<g transform="translate(' + x + ' ' + y + ')' + (flip ? ' scale(-1 1)' : '') + '"><path d="M0 -40q-8-14 2-22" stroke="#3b2a6a" stroke-width="3" fill="none"/><circle cx="2" cy="-64" r="5" fill="#ff7fb8"/>' +
-    '<path d="M-24 0c0-30 10-44 24-44s24 14 24 44c0 10-10 14-24 14s-24-4-24-14z" fill="' + body + '" stroke="rgba(0,0,0,.35)" stroke-width="2.5"/>' +
-    '<ellipse cx="-8" cy="-22" rx="7" ry="9" fill="#fff"/><ellipse cx="9" cy="-22" rx="7" ry="9" fill="#fff"/><circle cx="-6" cy="-20" r="3.5" fill="#222"/><circle cx="11" cy="-20" r="3.5" fill="#222"/>' +
-    '<path d="M-8 -6q9 8 18 0" stroke="#3b2a6a" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M-16 14v6M14 14v6" stroke="#3b2a6a" stroke-width="5" stroke-linecap="round"/></g>';
-  return '<svg class="pp-town" viewBox="0 0 784 520" preserveAspectRatio="xMidYMid slice" aria-label="Praça">' +
-    '<rect width="784" height="520" fill="#9fdcff"/><rect y="0" width="784" height="300" fill="#7fcfff" opacity=".5"/>' +
-    '<circle cx="690" cy="70" r="36" fill="#fff2a8"/><circle cx="690" cy="70" r="26" fill="#ffd94a"/>' +
-    cloud(140, 70, 1) + cloud(420, 50, 0.8) + cloud(600, 130, 0.7) +
-    '<path d="M0 330q120-60 260-20t280 0 244-20V520H0z" fill="#86d35a"/><path d="M0 400q160-40 400-10t384-20V520H0z" fill="#68bd3e"/>' +
-    '<path d="M330 520q30-90 62-120t60-0q30 30 60 120z" fill="#f2d79a" opacity=".85"/>' +
-    house(40, '#ffe58a', '#e0453a', 'Pares', 'pairs', '<path d="M118 176v-18h24v18" fill="#c0392b" stroke="#7c1d14" stroke-width="3"/><path d="M130 158l-12-10h24z" fill="#7c1d14"/><circle cx="130" cy="170" r="5" fill="#ffd34d"/>') +
-    house(302, '#ffd2ec', '#7a4a2a', 'Bolos', 'cakes', '<g transform="translate(362 120) scale(.5)">' + '<path d="M20 58q0-10 40-10t40 10v24q0 10-40 10t-40-10z" fill="#f3d9a0" stroke="#5a3418" stroke-width="5"/><path d="M20 58q0-10 40-10t40 10v8q-10 8-20 0t-20 6-20-6-20 0z" fill="#ff7fb0"/><circle cx="60" cy="40" r="8" fill="#d8102a"/></g>') +
-    house(564, '#c8ecff', '#8a4fd1', 'Loja', 'shop', '<path d="M630 170q24-26 48 0z" fill="#222"/><rect x="636" y="136" width="36" height="34" rx="3" fill="#222"/><rect x="636" y="158" width="36" height="6" fill="#c0392b"/>') +
-    mascot(270, 470, '#9be05a', false) + mascot(520, 478, '#ff9fd0', true) + '</svg>';
+  const F = 'font-family="Segoe UI,Tahoma,Arial,sans-serif"';
+  const shingles = (id, base, dark) =>
+    '<pattern id="' + id + '" width="18" height="12" patternUnits="userSpaceOnUse"><rect width="18" height="12" fill="' + base + '"/>' +
+    '<path d="M0 12a9 9 0 0 1 18 0" fill="' + dark + '" opacity=".55"/><path d="M-9 6a9 9 0 0 1 18 0M9 6a9 9 0 0 1 18 0" fill="none" stroke="' + dark + '" stroke-opacity=".35" stroke-width="1.2"/></pattern>';
+  const defs = '<defs>' +
+    '<linearGradient id="pph-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6fc3ff"/><stop offset=".62" stop-color="#bfe6ff"/><stop offset="1" stop-color="#eaf8ff"/></linearGradient>' +
+    '<radialGradient id="pph-sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fffbe0"/><stop offset=".45" stop-color="#ffe680"/><stop offset=".7" stop-color="#ffe680" stop-opacity=".35"/><stop offset="1" stop-color="#ffe680" stop-opacity="0"/></radialGradient>' +
+    '<linearGradient id="pph-far" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fd6a8"/><stop offset="1" stop-color="#7cc18a"/></linearGradient>' +
+    '<linearGradient id="pph-mid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fdc5e"/><stop offset="1" stop-color="#5fb63c"/></linearGradient>' +
+    '<linearGradient id="pph-near" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#78cf48"/><stop offset="1" stop-color="#3f9a2a"/></linearGradient>' +
+    '<linearGradient id="pph-path" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7e2b0"/><stop offset="1" stop-color="#e2c27e"/></linearGradient>' +
+    '<linearGradient id="pph-lit" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient>' +
+    '<linearGradient id="pph-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e6f8ff"/><stop offset=".5" stop-color="#9bd8ff"/><stop offset="1" stop-color="#5aa8e6"/></linearGradient>' +
+    '<radialGradient id="pph-tree" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#9ee86a"/><stop offset=".6" stop-color="#55b43a"/><stop offset="1" stop-color="#2f7d22"/></radialGradient>' +
+    '<radialGradient id="pph-m1" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#d4ff9e"/><stop offset=".55" stop-color="#9be05a"/><stop offset="1" stop-color="#5aa62e"/></radialGradient>' +
+    '<radialGradient id="pph-m2" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#ffd9ee"/><stop offset=".55" stop-color="#ff9fd0"/><stop offset="1" stop-color="#d95a9c"/></radialGradient>' +
+    shingles('pph-r1', '#e0453a', '#8e1f16') + shingles('pph-r2', '#8a5631', '#4a2a12') + shingles('pph-r3', '#8a63d8', '#45238a') +
+    '</defs>';
+
+  const cloud = (x, y, k) => '<g transform="translate(' + x + ' ' + y + ') scale(' + k + ')"><g fill="#fff"><ellipse cx="0" cy="0" rx="42" ry="18"/><ellipse cx="24" cy="-12" rx="26" ry="19"/><ellipse cx="-22" cy="-7" rx="22" ry="15"/></g><ellipse cx="2" cy="8" rx="38" ry="7" fill="#d7ecfb"/></g>';
+  const tree = (x, y, k) => '<g transform="translate(' + x + ' ' + y + ') scale(' + k + ')"><ellipse cx="0" cy="2" rx="24" ry="6" fill="#2d6a1e" opacity=".3"/><path d="M-4 0v-30h8V0z" fill="#8a5a2a"/><circle cx="0" cy="-48" r="26" fill="url(#pph-tree)"/><circle cx="-8" cy="-58" r="7" fill="#fff" opacity=".25"/></g>';
+  const awning = (x, y, w, c1, c2) => {
+    let s = '', n = 6, sw = w / n;
+    for (let i = 0; i < n; i++) s += '<path d="M' + (x + i * sw) + ' ' + y + 'h' + sw + 'l2 16h-' + (sw + 4) + 'z" fill="' + (i % 2 ? c2 : c1) + '"/>';
+    for (let i = 0; i < n; i++) s += '<path d="M' + (x - 2 + i * sw) + ' ' + (y + 16) + 'a' + (sw / 2 + 1) + ' 7 0 0 0 ' + (sw + 2) + ' 0z" fill="' + (i % 2 ? c2 : c1) + '"/>';
+    return s + '<path d="M' + x + ' ' + y + 'h' + w + '" stroke="rgba(0,0,0,.25)" stroke-width="2"/>';
+  };
+  const windowAt = (x, y) =>
+    '<rect x="' + (x - 3) + '" y="' + (y - 3) + '" width="42" height="40" rx="5" fill="#fffdf3" stroke="rgba(0,0,0,.25)" stroke-width="1.5"/>' +
+    '<rect x="' + x + '" y="' + y + '" width="36" height="34" rx="3" fill="url(#pph-glass)"/>' +
+    '<path d="M' + (x + 18) + ' ' + y + 'v34M' + x + ' ' + (y + 17) + 'h36" stroke="#fffdf3" stroke-width="3"/>' +
+    '<path d="M' + (x + 3) + ' ' + (y + 14) + 'l10-11h6l-16 17z" fill="#fff" opacity=".7"/>' +
+    '<rect x="' + (x - 5) + '" y="' + (y + 36) + '" width="46" height="6" rx="2" fill="#fffdf3" stroke="rgba(0,0,0,.2)"/>';
+  const house = (o) => {
+    const x = o.x, y = 250, w = 156, h = 146, d = 26;
+    return '<g class="pp-bld" data-game="' + o.game + '" tabindex="0" role="button" aria-label="' + o.label + '">' +
+      '<rect x="' + (x - 22) + '" y="150" width="' + (w + 60) + '" height="290" fill="#fff" opacity="0"/>' +
+      '<ellipse cx="' + (x + w / 2 + 14) + '" cy="' + (y + h + 4) + '" rx="' + (w / 2 + 34) + '" ry="12" fill="#1f5a14" opacity=".28"/>' +
+      // lateral na sombra
+      '<path d="M' + (x + w) + ' ' + y + 'l' + d + ' -14v' + h + 'l-' + d + ' 14z" fill="' + o.side + '"/>' +
+      // fachada
+      '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + o.wall + '"/>' +
+      '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="url(#pph-lit)"/>' +
+      '<path d="M' + x + ' ' + (y + h - 16) + 'h' + w + 'v16H' + x + 'z" fill="rgba(0,0,0,.08)"/>' +
+      // telhado: frente e lateral
+      '<path d="M' + (x + w / 2) + ' ' + (y - 96) + 'l' + d + ' -14L' + (x + w + 14 + d) + ' ' + (y - 6) + 'L' + (x + w + 14) + ' ' + (y + 8) + 'z" fill="' + o.roofSide + '"/>' +
+      '<path d="M' + (x - 14) + ' ' + (y + 8) + 'L' + (x + w / 2) + ' ' + (y - 96) + 'L' + (x + w + 14) + ' ' + (y + 8) + 'z" fill="url(#' + o.roof + ')" stroke="rgba(0,0,0,.3)" stroke-width="2" stroke-linejoin="round"/>' +
+      '<path d="M' + (x - 14) + ' ' + (y + 8) + 'L' + (x + w / 2) + ' ' + (y - 96) + 'L' + (x + w + 14) + ' ' + (y + 8) + '" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="3" transform="translate(0 4)"/>' +
+      o.extra +
+      // janelas, porta e toldo
+      windowAt(x + 14, y + 26) + windowAt(x + w - 50, y + 26) +
+      '<path d="M' + (x + w / 2 - 24) + ' ' + (y + h) + 'v-48a24 24 0 0 1 48 0v48z" fill="#8a5a2a" stroke="#4e2e10" stroke-width="2.5"/>' +
+      '<path d="M' + (x + w / 2 - 15) + ' ' + (y + h - 6) + 'v-36M' + (x + w / 2 + 15) + ' ' + (y + h - 6) + 'v-36" stroke="#6b4318" stroke-width="2"/>' +
+      '<circle cx="' + (x + w / 2 + 14) + '" cy="' + (y + h - 26) + '" r="3.5" fill="#ffd34d" stroke="#a07a10"/>' +
+      awning(x + w / 2 - 38, y + 74, 76, o.aw1, o.aw2) +
+      // placa pendurada
+      '<path d="M' + (x + w / 2 - 40) + ' ' + (y + 2) + 'v14M' + (x + w / 2 + 40) + ' ' + (y + 2) + 'v14" stroke="#5a3a1a" stroke-width="2"/>' +
+      '<rect x="' + (x + w / 2 - 56) + '" y="' + (y - 22) + '" width="112" height="34" rx="9" fill="#fffdf3" stroke="' + o.ink + '" stroke-width="3"/>' +
+      '<text x="' + (x + w / 2) + '" y="' + (y + 2) + '" text-anchor="middle" font-size="19" font-weight="700" fill="' + o.ink + '" ' + F + '>' + o.label + '</text></g>';
+  };
+  const mascot = (x, y, grad, flip) =>
+    '<g transform="translate(' + x + ' ' + y + ')' + (flip ? ' scale(-1 1)' : '') + '"><ellipse cx="0" cy="22" rx="26" ry="6" fill="#1f5a14" opacity=".3"/>' +
+    '<path d="M0 -40q-8-14 2-22" stroke="#3b2a6a" stroke-width="3" fill="none"/><circle cx="2" cy="-64" r="5.5" fill="#ffd34d" stroke="#c48a00"/>' +
+    '<path d="M-24 0c0-30 10-44 24-44s24 14 24 44c0 10-10 14-24 14s-24-4-24-14z" fill="url(#' + grad + ')" stroke="rgba(0,0,0,.3)" stroke-width="2"/>' +
+    '<ellipse cx="-9" cy="-30" rx="6" ry="3" fill="#fff" opacity=".45"/>' +
+    '<ellipse cx="-8" cy="-20" rx="7" ry="9" fill="#fff"/><ellipse cx="9" cy="-20" rx="7" ry="9" fill="#fff"/><circle cx="-6" cy="-18" r="3.6" fill="#222"/><circle cx="11" cy="-18" r="3.6" fill="#222"/><circle cx="-5" cy="-19.5" r="1.1" fill="#fff"/><circle cx="12" cy="-19.5" r="1.1" fill="#fff"/>' +
+    '<path d="M-8 -4q9 8 18 0" stroke="#3b2a6a" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="-15" cy="-8" r="3.5" fill="#ff6fa0" opacity=".45"/><circle cx="17" cy="-8" r="3.5" fill="#ff6fa0" opacity=".45"/>' +
+    '<path d="M-14 13v7M12 13v7" stroke="#3b2a6a" stroke-width="5" stroke-linecap="round"/></g>';
+  let flowers = '';
+  [[60, 470, '#ff6fa0'], [110, 492, '#ffd34d'], [700, 470, '#ffffff'], [742, 494, '#ff6fa0'], [210, 500, '#ffffff'], [610, 504, '#ffd34d'], [30, 505, '#ffffff'], [770, 455, '#ffd34d']].forEach(([fx, fy, c]) => {
+    flowers += '<g transform="translate(' + fx + ' ' + fy + ')"><circle r="3.6" cx="-3" cy="0" fill="' + c + '"/><circle r="3.6" cx="3" cy="0" fill="' + c + '"/><circle r="3.6" cx="0" cy="-3" fill="' + c + '"/><circle r="3.6" cx="0" cy="3" fill="' + c + '"/><circle r="2" fill="#f2a900"/></g>';
+  });
+  return '<svg class="pp-town" viewBox="0 0 784 520" preserveAspectRatio="xMidYMid slice" aria-label="Praça">' + defs +
+    '<rect width="784" height="520" fill="url(#pph-sky)"/>' +
+    '<circle cx="686" cy="74" r="70" fill="url(#pph-sun)"/><circle cx="686" cy="74" r="24" fill="#fff6c2"/>' +
+    cloud(130, 72, 1) + cloud(400, 46, 0.75) + cloud(560, 120, 0.6) +
+    '<path d="M0 300q90-50 200-26t210-6 200-30 174 10V520H0z" fill="url(#pph-far)"/>' +
+    '<path d="M0 330q140-40 300-14t300-4 184-6V520H0z" fill="url(#pph-mid)"/>' +
+    tree(22, 392, 0.9) + tree(770, 386, 0.85) + tree(270, 404, 0.7) + tree(520, 404, 0.7) +
+    house({ x: 46, game: 'pairs', label: 'Pares', wall: '#ffe58a', side: '#e2bd4e', roof: 'pph-r1', roofSide: '#9e2a20', aw1: '#ffd34d', aw2: '#fff6d6', ink: '#8a5a00',
+      extra: '<path d="M112 162v-22h28v22" fill="#c0392b" stroke="#7c1d14" stroke-width="2.5"/><path d="M106 140l20-14 20 14z" fill="#7c1d14"/><path d="M120 150a6 7 0 0 1 12 0v8h-12z" fill="#ffd34d" stroke="#a07a10"/>' }) +
+    house({ x: 314, game: 'cakes', label: 'Bolos', wall: '#ffd2ec', side: '#e7a5c9', roof: 'pph-r2', roofSide: '#4a2a12', aw1: '#ff8cc6', aw2: '#fff0f7', ink: '#9b2c66',
+      extra: '<g transform="translate(362 116) scale(.56)"><path d="M20 58q0-10 40-10t40 10v24q0 10-40 10t-40-10z" fill="#f3d9a0" stroke="#5a3418" stroke-width="5"/><path d="M20 58q0-10 40-10t40 10v8q-10 8-20 0t-20 6-20-6-20 0z" fill="#ff7fb0"/><circle cx="60" cy="40" r="9" fill="#d8102a"/><circle cx="57" cy="37" r="2.5" fill="#fff" opacity=".7"/></g>' }) +
+    house({ x: 582, game: 'shop', label: 'Loja', wall: '#c8ecff', side: '#8fc6e6', roof: 'pph-r3', roofSide: '#45238a', aw1: '#8a63d8', aw2: '#efe7ff', ink: '#4d2389',
+      extra: '<path d="M636 162q24-26 48 0z" fill="#222"/><rect x="642" y="128" width="36" height="34" rx="3" fill="#2a2a2a"/><rect x="642" y="150" width="36" height="7" fill="#c0392b"/><path d="M646 132h6v26h-6z" fill="#fff" opacity=".15"/>' }) +
+    '<path d="M0 410q200-30 400-6t384-12V520H0z" fill="url(#pph-near)"/>' +
+    '<path d="M346 520q26-80 50-104h-8q24 24 50 104z" fill="url(#pph-path)" opacity=".95"/>' +
+    flowers + mascot(284, 470, 'pph-m1', false) + mascot(510, 478, 'pph-m2', true) + '</svg>';
 }
 
 const VD_PURBLE_APP = {
@@ -181,7 +244,7 @@ const VD_PURBLE_APP = {
     const header = (title) => {
       const h = document.createElement('div');
       h.className = 'pp-head';
-      h.innerHTML = '<button type="button" class="pp-back">◀ Praça</button><b></b><span class="pp-lvl"></span>';
+      h.innerHTML = '<button type="button" class="pp-back">◀ Praça</button><span class="pp-plaque"><b></b><span class="pp-lvl"></span></span>';
       h.querySelector('b').textContent = title;
       h.querySelector('.pp-lvl').textContent = VD_PP_LEVELS[st.level];
       h.querySelector('.pp-back').addEventListener('click', () => go('hub'));
@@ -220,7 +283,7 @@ const VD_PURBLE_APP = {
         c.dataset.name = name;
         c.dataset.i = String(i);
         c.setAttribute('aria-label', 'Carta virada');
-        c.innerHTML = '<span class="pp-card-in"><span class="pp-back-face"></span><span class="pp-front"><svg viewBox="0 0 100 100" aria-hidden="true">' + VD_PP_PICS[name] + '</svg></span></span>';
+        c.innerHTML = '<span class="pp-card-in"><span class="pp-back-face"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 19L20 9l12 10v13H8z" fill="#fff" opacity=".85"/><path d="M17 32v-7a3 3 0 0 1 6 0v7z" fill="#b5651d" opacity=".9"/><circle cx="20" cy="5" r="2.4" fill="#ffd34d"/></svg></span><span class="pp-front"><svg viewBox="0 0 100 100" aria-hidden="true">' + VD_PP_PICS[name] + '</svg></span></span>';
         grid.appendChild(c);
       });
       stage.appendChild(grid);
@@ -418,7 +481,7 @@ const VD_PURBLE_APP = {
       check.type = 'button';
       check.className = 'pp-check';
       check.textContent = 'Conferir';
-      parts.appendChild(check);
+      wrap.querySelector('.pp-doll-col').appendChild(check);
       check.addEventListener('click', () => {
         if (g.won) return;
         g.tries++;
