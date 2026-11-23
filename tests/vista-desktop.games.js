@@ -28,6 +28,15 @@ d.close('campo-minado');
 d.open('paciencia'); await sleep(500);
 const pw = document.querySelector('.vd-win[data-app="paciencia"]'); const P = pw._game; const st = P.state;
 out.solDeal = ['t0','t1','t2','t3','t4','t5','t6'].map(p => st.piles[p].length).join() === '1,2,3,4,5,6,7' && st.piles.stock.length === 24;
+// menus e dialogos ficam por cima das cartas (regressao: cartas cobriam o menu Jogo e o Como jogar)
+const onTop = (el) => { const r = el.getBoundingClientRect(); let ok = 0, n = 0; for (let y = r.top + 4; y < r.bottom - 2; y += 8) for (let x = r.left + 4; x < r.right - 2; x += 16) { n++; if (el.contains(document.elementFromPoint(x, y))) ok++; } return n > 0 && ok === n; };
+[...pw.querySelectorAll('.vd-mb-top')].find(b => b.textContent === 'Jogo').click();
+out.solMenuOnTop = onTop([...pw.querySelectorAll('.vd-menu')].find(m => !m.hidden));
+document.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape', bubbles: true}));
+[...pw.querySelectorAll('.vd-mb-top')].find(b => b.textContent === 'Ajuda').click();
+[...pw.querySelectorAll('.vd-mi')].find(b => b.textContent.includes('Como jogar')).click();
+out.solDialogOnTop = onTop(pw.querySelector('.vd-dlg'));
+pw.querySelector('.vd-dlg .vd-btn').click();
 P.drawStock(); out.solDraw = st.piles.waste.length === 1 && st.piles.waste[0].up;
 P.undo(); out.solUndo = st.piles.waste.length === 0 && st.piles.stock.length === 24;
 const king = P.cards.find(c => c.r === 13), queen = P.cards.find(c => c.r === 12 && c.red !== king.red);

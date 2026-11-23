@@ -76,7 +76,7 @@
 .vd-cap:hover svg{opacity:1}
 .vd-cap:active{background:linear-gradient(180deg,rgba(150,176,196,.6) 0%,rgba(112,142,168,.55) 50%,rgba(88,124,156,.6) 51%,rgba(122,152,178,.6) 100%)}
 .vd-cap.x:active{background:linear-gradient(180deg,#cc8774 0%,#b64a2f 45%,#952008 50%,#aa311a 100%)}
-.vd-client{flex:1;min-height:0;display:flex;flex-direction:column;position:relative}
+.vd-client{flex:1;min-height:0;display:flex;flex-direction:column;position:relative;isolation:isolate}
 .vd-win[data-state="max"] .vd-title{padding-top:0}
 /* alças de redimensionamento */
 .vd-rs{position:absolute;z-index:3;touch-action:none}
