@@ -458,8 +458,6 @@ section[id]{scroll-margin-top:calc(var(--hdr) - 8px)}
   .topnav a{padding:0 14px!important;min-height:40px!important;font-size:14px!important}
   .globe{opacity:.55}
 }
-.js-reveal .reveal{opacity:0;transform:translateY(32px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
-.js-reveal .reveal.in{opacity:1;transform:none}
 html{scroll-behavior:smooth}
 a{color:#0a5aa8}a:hover{color:#063d75}
 .aero-btn{position:relative;isolation:isolate;overflow:hidden;transition:filter .15s ease,transform .15s ease}
@@ -478,9 +476,9 @@ a{color:#0a5aa8}a:hover{color:#063d75}
 .tab{transition:filter .15s ease}
 .tab:hover{filter:brightness(1.06)}
 .card{transition:transform .3s ease,box-shadow .3s ease}
-.card:hover{transform:translateY(-6px);box-shadow:0 0 0 1px rgba(90,160,220,.3),0 22px 44px rgba(10,80,160,.28),inset 0 1px 0 #fff}
+.card:hover{box-shadow:0 0 0 1px rgba(90,160,220,.3),0 22px 44px rgba(10,80,160,.28),inset 0 1px 0 #fff}
 .glink{transition:transform .2s ease,box-shadow .2s ease}
-.glink:hover{transform:translateY(-3px);box-shadow:0 0 0 1px rgba(255,255,255,.9),0 16px 34px rgba(0,30,80,.4),inset 0 1px 0 #fff}
+.glink:hover{box-shadow:0 0 0 1px rgba(255,255,255,.9),0 16px 34px rgba(0,30,80,.4),inset 0 1px 0 #fff}
 .bubble{animation:bob 9s ease-in-out infinite}
 .bubble.b2{animation-duration:12s;animation-delay:-4s}
 .bubble.b3{animation-duration:15s;animation-delay:-7s}
@@ -528,24 +526,13 @@ a{color:#0a5aa8}a:hover{color:#063d75}
 .topnav .nav-link.on{background:linear-gradient(180deg,#ffffff 0%,#eef8ff 49%,#d4ecff 50%,#e8f6ff 100%)!important;color:#0b3a66!important;text-shadow:none!important;border-color:#ffffff!important;box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(255,255,255,.7),0 6px 16px rgba(0,50,130,.35)!important}
 /* projetos */
 .repo{display:inline-flex;align-items:center;gap:6px;font-family:Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace;font-size:12.5px;color:#4f7394;overflow-wrap:anywhere}
-.card .card-ico{transition:transform .45s cubic-bezier(.2,.8,.2,1)}
-.card:hover .card-ico{transform:translateY(-5px) scale(1.06)}
 .contact-grid{max-width:1040px;margin:0 auto}
-@media (prefers-reduced-motion: reduce){.card .card-ico{transition:none}}
 /* botoes de vidro: reflexo curvo no topo, separado da tinta */
 .aero-btn::before{content:"";position:absolute;left:5px;right:5px;top:2px;height:calc(50% - 2px);border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.62) 0%,rgba(255,255,255,.2) 60%,rgba(255,255,255,0) 100%);pointer-events:none;z-index:-1}
 .aero-btn[style*="text-shadow"]{text-shadow:0 1px 1px rgba(0,30,80,.7),0 0 10px rgba(0,40,110,.55)!important}
 .aero-btn{transition:filter .15s ease,transform .15s ease,box-shadow .25s ease}
 .aero-btn:hover{filter:brightness(1.08) saturate(1.15)}
 .topnav .nav-link.on::before{opacity:.6}
-/* projetos: capturas reais, Evo em destaque */
-.grid-3{grid-auto-flow:row dense}
-.card.has-shot .card-art>span{display:none!important}
-.card.has-shot .card-art{box-shadow:inset 0 -1px 0 rgba(60,120,190,.25)}
-@media (min-width:1181px){.card.feat{grid-column:span 2;grid-row:span 2}.card.feat .card-art{height:auto!important;flex:1 1 auto;min-height:320px}}
-@media (min-width:701px) and (max-width:1180px){.card.feat{grid-column:span 2}.card.feat .card-art{height:340px!important}}
-.card.feat h3{font-size:30px!important}
-.card.feat>div:last-child{flex:0 0 auto!important}
 /* habilidades: um painel, itens em lista */
 .skill-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:56px;padding:6px 34px;border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,255,255,.74));border:1px solid #fff;box-shadow:0 0 0 1px rgba(90,160,220,.22),0 14px 34px rgba(10,80,160,.12),inset 0 1px 0 #fff}
 .skill-item{display:flex;gap:18px;align-items:flex-start;padding:24px 0;border-bottom:1px solid rgba(90,150,210,.22)}
@@ -1003,9 +990,9 @@ a{color:#0a5aa8}a:hover{color:#063d75}
     <!-- barra de navegação -->
     <header class="topbar {{topbarClass}}" style="position: relative; z-index: 3; max-width: 1240px; margin: 0 auto; padding: 22px 24px 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
       <a href="#inicio" style="display: flex; align-items: center; gap: 12px; text-decoration: none">
-        <span aria-hidden="true" class="brand-logo" style="position: relative; flex: none; width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 110%, #7cf27a 0%, #23b24a 30%, #0d7fd0 62%, #0a4f9e 100%); border: 1px solid rgba(255,255,255,.75); box-shadow: 0 4px 14px rgba(0,50,120,.45), inset 0 -4px 10px rgba(120,255,160,.45); color: #ffffff; font-weight: 800; font-size: 19px; letter-spacing: .5px; text-shadow: 0 1px 2px rgba(0,30,70,.6); overflow: hidden">JC<span style="position: absolute; left: 6px; right: 6px; top: 3px; height: 24px; border-radius: 50% 50% 45% 45%; background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.05))"></span></span>
+        <span aria-hidden="true" class="brand-logo" style="position: relative; flex: none; width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 110%, #7cf27a 0%, #23b24a 30%, #0d7fd0 62%, #0a4f9e 100%); border: 1px solid rgba(255,255,255,.75); box-shadow: 0 4px 14px rgba(0,50,120,.45), inset 0 -4px 10px rgba(120,255,160,.45); color: #ffffff; font-weight: 800; font-size: 18px; letter-spacing: .5px; text-shadow: 0 1px 2px rgba(0,30,70,.6); overflow: hidden">JC<span style="position: absolute; left: 6px; right: 6px; top: 3px; height: 24px; border-radius: 50% 50% 45% 45%; background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.05))"></span></span>
         <span class="brand-text" style="display: flex; flex-direction: column; line-height: 1.15">
-          <span style="color: #ffffff; font-weight: 700; font-size: 20px; text-shadow: 0 1px 3px rgba(0,40,90,.55)">João Carvalho</span>
+          <span style="color: #ffffff; font-weight: 700; font-size: 18px; text-shadow: 0 1px 3px rgba(0,40,90,.55)">João Carvalho</span>
           <span style="color: #ffffff; font-weight: 600; font-size: 13px; text-shadow: 0 1px 3px rgba(0,40,90,.7)">Portfólio</span>
         </span>
       </a>
@@ -1032,15 +1019,15 @@ a{color:#0a5aa8}a:hover{color:#063d75}
             <span style="padding: 6px 12px; border-radius: 999px; background: linear-gradient(180deg, #ffffff, #e5f8dc); border: 1px solid #b4e2a0; font-size: 13px; font-weight: 600; color: #1d5e12">Salesforce / OmniStudio</span>
           </div>
           <div style="display: flex; flex-wrap: wrap; gap: 12px">
-            <a class="aero-btn" href="#projetos" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; box-sizing: border-box; padding: 0 26px; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 16px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,25,70,.75); background: linear-gradient(180deg, rgba(110,190,255,.38) 0%, rgba(25,115,230,.56) 52%, rgba(0,72,185,.74) 100%); border: 1px solid rgba(6,64,160,.78); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), inset 0 -10px 16px rgba(130,230,255,.6), inset 0 1px 1px rgba(255,255,255,.7), 0 4px 12px rgba(0,60,130,.35)">
+            <a class="aero-btn" href="#projetos" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; box-sizing: border-box; padding: 0 26px; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,25,70,.75); background: linear-gradient(180deg, rgba(110,190,255,.38) 0%, rgba(25,115,230,.56) 52%, rgba(0,72,185,.74) 100%); border: 1px solid rgba(6,64,160,.78); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), inset 0 -10px 16px rgba(130,230,255,.6), inset 0 1px 1px rgba(255,255,255,.7), 0 4px 12px rgba(0,60,130,.35)">
               <svg aria-hidden="true" width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h6l2 2h10v10H3z"></path></svg>
               Ver projetos
             </a>
-            <a class="aero-btn" href="#contato" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; box-sizing: border-box; padding: 0 26px; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 16px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,40,0,.75); background: linear-gradient(180deg, rgba(150,235,110,.38) 0%, rgba(45,165,35,.56) 52%, rgba(12,112,10,.74) 100%); border: 1px solid rgba(16,92,8,.78); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), inset 0 -10px 16px rgba(190,255,140,.6), inset 0 1px 1px rgba(255,255,255,.7), 0 4px 12px rgba(20,90,10,.35)">
+            <a class="aero-btn" href="#contato" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; box-sizing: border-box; padding: 0 26px; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,40,0,.75); background: linear-gradient(180deg, rgba(150,235,110,.38) 0%, rgba(45,165,35,.56) 52%, rgba(12,112,10,.74) 100%); border: 1px solid rgba(16,92,8,.78); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), inset 0 -10px 16px rgba(190,255,140,.6), inset 0 1px 1px rgba(255,255,255,.7), 0 4px 12px rgba(20,90,10,.35)">
               <svg aria-hidden="true" width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"></path><path d="M3 7l9 6 9-6"></path></svg>
               Fale comigo
             </a>
-            <a class="aero-btn" href="https://github.com/johncarvalhonx" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; box-sizing: border-box; padding: 0 22px; border-radius: 999px; color: #0b3a66; font-weight: 700; font-size: 16px; text-decoration: none; background: linear-gradient(180deg, rgba(255,255,255,.34) 0%, rgba(215,236,255,.22) 52%, rgba(170,212,248,.3) 100%); border: 1px solid rgba(52,112,178,.7); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.95), inset 0 -10px 16px rgba(150,215,255,.5), inset 0 1px 1px rgba(255,255,255,.9), 0 4px 12px rgba(0,60,130,.18)">
+            <a class="aero-btn" href="https://github.com/johncarvalhonx" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; box-sizing: border-box; padding: 0 22px; border-radius: 999px; color: #0b3a66; font-weight: 700; font-size: 15px; text-decoration: none; background: linear-gradient(180deg, rgba(255,255,255,.34) 0%, rgba(215,236,255,.22) 52%, rgba(170,212,248,.3) 100%); border: 1px solid rgba(52,112,178,.7); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.95), inset 0 -10px 16px rgba(150,215,255,.5), inset 0 1px 1px rgba(255,255,255,.9), 0 4px 12px rgba(0,60,130,.18)">
               <svg aria-hidden="true" width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#0b3a66" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4"></path><path d="M16 8l4 4-4 4"></path><path d="M13.5 5l-3 14"></path></svg>
               GitHub
             </a>
@@ -1065,7 +1052,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
             <span style="position: absolute; left: 12px; right: 12px; top: 6px; height: 40px; border-radius: 50%; background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,0))"></span>
           </div>
           <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
-            <span style="font-size: 12px; font-weight: 700; color: #3a6488">São Paulo</span>
+            <span style="font-size: 13px; font-weight: 700; color: #3a6488">São Paulo</span>
             <span style="font-size: 30px; font-weight: 700; color: #0b2e4f; font-variant-numeric: tabular-nums">{{timeStr}}</span>
             <span style="font-size: 13px; color: #35597a">{{dateStr}}</span>
           </div>
@@ -1077,7 +1064,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
             <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18v12H3z"></path><path d="M8 8V5h8v3"></path><path d="M3 13h18"></path></svg>
           </span>
           <div style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
-            <span style="font-size: 12px; font-weight: 700; color: #2f6a24">Atuação atual</span>
+            <span style="font-size: 13px; font-weight: 700; color: #2f6a24">Atuação atual</span>
             <span style="font-size: 15px; font-weight: 700; color: #0b2e4f">Claro Brasil</span>
             <span style="font-size: 13px; line-height: 1.45; color: #35597a">Backend, APIs e integrações no ecossistema SOLAR, desde out/2025.</span>
           </div>
@@ -1090,7 +1077,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
             <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18v12H3z"></path><path d="M8 20h8"></path><path d="M12 16v4"></path><path d="M7 12l3-3 3 2 4-4"></path></svg>
           </span>
           <span style="position: relative; display: flex; flex-direction: column; gap: 3px; min-width: 0">
-            <span style="font-size: 12px; font-weight: 700; color: #e3f4ff">Projeto em destaque</span>
+            <span style="font-size: 13px; font-weight: 700; color: #e3f4ff">Projeto em destaque</span>
             <span style="font-size: 15px; font-weight: 700; color: #ffffff; text-shadow: 0 1px 2px rgba(0,30,80,.5)">Evo, em Tauri e React</span>
             <span style="font-size: 13px; line-height: 1.45; color: #ffffff; text-shadow: 0 1px 2px rgba(0,30,80,.6)">Dashboard multimídia para segundo monitor.</span>
           </span>
@@ -1116,7 +1103,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
       <div class="reveal" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px">
         <div style="display: flex; flex-direction: column; gap: 8px; flex: 1 1 420px; min-width: 0">
           <h2 id="projetos-titulo" class="sec-title" style="margin: 0; font-size: clamp(32px, 4vw, 46px); font-weight: 800; color: #0b3a66; letter-spacing: -.5px">Projetos</h2>
-          <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #2e5578; max-width: 560px">Aplicações desktop, APIs e apps publicados no GitHub, desenvolvidos em projetos pessoais e autônomos.</p>
+          <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #2e5578; max-width: 560px">Aplicações desktop, APIs e apps publicados no GitHub, desenvolvidos em projetos pessoais e autônomos.</p>
         </div>
         <div role="group" aria-label="Filtrar projetos por categoria" style="position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: 520px; max-width: 100%; box-sizing: border-box; padding: 5px; border-radius: 999px; background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(215,236,252,.4)); border: 1px solid rgba(255,255,255,.95); backdrop-filter: blur(12px) saturate(1.5); -webkit-backdrop-filter: blur(12px) saturate(1.5); box-shadow: inset 0 2px 6px rgba(0,60,120,.16), 0 0 0 1px rgba(90,160,220,.3), 0 8px 20px rgba(0,60,130,.12)">
           <span aria-hidden="true" class="tab-thumb" style="position: absolute; top: 5px; bottom: 5px; left: 5px; width: calc((100% - 10px) / 4); border-radius: 999px; transform: translateX({{thumbX}}%); background: linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.16) 49%, rgba(255,255,255,0) 50%), linear-gradient(180deg, rgba(40,140,230,.78) 0%, rgba(20,105,200,.84) 50%, rgba(6,70,160,.92) 100%); border: 1px solid rgba(5,50,120,.85); box-sizing: border-box; box-shadow: inset 0 0 0 1px rgba(255,255,255,.38), inset 0 -8px 14px rgba(110,215,255,.45), 0 4px 12px rgba(0,60,130,.35)"></span>
@@ -1128,7 +1115,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
 
       <div class="grid-3 {{gridAnim}}" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: clamp(18px, 1.6vw, 32px)">
         <sc-for list="{{projects}}" as="p" hint-placeholder-count="6">
-          <article class="card {{p.cls}}" style="animation-delay: {{p.delay}}ms; display: flex; flex-direction: column; border-radius: 24px; overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.78)); border: 1px solid #ffffff; box-shadow: 0 0 0 1px rgba(90,160,220,.25), 0 12px 32px rgba(10,80,160,.16), inset 0 1px 0 #ffffff; backdrop-filter: blur(12px)">
+          <article class="card" style="animation-delay: {{p.delay}}ms; display: flex; flex-direction: column; border-radius: 24px; overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.78)); border: 1px solid #ffffff; box-shadow: 0 0 0 1px rgba(90,160,220,.25), 0 12px 32px rgba(10,80,160,.16), inset 0 1px 0 #ffffff; backdrop-filter: blur(12px)">
             <div class="card-art" style="position: relative; height: 170px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: {{p.bg}}">
               <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 52%; background: linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.04))"></span>
               <span aria-hidden="true" style="position: absolute; left: -40px; bottom: -70px; width: 260px; height: 140px; border-radius: 50%; background: rgba(255,255,255,.18)"></span>
@@ -1139,17 +1126,17 @@ a{color:#0a5aa8}a:hover{color:#063d75}
               </span>
             </div>
             <div style="flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 20px 22px 22px">
-              <span style="align-self: flex-start; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .4px; background: {{p.chipBg}}; color: {{p.chipFg}}; border: 1px solid {{p.chipBorder}}">{{p.cat}}</span>
+              <span style="align-self: flex-start; padding: 4px 10px; border-radius: 999px; font-size: 13px; font-weight: 700; letter-spacing: .4px; background: {{p.chipBg}}; color: {{p.chipFg}}; border: 1px solid {{p.chipBorder}}">{{p.cat}}</span>
               <div style="display: flex; flex-direction: column; gap: 3px">
                 <h3 style="margin: 0; font-size: 22px; font-weight: 800; color: #0b3a66; letter-spacing: -.2px">{{p.title}}</h3>
               </div>
               <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #2e5578; flex: 1">{{p.desc}}</p>
               <div style="display: flex; flex-wrap: wrap; gap: 6px">
                 <sc-for list="{{p.stack}}" as="s" hint-placeholder-count="3">
-                  <span style="padding: 4px 10px; border-radius: 8px; font-size: 12px; font-weight: 600; color: #134a7a; background: linear-gradient(180deg, #ffffff, #e6f2fb); border: 1px solid #b9d7ee">{{s}}</span>
+                  <span style="padding: 4px 10px; border-radius: 8px; font-size: 13px; font-weight: 600; color: #134a7a; background: linear-gradient(180deg, #ffffff, #e6f2fb); border: 1px solid #b9d7ee">{{s}}</span>
                 </sc-for>
               </div>
-              <a class="aero-btn" href="{{p.url}}" style="margin-top: 6px; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 14px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,25,70,.75); background: linear-gradient(180deg, rgba(110,190,255,.38) 0%, rgba(25,115,230,.56) 52%, rgba(0,72,185,.74) 100%); border: 1px solid rgba(6,64,160,.78); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), inset 0 -10px 16px rgba(130,230,255,.6), inset 0 1px 1px rgba(255,255,255,.7), 0 3px 8px rgba(0,60,130,.3)">
+              <a class="aero-btn" href="{{p.url}}" style="margin-top: 6px; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,25,70,.75); background: linear-gradient(180deg, rgba(110,190,255,.38) 0%, rgba(25,115,230,.56) 52%, rgba(0,72,185,.74) 100%); border: 1px solid rgba(6,64,160,.78); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), inset 0 -10px 16px rgba(130,230,255,.6), inset 0 1px 1px rgba(255,255,255,.7), 0 3px 8px rgba(0,60,130,.3)">
                 Ver no GitHub
               </a>
             </div>
@@ -1172,13 +1159,8 @@ a{color:#0a5aa8}a:hover{color:#063d75}
               <svg width="28" height="28" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: relative; filter: drop-shadow(0 1px 1px rgba(0,30,80,.5))"><path d="{{k.icon}}"></path></svg>
             </span>
             <div style="display: flex; flex-direction: column; gap: 8px; min-width: 0">
-              <h3 style="margin: 0; font-size: 19px; font-weight: 800; color: #0b3a66">{{k.title}}</h3>
+              <h3 style="margin: 0; font-size: 18px; font-weight: 800; color: #0b3a66">{{k.title}}</h3>
               <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #2e5578">{{k.desc}}</p>
-              <div style="display: flex; flex-wrap: wrap; gap: 6px">
-                <sc-for list="{{k.chips}}" as="c" hint-placeholder-count="3">
-                  <span style="padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; color: #1d5e12; background: linear-gradient(180deg, #ffffff, #e5f8dc); border: 1px solid #b4e2a0">{{c}}</span>
-                </sc-for>
-              </div>
             </div>
           </div>
         </sc-for>
@@ -1190,7 +1172,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
         <h3 style="position: relative; margin: 0; font-size: 18px; font-weight: 800; color: #ffffff; text-shadow: 0 1px 3px rgba(0,30,80,.6)">Ferramentas do dia a dia</h3>
         <div style="position: relative; display: flex; flex-wrap: wrap; gap: 10px">
           <sc-for list="{{tools}}" as="tl" hint-placeholder-count="12">
-            <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px 8px 8px; border-radius: 999px; background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(225,242,255,.85)); border: 1px solid #ffffff; box-shadow: 0 3px 8px rgba(0,40,100,.25); font-size: 14px; font-weight: 700; color: #0b3a66">
+            <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px 8px 8px; border-radius: 999px; background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(225,242,255,.85)); border: 1px solid #ffffff; box-shadow: 0 3px 8px rgba(0,40,100,.25); font-size: 15px; font-weight: 700; color: #0b3a66">
               <span aria-hidden="true" style="width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 32% 28%, #ffffff 0 12%, {{tl.dot}} 60%, {{tl.dotDark}} 100%); box-shadow: inset 0 -2px 3px rgba(0,0,0,.15)"></span>
               {{tl.name}}
             </span>
@@ -1224,7 +1206,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
             <span style="width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #8ad3ff 0%, #3aa0ea 48%, #136fc4 52%, #2a8fdd 100%); border: 1px solid #0b5ba6; box-shadow: inset 0 1px 0 rgba(255,255,255,.8)"><svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></span>
             <span style="width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #e9f3fb, #c6dbec); border: 1px solid #8fb3d1"><svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="#6a8aa6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span>
           </span>
-          <span style="flex: 1 1 260px; min-width: 0; display: flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 4px; background: #ffffff; border: 1px solid #8fb3d1; box-shadow: inset 0 1px 2px rgba(0,40,90,.15); font-size: 14px; color: #1d3f60">
+          <span style="flex: 1 1 260px; min-width: 0; display: flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 4px; background: #ffffff; border: 1px solid #8fb3d1; box-shadow: inset 0 1px 2px rgba(0,40,90,.15); font-size: 15px; color: #1d3f60">
             Computador
             <svg aria-hidden="true" width="10" height="10" sc-camel-view-box="0 0 24 24" fill="none" stroke="#5a7a96" stroke-width="3"><path d="M9 6l6 6-6 6"></path></svg>
             João Carvalho
@@ -1237,7 +1219,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
         <div style="display: flex; flex-wrap: wrap; background: linear-gradient(180deg, #ffffff, #f4f9fd)">
           <!-- experiência -->
           <div style="flex: 999 1 560px; min-width: 0; padding: 28px 30px; display: flex; flex-direction: column; gap: 4px; border-right: 1px solid #d6e6f3">
-            <h3 style="margin: 0 0 14px; font-size: 14px; font-weight: 800; color: #1d5a8f">Experiência</h3>
+            <h3 style="margin: 0 0 14px; font-size: 15px; font-weight: 800; color: #1d5a8f">Experiência</h3>
             <sc-for list="{{jobs}}" as="j" hint-placeholder-count="4">
               <div style="display: flex; gap: 18px">
                 <div aria-hidden="true" style="flex: none; width: 22px; display: flex; flex-direction: column; align-items: center">
@@ -1256,25 +1238,25 @@ a{color:#0a5aa8}a:hover{color:#063d75}
           <!-- formação + certificações -->
           <div style="flex: 1 1 340px; min-width: 0; padding: 28px 30px; display: flex; flex-direction: column; gap: 26px; background: linear-gradient(180deg, rgba(232,244,252,.7), rgba(236,249,238,.7))">
             <div style="display: flex; flex-direction: column; gap: 14px">
-              <h3 style="margin: 0; font-size: 14px; font-weight: 800; color: #1d5a8f">Formação</h3>
+              <h3 style="margin: 0; font-size: 15px; font-weight: 800; color: #1d5a8f">Formação</h3>
               <div style="display: flex; gap: 14px; align-items: flex-start; padding: 16px; border-radius: 16px; background: linear-gradient(180deg, #ffffff, #eef7fd); border: 1px solid #c4ddf0; box-shadow: 0 4px 12px rgba(0,60,130,.1)">
                 <span aria-hidden="true" style="flex: none; width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #8ad3ff 0%, #3aa0ea 48%, #136fc4 52%, #2a8fdd 100%); border: 1px solid #0b5ba6; box-shadow: inset 0 1px 0 rgba(255,255,255,.8)">
                   <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"></path><path d="M6 11v5c3 2 9 2 12 0v-5"></path></svg>
                 </span>
                 <div style="display: flex; flex-direction: column; gap: 3px">
-                  <span style="font-size: 16px; font-weight: 800; color: #0b3a66">Bacharelado em Ciência da Computação</span>
-                  <span style="font-size: 14px; color: #2e5578">UNIP, São Paulo</span>
+                  <span style="font-size: 15px; font-weight: 800; color: #0b3a66">Bacharelado em Ciência da Computação</span>
+                  <span style="font-size: 15px; color: #2e5578">UNIP, São Paulo</span>
                 </div>
               </div>
             </div>
             <div style="display: flex; flex-direction: column; gap: 12px">
-              <h3 style="margin: 0; font-size: 14px; font-weight: 800; color: #1d5a8f">Certificações na Udemy</h3>
+              <h3 style="margin: 0; font-size: 15px; font-weight: 800; color: #1d5a8f">Certificações na Udemy</h3>
               <sc-for list="{{certs}}" as="ce" hint-placeholder-count="5">
                 <div style="display: flex; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 12px; background: rgba(255,255,255,.85); border: 1px solid #d3e6f3">
                   <span aria-hidden="true" style="flex: none; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #b6f08a 0%, #5cc23a 48%, #2a8a17 52%, #48ad2c 100%); border: 1px solid #1f6e10">
                     <svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
                   </span>
-                  <span style="font-size: 14px; font-weight: 600; line-height: 1.4; color: #17406a">{{ce}}</span>
+                  <span style="font-size: 15px; font-weight: 600; line-height: 1.4; color: #17406a">{{ce}}</span>
                 </div>
               </sc-for>
             </div>
@@ -1306,7 +1288,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
         <p style="margin: 0; max-width: 560px; font-size: 18px; line-height: 1.6; color: #ffffff; text-shadow: 0 1px 3px rgba(0,30,70,.7)">Para projetos, oportunidades ou conversas sobre backend e integrações.</p>
       </div>
       <div class="mail-cta">
-        <a class="aero-btn" href="mailto:joaopedrovillasboascarvalho@gmail.com" style="display: inline-flex; align-items: center; gap: 10px; min-height: 58px; box-sizing: border-box; padding: 0 34px; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 19px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,40,0,.75); background: linear-gradient(180deg, rgba(150,235,110,.38) 0%, rgba(45,165,35,.56) 52%, rgba(12,112,10,.74) 100%); border: 1px solid rgba(16,92,8,.78); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), inset 0 -10px 16px rgba(190,255,140,.6), inset 0 1px 1px rgba(255,255,255,.7), 0 4px 12px rgba(20,90,10,.35)">
+        <a class="aero-btn" href="mailto:joaopedrovillasboascarvalho@gmail.com" style="display: inline-flex; align-items: center; gap: 10px; min-height: 58px; box-sizing: border-box; padding: 0 34px; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,40,0,.75); background: linear-gradient(180deg, rgba(150,235,110,.38) 0%, rgba(45,165,35,.56) 52%, rgba(12,112,10,.74) 100%); border: 1px solid rgba(16,92,8,.78); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), inset 0 -10px 16px rgba(190,255,140,.6), inset 0 1px 1px rgba(255,255,255,.7), 0 4px 12px rgba(20,90,10,.35)">
           <svg aria-hidden="true" width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"></path><path d="M3 7l9 6 9-6"></path></svg>
           Enviar e-mail
         </a>
@@ -1320,7 +1302,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
               <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: relative; filter: drop-shadow(0 1px 1px rgba(0,30,80,.5))"><path d="{{ct.icon}}"></path></svg>
             </span>
             <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
-              <span style="font-size: 12px; font-weight: 700; color: #2f6a24">{{ct.label}}</span>
+              <span style="font-size: 13px; font-weight: 700; color: #2f6a24">{{ct.label}}</span>
               <span style="font-size: 15px; font-weight: 700; color: #0b3a66; overflow-wrap: anywhere">{{ct.value}}</span>
             </span>
           </a>
@@ -1333,16 +1315,16 @@ a{color:#0a5aa8}a:hover{color:#063d75}
   <footer style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 8px max(16px, calc((100vw - var(--wrap)) / 2 + var(--gutter))); background: linear-gradient(180deg, rgba(40,70,100,.96) 0%, rgba(15,35,58,.98) 48%, rgba(5,18,32,1) 52%, rgba(14,34,56,1) 100%); border-top: 1px solid rgba(160,210,250,.6); box-shadow: inset 0 1px 0 rgba(255,255,255,.25)">
     <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
       <a href="#inicio" aria-label="Voltar ao início" class="aero-btn" style="position: relative; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 110%, #7cf27a 0%, #23b24a 30%, #0d7fd0 62%, #0a4f9e 100%); border: 1px solid rgba(255,255,255,.7); box-shadow: 0 0 14px rgba(90,200,255,.6); color: #ffffff; font-weight: 800; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,30,70,.6); overflow: hidden">JC<span aria-hidden="true" style="position: absolute; left: 5px; right: 5px; top: 2px; height: 20px; border-radius: 50%; background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,0))"></span></a>
-      <a href="#projetos" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 6px; color: #ffffff; font-size: 14px; font-weight: 600; text-decoration: none; background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.22)">Projetos</a>
-      <a href="#habilidades" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 6px; color: #ffffff; font-size: 14px; font-weight: 600; text-decoration: none; background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.22)">Habilidades</a>
-      <a href="#trajetoria" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 6px; color: #ffffff; font-size: 14px; font-weight: 600; text-decoration: none; background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.22)">Trajetória</a>
-      <a href="#contato" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 6px; color: #ffffff; font-size: 14px; font-weight: 600; text-decoration: none; background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.22)">Contato</a>
+      <a href="#projetos" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 6px; color: #ffffff; font-size: 15px; font-weight: 600; text-decoration: none; background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.22)">Projetos</a>
+      <a href="#habilidades" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 6px; color: #ffffff; font-size: 15px; font-weight: 600; text-decoration: none; background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.22)">Habilidades</a>
+      <a href="#trajetoria" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 6px; color: #ffffff; font-size: 15px; font-weight: 600; text-decoration: none; background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.22)">Trajetória</a>
+      <a href="#contato" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 6px; color: #ffffff; font-size: 15px; font-weight: 600; text-decoration: none; background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.22)">Contato</a>
     </div>
     <div style="display: flex; align-items: center; gap: 16px; padding: 6px 14px; border-radius: 6px; background: rgba(0,0,0,.25); border: 1px solid rgba(255,255,255,.12)">
       <span style="font-size: 13px; color: #d6ebff">© 2026 João Carvalho</span>
       <span style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.2">
-        <span style="font-size: 14px; font-weight: 700; color: #ffffff; font-variant-numeric: tabular-nums">{{timeShort}}</span>
-        <span style="font-size: 12px; color: #d6ebff">{{dateShort}}</span>
+        <span style="font-size: 15px; font-weight: 700; color: #ffffff; font-variant-numeric: tabular-nums">{{timeShort}}</span>
+        <span style="font-size: 13px; color: #d6ebff">{{dateShort}}</span>
       </span>
     </div>
   </footer>
@@ -1491,18 +1473,16 @@ class Component extends DCLogic {
     };
     const base = 'https://github.com/johncarvalhonx/';
     const all = [
-      { name: 'Evo', img: 'img/evo.webp', pos: 'center top', cat: 'Desktop', desc: 'Dashboard multimídia para segundo monitor, com sensores de hardware em tempo real via LibreHardwareMonitor.', stack: ['Tauri', 'Rust', 'React', 'TypeScript'], bg: 'linear-gradient(160deg, #0b4fa8 0%, #1f8fe6 55%, #5fd0ff 100%)', icon: 'M3 4h18v12H3z M8 20h8 M12 16v4 M7 12l3-3 3 2 4-4' },
-      { name: 'Vitra', img: 'img/vitra.webp', pos: 'left top', cat: 'Desktop', desc: 'Otimizador e limpador para Windows 10/11 (x64), com instalador próprio.', stack: ['Electron', 'React', 'TypeScript'], bg: 'linear-gradient(160deg, #08756a 0%, #1fae96 55%, #8ef0d0 100%)', icon: 'M13 2L4 14h7l-1 8 9-12h-7z' },
-      { name: 'controledehoras', img: 'img/horas.webp', pos: 'left top', title: 'Controle de Horas', cat: 'Desktop', desc: 'App desktop para registrar horas extras e calcular ganhos e totais mensais e anuais.', stack: ['Python', 'PySide6', 'SQLite'], bg: 'linear-gradient(160deg, #2560c8 0%, #5fa9f5 55%, #bfe6ff 100%)', icon: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z M12 7v5l3 2' },
+      { name: 'Evo', cat: 'Desktop', desc: 'Dashboard multimídia para segundo monitor, com sensores de hardware em tempo real via LibreHardwareMonitor.', stack: ['Tauri', 'Rust', 'React', 'TypeScript'], bg: 'linear-gradient(160deg, #0b4fa8 0%, #1f8fe6 55%, #5fd0ff 100%)', icon: 'M3 4h18v12H3z M8 20h8 M12 16v4 M7 12l3-3 3 2 4-4' },
+      { name: 'Vitra', cat: 'Desktop', desc: 'Otimizador e limpador para Windows 10/11 (x64), com instalador próprio.', stack: ['Electron', 'React', 'TypeScript'], bg: 'linear-gradient(160deg, #08756a 0%, #1fae96 55%, #8ef0d0 100%)', icon: 'M13 2L4 14h7l-1 8 9-12h-7z' },
       { name: 'Valor.ia', cat: 'APIs & Web', desc: 'Assistente financeiro local por texto e voz, com painel web, API e SQLite.', stack: ['Python', 'Flask', 'SQLite'], bg: 'linear-gradient(160deg, #1656c4 0%, #36a0ee 50%, #7be08a 100%)', icon: 'M4 5h16v10H9l-5 4z M12 7v6 M14 8.5h-3a1.25 1.25 0 0 0 0 2.5h2a1.25 1.25 0 0 1 0 2.5h-3' },
+      { name: 'controledehoras', title: 'Controle de Horas', cat: 'Desktop', desc: 'App desktop para registrar horas extras e calcular ganhos e totais mensais e anuais.', stack: ['Python', 'PySide6', 'SQLite'], bg: 'linear-gradient(160deg, #2560c8 0%, #5fa9f5 55%, #bfe6ff 100%)', icon: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z M12 7v5l3 2' },
       { name: 'ecomonitormobile', title: 'EcoMonitor Mobile', cat: 'Mobile', desc: 'Monitoramento ambiental: app Android que consome API própria de clima e qualidade do ar.', stack: ['Kotlin', 'Python', 'FastAPI'], bg: 'linear-gradient(160deg, #2a8226 0%, #62c242 55%, #c8f59a 100%)', icon: 'M7 2h10v20H7z M11 18h2 M12 6c-2.2 2-2.2 5 0 7c2.2-2 2.2-5 0-7z' },
       { name: 'sustainable-habits-tracker', title: 'Sustainable Habits', cat: 'APIs & Web', desc: 'API REST para acompanhar hábitos sustentáveis, com autenticação JWT e resumos periódicos.', stack: ['Python', 'FastAPI', 'Docker'], bg: 'linear-gradient(160deg, #0f7055 0%, #2fa874 50%, #9be8b8 100%)', icon: 'M5 19c0-8 6-14 14-14c0 8-6 14-14 14z M5 19l7-7' }
     ];
     const projects = all
       .filter((p) => cat === 'Todos' || p.cat === cat)
-      .map((p, i) => Object.assign({}, p, chip[p.cat], { url: base + p.name, title: p.title || p.name, delay: i * 70,
-        bg: p.img ? 'url(' + p.img + ') ' + p.pos + ' / cover no-repeat, ' + p.bg : p.bg,
-        cls: (p.img ? 'has-shot' : '') + (p.name === 'Evo' ? ' feat' : '') }));
+      .map((p, i) => Object.assign({}, p, chip[p.cat], { url: base + p.name, title: p.title || p.name, delay: i * 70 }));
 
     const blueOrb = 'radial-gradient(circle at 50% 115%, #8fe3ff 0%, #2a9be8 40%, #0d5fb8 100%)';
     const greenOrb = 'radial-gradient(circle at 50% 115%, #d2ff9a 0%, #4fc23a 40%, #1f7a14 100%)';
