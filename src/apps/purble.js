@@ -50,7 +50,10 @@ function vdPpCake(c) {
   const P = vdPpBox, R = '50%', a = [];
   const shape = { red: 'round', qua: 'square', cor: 'heart' }[c.shape];
   const pan = !!shape && !c.batter;
-  if (!pan) a.push(P(2, 44, 76, 11, '#fff', { borderRadius: R, boxShadow: '0 3px 0 #ddd5ea,0 6px 10px rgba(90,60,120,.12)' }));
+  if (!pan) {
+    a.push(P(2, 44, 76, 11, 'linear-gradient(180deg,#ffffff 0%,#ffdcec 100%)', { borderRadius: R, boxShadow: 'inset 0 -3px 3px rgba(224,140,180,.4),0 3px 0 #e9b8d2,0 6px 10px rgba(90,60,120,.14)' }));
+    a.push(P(10, 46, 60, 5, 'rgba(255,255,255,.85)', { borderRadius: R }));
+  }
   if (!shape) return '<div class="pp-ck">' + vdPpHtml(a) + '</div>';
   const base = { choc: ['#7b4a34', '#9a6249'], baun: ['#ecc996', '#f8e3bf'], mor: ['#f093b0', '#f9bfd1'] }[c.batter] || ['linear-gradient(90deg,#a3acbc,#e2e6ee 40%,#949db0)', '#c3cad7'];
   const side = base[0], top = base[1];
