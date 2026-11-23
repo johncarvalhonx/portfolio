@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0d5fc2">
 <meta name="description" content="Portfólio de João Carvalho: backend, APIs e integrações em Python e TypeScript.">
-<title>João Carvalho · Portfólio</title>
+<title>João Carvalho, desenvolvedor backend</title>
 <script src="e7f5c168-213d-48d8-a4da-86e59a078119"></script>
 <meta name="hz:slide-selector" content="[data-canvas-width]"><meta name="hz:canvas-width" content="1440"><meta name="hz:canvas-height" content="4400"></head>
 <body>
@@ -438,7 +438,7 @@ section[id]{scroll-margin-top:calc(var(--hdr) - 8px)}
 .topnav{flex-wrap:nowrap!important;min-width:0;overflow-x:auto;scrollbar-width:none}
 .topnav::-webkit-scrollbar{display:none}
 .topnav a{flex:none}
-.hero h1{font-size:clamp(36px,5.6vw,112px)!important}
+.hero h1{font-size:clamp(34px,4.3vw,82px)!important;line-height:1.06!important;max-width:17ch;text-wrap:balance}
 .hero-intro{max-width:min(760px,100%)!important}
 .hero-intro p{font-size:clamp(16px,1.05vw,20px)!important}
 .gadgets{max-width:400px!important}
@@ -524,9 +524,6 @@ a{color:#0a5aa8}a:hover{color:#063d75}
 @keyframes jumpR{0%{transform:rotate(40deg)}30%,100%{transform:rotate(-52deg)}}
 .still .jumper,.still .jump-y,.still .jump-r{animation-play-state:paused}
 @media (prefers-reduced-motion: reduce){.jumper,.jump-y,.jump-r{animation-play-state:paused}}
-/* rotulo de secao: selo de vidro com LED */
-.eyebrow{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 10px;border-radius:999px;font-size:12.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#1d6d14;background:linear-gradient(180deg,#ffffff 0%,#f3fcee 49%,#e2f6d6 50%,#eefbe6 100%);border:1px solid #b4e2a0;box-shadow:inset 0 1px 0 #fff,0 4px 12px rgba(40,120,30,.12)}
-.eyebrow::before{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#d9ffb8,#3fbf2a 60%,#1f7a12);box-shadow:0 0 6px rgba(80,220,60,.8)}
 /* menu: secao atual em vidro claro */
 .topnav .nav-link.on{background:linear-gradient(180deg,#ffffff 0%,#eef8ff 49%,#d4ecff 50%,#e8f6ff 100%)!important;color:#0b3a66!important;text-shadow:none!important;border-color:#ffffff!important;box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(255,255,255,.7),0 6px 16px rgba(0,50,130,.35)!important}
 /* projetos */
@@ -541,6 +538,24 @@ a{color:#0a5aa8}a:hover{color:#063d75}
 .aero-btn{transition:filter .15s ease,transform .15s ease,box-shadow .25s ease}
 .aero-btn:hover{filter:brightness(1.08) saturate(1.15)}
 .topnav .nav-link.on::before{opacity:.6}
+/* projetos: capturas reais, Evo em destaque */
+.grid-3{grid-auto-flow:row dense}
+.card.has-shot .card-art>span{display:none!important}
+.card.has-shot .card-art{box-shadow:inset 0 -1px 0 rgba(60,120,190,.25)}
+@media (min-width:1181px){.card.feat{grid-column:span 2;grid-row:span 2}.card.feat .card-art{height:auto!important;flex:1 1 auto;min-height:320px}}
+@media (min-width:701px) and (max-width:1180px){.card.feat{grid-column:span 2}.card.feat .card-art{height:340px!important}}
+.card.feat h3{font-size:30px!important}
+.card.feat>div:last-child{flex:0 0 auto!important}
+/* habilidades: um painel, itens em lista */
+.skill-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:56px;padding:6px 34px;border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,255,255,.74));border:1px solid #fff;box-shadow:0 0 0 1px rgba(90,160,220,.22),0 14px 34px rgba(10,80,160,.12),inset 0 1px 0 #fff}
+.skill-item{display:flex;gap:18px;align-items:flex-start;padding:24px 0;border-bottom:1px solid rgba(90,150,210,.22)}
+.skill-list>.skill-item:nth-last-child(-n+2){border-bottom:0}
+@media (max-width:760px){.skill-list{grid-template-columns:minmax(0,1fr);padding:4px 20px}.skill-list>.skill-item:nth-last-child(2){border-bottom:1px solid rgba(90,150,210,.22)}}
+/* contato: e-mail na frente, demais canais menores */
+.mail-cta{display:flex;flex-direction:column;align-items:center;gap:10px}
+.mail-addr{font-size:15px;color:#e8f6ff;text-shadow:0 1px 2px rgba(0,30,70,.7);overflow-wrap:anywhere}
+.grid-4.contact-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;max-width:980px}
+@media (max-width:760px){.grid-4.contact-grid{grid-template-columns:minmax(0,1fr)!important}}
 </style>
 </helmet>
 
@@ -651,16 +666,6 @@ a{color:#0a5aa8}a:hover{color:#063d75}
     <!-- névoa atmosférica no horizonte -->
     <div aria-hidden="true" class="haze" style="position: absolute; left: 0; right: 0; bottom: 300px; height: 170px; background: {{hazeBg}}; pointer-events: none"></div>
 
-    <!-- bolhas -->
-    <div aria-hidden="true" class="bubble" style="position: absolute; top: 250px; left: 3%; width: 110px; height: 110px; border-radius: 50%; background: radial-gradient(ellipse 22% 15% at 33% 24%, rgba(255,255,255,.95), rgba(255,255,255,0)), radial-gradient(circle at 70% 78%, rgba(255,255,255,.55) 0 3%, rgba(255,255,255,0) 9%), radial-gradient(circle, rgba(255,255,255,0) 58%, rgba(150,225,255,.2) 70%, rgba(255,190,235,.26) 81%, rgba(190,255,200,.3) 90%, rgba(255,255,255,.85) 98%, rgba(255,255,255,0) 100%); box-shadow: 0 10px 30px rgba(0,60,140,.08); pointer-events: none"></div>
-    <div aria-hidden="true" class="bubble b2" style="position: absolute; top: 470px; left: 40%; width: 56px; height: 56px; border-radius: 50%; background: radial-gradient(ellipse 22% 15% at 33% 24%, rgba(255,255,255,.95), rgba(255,255,255,0)), radial-gradient(circle, rgba(255,255,255,0) 58%, rgba(150,225,255,.22) 70%, rgba(255,190,235,.28) 81%, rgba(190,255,200,.3) 90%, rgba(255,255,255,.85) 98%, rgba(255,255,255,0) 100%); pointer-events: none"></div>
-    <div aria-hidden="true" class="bubble b3" style="position: absolute; top: 96px; left: 52%; width: 34px; height: 34px; border-radius: 50%; background: radial-gradient(ellipse 24% 17% at 33% 25%, rgba(255,255,255,.95), rgba(255,255,255,0)), radial-gradient(circle, rgba(255,255,255,0) 55%, rgba(150,225,255,.25) 70%, rgba(255,190,235,.3) 82%, rgba(255,255,255,.85) 97%, rgba(255,255,255,0) 100%); pointer-events: none"></div>
-    <div aria-hidden="true" class="bubble b2" style="position: absolute; top: 92px; right: 4%; width: 54px; height: 54px; border-radius: 50%; background: radial-gradient(ellipse 22% 15% at 33% 24%, rgba(255,255,255,.95), rgba(255,255,255,0)), radial-gradient(circle, rgba(255,255,255,0) 58%, rgba(150,225,255,.22) 72%, rgba(255,255,255,.85) 97%, rgba(255,255,255,0) 100%); pointer-events: none"></div>
-    <div aria-hidden="true" class="bubble" style="position: absolute; top: 104px; right: 13%; width: 28px; height: 28px; border-radius: 50%; background: radial-gradient(ellipse 24% 17% at 33% 25%, rgba(255,255,255,.95), rgba(255,255,255,0)), radial-gradient(circle, rgba(255,255,255,0) 55%, rgba(150,225,255,.25) 72%, rgba(255,255,255,.85) 97%, rgba(255,255,255,0) 100%); pointer-events: none"></div>
-
-    <!-- esfera de vidro transparente -->
-    <div aria-hidden="true" class="bubble b3 glass-orb" style="position: absolute; top: 92px; right: 31%; width: 170px; height: 170px; border-radius: 50%; pointer-events: none; background: radial-gradient(ellipse 36% 20% at 50% 13%, rgba(255,255,255,.92), rgba(255,255,255,0) 70%), radial-gradient(circle at 50% 88%, rgba(180,245,255,.6), rgba(180,245,255,0) 42%), radial-gradient(circle at 74% 72%, rgba(255,255,255,.6) 0 2%, rgba(255,255,255,0) 6%), radial-gradient(circle, rgba(255,255,255,.03) 55%, rgba(200,235,255,.16) 76%, rgba(255,255,255,.8) 97%, rgba(255,255,255,0) 100%); box-shadow: inset 0 -14px 30px rgba(0,60,160,.22), 0 22px 40px rgba(0,40,110,.16); backdrop-filter: brightness(1.08) saturate(1.2); -webkit-backdrop-filter: brightness(1.08) saturate(1.2)"></div>
-
     <!-- globo de vidro com rede de conexões -->
     <div aria-hidden="true" class="bubble b3 globe" style="position: absolute; top: 300px; right: 1%; width: 430px; height: 430px; border-radius: 50%; overflow: hidden; pointer-events: none; border: 1px solid rgba(255,255,255,.55); background: radial-gradient(circle at 50% 42%, rgba(140,215,255,.12), rgba(30,120,220,.28) 68%, rgba(8,64,160,.5) 100%); box-shadow: inset 0 -34px 60px rgba(120,235,255,.55), inset 0 22px 40px rgba(255,255,255,.25), 0 30px 60px rgba(0,40,110,.25)">
       <svg sc-camel-view-box="0 0 200 200" style="position: absolute; inset: 0; width: 100%; height: 100%">
@@ -748,19 +753,6 @@ a{color:#0a5aa8}a:hover{color:#063d75}
       <circle cx="65" cy="26.5" r="3.8" fill="#ffffff"></circle>
       <path d="M68.5 25.8 L 74.5 27.2 L 68.5 28.4 Z" fill="#f2b52a"></path>
       <circle cx="66.3" cy="25.6" r=".75" fill="#1b1f24"></circle>
-    </svg>
-    <svg aria-hidden="true" class="gull g3" sc-camel-view-box="0 0 100 44" style="--r: -3deg; position: absolute; top: 34px; left: 30%; width: 58px; height: 26px; pointer-events: none; opacity: .9">
-      <path d="M49 25 C 40 14, 24 6, 2 3 C 12 10, 24 20, 42 29 Z" fill="url(#gullWingL)"></path>
-      <path d="M53 25 C 62 12, 78 4, 98 1 C 88 10, 74 21, 58 29 Z" fill="url(#gullWingR)"></path>
-      <ellipse cx="51" cy="28" rx="14" ry="4.6" fill="#ffffff"></ellipse>
-      <circle cx="65" cy="26.5" r="3.8" fill="#ffffff"></circle>
-      <path d="M68.5 25.8 L 74.5 27.2 L 68.5 28.4 Z" fill="#f2b52a"></path>
-    </svg>
-    <svg aria-hidden="true" class="gull g2" sc-camel-view-box="0 0 100 44" style="--r: 10deg; position: absolute; top: 150px; left: 53%; width: 40px; height: 18px; pointer-events: none; opacity: .85">
-      <path d="M49 25 C 40 14, 24 6, 2 3 C 12 10, 24 20, 42 29 Z" fill="url(#gullWingL)"></path>
-      <path d="M53 25 C 62 12, 78 4, 98 1 C 88 10, 74 21, 58 29 Z" fill="url(#gullWingR)"></path>
-      <ellipse cx="51" cy="28" rx="14" ry="4.6" fill="#ffffff"></ellipse>
-      <circle cx="65" cy="26.5" r="3.8" fill="#ffffff"></circle>
     </svg>
 
     <!-- respingos d'água -->
@@ -1030,17 +1022,13 @@ a{color:#0a5aa8}a:hover{color:#063d75}
     <div class="wrap hero-body" style="position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; padding: 64px 24px 0; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
 
       <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
-        <span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px 8px 10px; border-radius: 999px; background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.7)); border: 1px solid #ffffff; box-shadow: 0 4px 14px rgba(0,50,120,.2); font-size: 14px; font-weight: 600; color: #0b3a66">
-          <span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #d9ffb8, #3fbf2a 60%, #1f7a12); box-shadow: 0 0 8px rgba(80,220,60,.8)"></span>
-          Analista de Sistemas Sênior · Claro Brasil
-        </span>
-        <h1 style="margin: 0; font-size: clamp(44px, 6.4vw, 84px); line-height: 1.02; font-weight: 800; letter-spacing: -1px; color: #ffffff; text-shadow: 0 2px 0 rgba(0,60,130,.35), 0 6px 22px rgba(0,40,100,.45)">Olá, eu sou<br>João Carvalho</h1>
+        <h1 style="margin: 0; font-size: clamp(44px, 6.4vw, 84px); line-height: 1.02; font-weight: 800; letter-spacing: -1px; color: #ffffff; text-shadow: 0 2px 0 rgba(0,60,130,.35), 0 6px 22px rgba(0,40,100,.45)">Faço sistemas conversarem e descubro por que eles param.</h1>
 
         <div class="hero-intro" style="max-width: 640px; padding: 24px 26px; border-radius: 22px; background: linear-gradient(180deg, rgba(255,255,255,.9) 0%, rgba(255,255,255,.72) 100%); border: 1px solid #ffffff; box-shadow: 0 0 0 1px rgba(80,150,220,.25), 0 16px 40px rgba(0,50,120,.25), inset 0 1px 0 #ffffff; backdrop-filter: blur(16px); display: flex; flex-direction: column; gap: 18px">
-          <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #123a5e">Desenvolvedor backend com foco em APIs, integrações e investigação de incidentes em produção no ecossistema Salesforce/SOLAR. Construo APIs REST e aplicações desktop em Python e TypeScript.</p>
+          <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #123a5e">Sou João Carvalho, analista de sistemas na Claro Brasil. Cuido de APIs, integrações e da investigação de incidentes em produção no ecossistema Salesforce/SOLAR. Fora dele, construo APIs e apps desktop em Python e TypeScript.</p>
           <div style="display: flex; flex-wrap: wrap; gap: 8px">
             <span style="padding: 6px 12px; border-radius: 999px; background: linear-gradient(180deg, #ffffff, #e2f3ff); border: 1px solid #a9d4f5; font-size: 13px; font-weight: 600; color: #0b4a85">São Paulo, Brasil</span>
-            <span style="padding: 6px 12px; border-radius: 999px; background: linear-gradient(180deg, #ffffff, #e2f3ff); border: 1px solid #a9d4f5; font-size: 13px; font-weight: 600; color: #0b4a85">Python · TypeScript</span>
+            <span style="padding: 6px 12px; border-radius: 999px; background: linear-gradient(180deg, #ffffff, #e2f3ff); border: 1px solid #a9d4f5; font-size: 13px; font-weight: 600; color: #0b4a85">Python e TypeScript</span>
             <span style="padding: 6px 12px; border-radius: 999px; background: linear-gradient(180deg, #ffffff, #e5f8dc); border: 1px solid #b4e2a0; font-size: 13px; font-weight: 600; color: #1d5e12">Salesforce / OmniStudio</span>
           </div>
           <div style="display: flex; flex-wrap: wrap; gap: 12px">
@@ -1077,7 +1065,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
             <span style="position: absolute; left: 12px; right: 12px; top: 6px; height: 40px; border-radius: 50%; background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,0))"></span>
           </div>
           <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
-            <span style="font-size: 12px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: #3a6488">São Paulo</span>
+            <span style="font-size: 12px; font-weight: 700; color: #3a6488">São Paulo</span>
             <span style="font-size: 30px; font-weight: 700; color: #0b2e4f; font-variant-numeric: tabular-nums">{{timeStr}}</span>
             <span style="font-size: 13px; color: #35597a">{{dateStr}}</span>
           </div>
@@ -1089,7 +1077,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
             <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18v12H3z"></path><path d="M8 8V5h8v3"></path><path d="M3 13h18"></path></svg>
           </span>
           <div style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
-            <span style="font-size: 12px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: #2f6a24">Atuação atual</span>
+            <span style="font-size: 12px; font-weight: 700; color: #2f6a24">Atuação atual</span>
             <span style="font-size: 15px; font-weight: 700; color: #0b2e4f">Claro Brasil</span>
             <span style="font-size: 13px; line-height: 1.45; color: #35597a">Backend, APIs e integrações no ecossistema SOLAR, desde out/2025.</span>
           </div>
@@ -1102,8 +1090,8 @@ a{color:#0a5aa8}a:hover{color:#063d75}
             <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18v12H3z"></path><path d="M8 20h8"></path><path d="M12 16v4"></path><path d="M7 12l3-3 3 2 4-4"></path></svg>
           </span>
           <span style="position: relative; display: flex; flex-direction: column; gap: 3px; min-width: 0">
-            <span style="font-size: 12px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: #e3f4ff">Projeto em destaque</span>
-            <span style="font-size: 15px; font-weight: 700; color: #ffffff; text-shadow: 0 1px 2px rgba(0,30,80,.5)">Evo · Tauri + React</span>
+            <span style="font-size: 12px; font-weight: 700; color: #e3f4ff">Projeto em destaque</span>
+            <span style="font-size: 15px; font-weight: 700; color: #ffffff; text-shadow: 0 1px 2px rgba(0,30,80,.5)">Evo, em Tauri e React</span>
             <span style="font-size: 13px; line-height: 1.45; color: #ffffff; text-shadow: 0 1px 2px rgba(0,30,80,.6)">Dashboard multimídia para segundo monitor.</span>
           </span>
         </a>
@@ -1127,7 +1115,6 @@ a{color:#0a5aa8}a:hover{color:#063d75}
     <section id="projetos" class="wrap" aria-labelledby="projetos-titulo" style="position: relative; max-width: 1240px; margin: 0 auto; padding: 72px 24px 40px; display: flex; flex-direction: column; gap: 28px">
       <div class="reveal" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px">
         <div style="display: flex; flex-direction: column; gap: 8px; flex: 1 1 420px; min-width: 0">
-          <span class="eyebrow">Portfólio</span>
           <h2 id="projetos-titulo" class="sec-title" style="margin: 0; font-size: clamp(32px, 4vw, 46px); font-weight: 800; color: #0b3a66; letter-spacing: -.5px">Projetos</h2>
           <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #2e5578; max-width: 560px">Aplicações desktop, APIs e apps publicados no GitHub, desenvolvidos em projetos pessoais e autônomos.</p>
         </div>
@@ -1141,8 +1128,8 @@ a{color:#0a5aa8}a:hover{color:#063d75}
 
       <div class="grid-3 {{gridAnim}}" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: clamp(18px, 1.6vw, 32px)">
         <sc-for list="{{projects}}" as="p" hint-placeholder-count="6">
-          <article class="card" style="animation-delay: {{p.delay}}ms; display: flex; flex-direction: column; border-radius: 24px; overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.78)); border: 1px solid #ffffff; box-shadow: 0 0 0 1px rgba(90,160,220,.25), 0 12px 32px rgba(10,80,160,.16), inset 0 1px 0 #ffffff; backdrop-filter: blur(12px)">
-            <div style="position: relative; height: 170px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: {{p.bg}}">
+          <article class="card {{p.cls}}" style="animation-delay: {{p.delay}}ms; display: flex; flex-direction: column; border-radius: 24px; overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.78)); border: 1px solid #ffffff; box-shadow: 0 0 0 1px rgba(90,160,220,.25), 0 12px 32px rgba(10,80,160,.16), inset 0 1px 0 #ffffff; backdrop-filter: blur(12px)">
+            <div class="card-art" style="position: relative; height: 170px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: {{p.bg}}">
               <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 52%; background: linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.04))"></span>
               <span aria-hidden="true" style="position: absolute; left: -40px; bottom: -70px; width: 260px; height: 140px; border-radius: 50%; background: rgba(255,255,255,.18)"></span>
               <span aria-hidden="true" style="position: absolute; right: 26px; top: 22px; width: 30px; height: 30px; border-radius: 50%; background: radial-gradient(circle at 30% 26%, rgba(255,255,255,1) 0 10%, rgba(255,255,255,.25) 26%, rgba(255,255,255,.06) 55%, rgba(255,255,255,.7) 100%)"></span>
@@ -1155,7 +1142,6 @@ a{color:#0a5aa8}a:hover{color:#063d75}
               <span style="align-self: flex-start; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .4px; background: {{p.chipBg}}; color: {{p.chipFg}}; border: 1px solid {{p.chipBorder}}">{{p.cat}}</span>
               <div style="display: flex; flex-direction: column; gap: 3px">
                 <h3 style="margin: 0; font-size: 22px; font-weight: 800; color: #0b3a66; letter-spacing: -.2px">{{p.title}}</h3>
-                <span class="repo"><svg aria-hidden="true" width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v12"></path><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg><span>johncarvalhonx/{{p.name}}</span></span>
               </div>
               <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #2e5578; flex: 1">{{p.desc}}</p>
               <div style="display: flex; flex-wrap: wrap; gap: 6px">
@@ -1165,7 +1151,6 @@ a{color:#0a5aa8}a:hover{color:#063d75}
               </div>
               <a class="aero-btn" href="{{p.url}}" style="margin-top: 6px; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 14px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,25,70,.75); background: linear-gradient(180deg, rgba(110,190,255,.38) 0%, rgba(25,115,230,.56) 52%, rgba(0,72,185,.74) 100%); border: 1px solid rgba(6,64,160,.78); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), inset 0 -10px 16px rgba(130,230,255,.6), inset 0 1px 1px rgba(255,255,255,.7), 0 3px 8px rgba(0,60,130,.3)">
                 Ver no GitHub
-                <svg aria-hidden="true" width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
               </a>
             </div>
           </article>
@@ -1176,13 +1161,12 @@ a{color:#0a5aa8}a:hover{color:#063d75}
     <!-- HABILIDADES -->
     <section id="habilidades" class="wrap" aria-labelledby="hab-titulo" style="position: relative; max-width: 1240px; margin: 0 auto; padding: 56px 24px 40px; display: flex; flex-direction: column; gap: 28px">
       <div style="display: flex; flex-direction: column; gap: 8px">
-        <span class="eyebrow">O que eu faço</span>
         <h2 id="hab-titulo" class="sec-title" style="margin: 0; font-size: clamp(32px, 4vw, 46px); font-weight: 800; color: #0b3a66; letter-spacing: -.5px">Habilidades</h2>
       </div>
 
-      <div class="grid-3 reveal" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: clamp(16px, 1.4vw, 28px)">
+      <div class="skill-list reveal">
         <sc-for list="{{skills}}" as="k" hint-placeholder-count="6">
-          <div style="display: flex; gap: 18px; align-items: flex-start; padding: 22px; border-radius: 22px; background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.72)); border: 1px solid #ffffff; box-shadow: 0 0 0 1px rgba(90,160,220,.22), 0 10px 26px rgba(10,80,160,.12), inset 0 1px 0 #ffffff; backdrop-filter: blur(10px)">
+          <div class="skill-item">
             <span aria-hidden="true" style="position: relative; flex: none; width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: {{k.orb}}; border: 1px solid rgba(255,255,255,.8); box-shadow: 0 6px 14px rgba(0,50,120,.3), inset 0 -4px 10px rgba(255,255,255,.25); overflow: hidden">
               <span style="position: absolute; left: 7px; right: 7px; top: 3px; height: 26px; border-radius: 50%; background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,0))"></span>
               <svg width="28" height="28" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: relative; filter: drop-shadow(0 1px 1px rgba(0,30,80,.5))"><path d="{{k.icon}}"></path></svg>
@@ -1218,7 +1202,6 @@ a{color:#0a5aa8}a:hover{color:#063d75}
     <!-- TRAJETÓRIA: janela estilo explorador -->
     <section id="trajetoria" class="wrap" aria-labelledby="traj-titulo" style="position: relative; max-width: 1240px; margin: 0 auto; padding: 56px 24px 96px; display: flex; flex-direction: column; gap: 28px">
       <div style="display: flex; flex-direction: column; gap: 8px">
-        <span class="eyebrow">Experiência e formação</span>
         <h2 id="traj-titulo" class="sec-title" style="margin: 0; font-size: clamp(32px, 4vw, 46px); font-weight: 800; color: #0b3a66; letter-spacing: -.5px">Trajetória</h2>
       </div>
 
@@ -1254,7 +1237,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
         <div style="display: flex; flex-wrap: wrap; background: linear-gradient(180deg, #ffffff, #f4f9fd)">
           <!-- experiência -->
           <div style="flex: 999 1 560px; min-width: 0; padding: 28px 30px; display: flex; flex-direction: column; gap: 4px; border-right: 1px solid #d6e6f3">
-            <h3 style="margin: 0 0 14px; font-size: 14px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #1d5a8f">Experiência</h3>
+            <h3 style="margin: 0 0 14px; font-size: 14px; font-weight: 800; color: #1d5a8f">Experiência</h3>
             <sc-for list="{{jobs}}" as="j" hint-placeholder-count="4">
               <div style="display: flex; gap: 18px">
                 <div aria-hidden="true" style="flex: none; width: 22px; display: flex; flex-direction: column; align-items: center">
@@ -1273,19 +1256,19 @@ a{color:#0a5aa8}a:hover{color:#063d75}
           <!-- formação + certificações -->
           <div style="flex: 1 1 340px; min-width: 0; padding: 28px 30px; display: flex; flex-direction: column; gap: 26px; background: linear-gradient(180deg, rgba(232,244,252,.7), rgba(236,249,238,.7))">
             <div style="display: flex; flex-direction: column; gap: 14px">
-              <h3 style="margin: 0; font-size: 14px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #1d5a8f">Formação</h3>
+              <h3 style="margin: 0; font-size: 14px; font-weight: 800; color: #1d5a8f">Formação</h3>
               <div style="display: flex; gap: 14px; align-items: flex-start; padding: 16px; border-radius: 16px; background: linear-gradient(180deg, #ffffff, #eef7fd); border: 1px solid #c4ddf0; box-shadow: 0 4px 12px rgba(0,60,130,.1)">
                 <span aria-hidden="true" style="flex: none; width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #8ad3ff 0%, #3aa0ea 48%, #136fc4 52%, #2a8fdd 100%); border: 1px solid #0b5ba6; box-shadow: inset 0 1px 0 rgba(255,255,255,.8)">
                   <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"></path><path d="M6 11v5c3 2 9 2 12 0v-5"></path></svg>
                 </span>
                 <div style="display: flex; flex-direction: column; gap: 3px">
                   <span style="font-size: 16px; font-weight: 800; color: #0b3a66">Bacharelado em Ciência da Computação</span>
-                  <span style="font-size: 14px; color: #2e5578">UNIP · São Paulo</span>
+                  <span style="font-size: 14px; color: #2e5578">UNIP, São Paulo</span>
                 </div>
               </div>
             </div>
             <div style="display: flex; flex-direction: column; gap: 12px">
-              <h3 style="margin: 0; font-size: 14px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #1d5a8f">Certificações · Udemy</h3>
+              <h3 style="margin: 0; font-size: 14px; font-weight: 800; color: #1d5a8f">Certificações na Udemy</h3>
               <sc-for list="{{certs}}" as="ce" hint-placeholder-count="5">
                 <div style="display: flex; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 12px; background: rgba(255,255,255,.85); border: 1px solid #d3e6f3">
                   <span aria-hidden="true" style="flex: none; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #b6f08a 0%, #5cc23a 48%, #2a8a17 52%, #48ad2c 100%); border: 1px solid #1f6e10">
@@ -1322,6 +1305,13 @@ a{color:#0a5aa8}a:hover{color:#063d75}
         <h2 id="contato-titulo" class="sec-title" style="margin: 0; font-size: clamp(34px, 4.4vw, 52px); font-weight: 800; color: #ffffff; letter-spacing: -.5px; text-shadow: 0 2px 0 rgba(0,40,90,.35), 0 6px 20px rgba(0,20,60,.45)">Contato</h2>
         <p style="margin: 0; max-width: 560px; font-size: 18px; line-height: 1.6; color: #ffffff; text-shadow: 0 1px 3px rgba(0,30,70,.7)">Para projetos, oportunidades ou conversas sobre backend e integrações.</p>
       </div>
+      <div class="mail-cta">
+        <a class="aero-btn" href="mailto:joaopedrovillasboascarvalho@gmail.com" style="display: inline-flex; align-items: center; gap: 10px; min-height: 58px; box-sizing: border-box; padding: 0 34px; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 19px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,40,0,.75); background: linear-gradient(180deg, rgba(150,235,110,.38) 0%, rgba(45,165,35,.56) 52%, rgba(12,112,10,.74) 100%); border: 1px solid rgba(16,92,8,.78); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.55), inset 0 -10px 16px rgba(190,255,140,.6), inset 0 1px 1px rgba(255,255,255,.7), 0 4px 12px rgba(20,90,10,.35)">
+          <svg aria-hidden="true" width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"></path><path d="M3 7l9 6 9-6"></path></svg>
+          Enviar e-mail
+        </a>
+        <span class="mail-addr">joaopedrovillasboascarvalho@gmail.com</span>
+      </div>
       <div class="grid-4 contact-grid" style="width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; text-align: left">
         <sc-for list="{{contacts}}" as="ct" hint-placeholder-count="4">
           <a class="glink" href="{{ct.href}}" style="display: flex; align-items: center; gap: 14px; padding: 18px; border-radius: 20px; text-decoration: none; background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(225,244,255,.85)); border: 1px solid #ffffff; box-shadow: 0 0 0 1px rgba(255,255,255,.5), 0 12px 28px rgba(0,30,80,.32), inset 0 1px 0 #ffffff; min-width: 0">
@@ -1330,7 +1320,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
               <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: relative; filter: drop-shadow(0 1px 1px rgba(0,30,80,.5))"><path d="{{ct.icon}}"></path></svg>
             </span>
             <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
-              <span style="font-size: 12px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: #2f6a24">{{ct.label}}</span>
+              <span style="font-size: 12px; font-weight: 700; color: #2f6a24">{{ct.label}}</span>
               <span style="font-size: 15px; font-weight: 700; color: #0b3a66; overflow-wrap: anywhere">{{ct.value}}</span>
             </span>
           </a>
@@ -1501,16 +1491,18 @@ class Component extends DCLogic {
     };
     const base = 'https://github.com/johncarvalhonx/';
     const all = [
-      { name: 'Evo', cat: 'Desktop', desc: 'Dashboard multimídia para segundo monitor, com sensores de hardware em tempo real via LibreHardwareMonitor.', stack: ['Tauri', 'Rust', 'React', 'TypeScript'], bg: 'linear-gradient(160deg, #0b4fa8 0%, #1f8fe6 55%, #5fd0ff 100%)', icon: 'M3 4h18v12H3z M8 20h8 M12 16v4 M7 12l3-3 3 2 4-4' },
-      { name: 'Vitra', cat: 'Desktop', desc: 'Otimizador e limpador para Windows 10/11 (x64), com instalador próprio.', stack: ['Electron', 'React', 'TypeScript'], bg: 'linear-gradient(160deg, #08756a 0%, #1fae96 55%, #8ef0d0 100%)', icon: 'M13 2L4 14h7l-1 8 9-12h-7z' },
+      { name: 'Evo', img: 'img/evo.webp', pos: 'center top', cat: 'Desktop', desc: 'Dashboard multimídia para segundo monitor, com sensores de hardware em tempo real via LibreHardwareMonitor.', stack: ['Tauri', 'Rust', 'React', 'TypeScript'], bg: 'linear-gradient(160deg, #0b4fa8 0%, #1f8fe6 55%, #5fd0ff 100%)', icon: 'M3 4h18v12H3z M8 20h8 M12 16v4 M7 12l3-3 3 2 4-4' },
+      { name: 'Vitra', img: 'img/vitra.webp', pos: 'left top', cat: 'Desktop', desc: 'Otimizador e limpador para Windows 10/11 (x64), com instalador próprio.', stack: ['Electron', 'React', 'TypeScript'], bg: 'linear-gradient(160deg, #08756a 0%, #1fae96 55%, #8ef0d0 100%)', icon: 'M13 2L4 14h7l-1 8 9-12h-7z' },
+      { name: 'controledehoras', img: 'img/horas.webp', pos: 'left top', title: 'Controle de Horas', cat: 'Desktop', desc: 'App desktop para registrar horas extras e calcular ganhos e totais mensais e anuais.', stack: ['Python', 'PySide6', 'SQLite'], bg: 'linear-gradient(160deg, #2560c8 0%, #5fa9f5 55%, #bfe6ff 100%)', icon: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z M12 7v5l3 2' },
       { name: 'Valor.ia', cat: 'APIs & Web', desc: 'Assistente financeiro local por texto e voz, com painel web, API e SQLite.', stack: ['Python', 'Flask', 'SQLite'], bg: 'linear-gradient(160deg, #1656c4 0%, #36a0ee 50%, #7be08a 100%)', icon: 'M4 5h16v10H9l-5 4z M12 7v6 M14 8.5h-3a1.25 1.25 0 0 0 0 2.5h2a1.25 1.25 0 0 1 0 2.5h-3' },
-      { name: 'controledehoras', title: 'Controle de Horas', cat: 'Desktop', desc: 'App desktop para registrar horas extras e calcular ganhos e totais mensais e anuais.', stack: ['Python', 'PySide6', 'SQLite'], bg: 'linear-gradient(160deg, #2560c8 0%, #5fa9f5 55%, #bfe6ff 100%)', icon: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z M12 7v5l3 2' },
       { name: 'ecomonitormobile', title: 'EcoMonitor Mobile', cat: 'Mobile', desc: 'Monitoramento ambiental: app Android que consome API própria de clima e qualidade do ar.', stack: ['Kotlin', 'Python', 'FastAPI'], bg: 'linear-gradient(160deg, #2a8226 0%, #62c242 55%, #c8f59a 100%)', icon: 'M7 2h10v20H7z M11 18h2 M12 6c-2.2 2-2.2 5 0 7c2.2-2 2.2-5 0-7z' },
       { name: 'sustainable-habits-tracker', title: 'Sustainable Habits', cat: 'APIs & Web', desc: 'API REST para acompanhar hábitos sustentáveis, com autenticação JWT e resumos periódicos.', stack: ['Python', 'FastAPI', 'Docker'], bg: 'linear-gradient(160deg, #0f7055 0%, #2fa874 50%, #9be8b8 100%)', icon: 'M5 19c0-8 6-14 14-14c0 8-6 14-14 14z M5 19l7-7' }
     ];
     const projects = all
       .filter((p) => cat === 'Todos' || p.cat === cat)
-      .map((p, i) => Object.assign({}, p, chip[p.cat], { url: base + p.name, title: p.title || p.name, delay: i * 70 }));
+      .map((p, i) => Object.assign({}, p, chip[p.cat], { url: base + p.name, title: p.title || p.name, delay: i * 70,
+        bg: p.img ? 'url(' + p.img + ') ' + p.pos + ' / cover no-repeat, ' + p.bg : p.bg,
+        cls: (p.img ? 'has-shot' : '') + (p.name === 'Evo' ? ' feat' : '') }));
 
     const blueOrb = 'radial-gradient(circle at 50% 115%, #8fe3ff 0%, #2a9be8 40%, #0d5fb8 100%)';
     const greenOrb = 'radial-gradient(circle at 50% 115%, #d2ff9a 0%, #4fc23a 40%, #1f7a14 100%)';
@@ -1531,7 +1523,7 @@ class Component extends DCLogic {
     const jobs = [
       { period: 'out 2025 – atual', role: 'Analista de Sistemas Sênior', org: 'Claro Brasil', desc: 'Backend, APIs e integrações; sustentação de serviços em produção; instrumentação de logging e alertas.', dot: 'radial-gradient(circle at 35% 30%, #d9ffb8, #3fbf2a 60%, #1f7a12)', ring: '#2f9a1f' },
       { period: 'jan 2023 – atual', role: 'Desenvolvedor Backend', org: 'Autônomo', desc: 'APIs e ferramentas em Python; integrações com serviços externos.', dot: 'radial-gradient(circle at 35% 30%, #d6f2ff, #3aa0ea 60%, #0d5fb8)', ring: '#1478cc' },
-      { period: 'ago – out 2025', role: 'Analista de Sistemas', org: 'Polícia Civil · DIPOL/DTI', desc: 'Suporte e análise de sistemas internos.', dot: 'radial-gradient(circle at 35% 30%, #d6f2ff, #3aa0ea 60%, #0d5fb8)', ring: '#1478cc' },
+      { period: 'ago – out 2025', role: 'Analista de Sistemas', org: 'Polícia Civil (DIPOL/DTI)', desc: 'Suporte e análise de sistemas internos.', dot: 'radial-gradient(circle at 35% 30%, #d6f2ff, #3aa0ea 60%, #0d5fb8)', ring: '#1478cc' },
       { period: 'mai 2024 – jul 2025', role: 'Digitador', org: 'PRODESP', desc: 'Tratamento e estruturação de dados.', dot: 'radial-gradient(circle at 35% 30%, #d6f2ff, #3aa0ea 60%, #0d5fb8)', ring: '#1478cc' }
     ];
 
@@ -1602,7 +1594,7 @@ class Component extends DCLogic {
       tools,
       jobs,
       certs,
-      contacts
+      contacts: contacts.filter((c) => c.label !== 'E-mail')
     };
   }
 }
