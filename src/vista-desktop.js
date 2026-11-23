@@ -338,7 +338,7 @@ class VistaDesktop {
 
   toggleMaximize(id) {
     const rec = this.wins.get(id);
-    if (!rec || rec.app.resizable === false || rec.state === 'min') return;
+    if (!rec || rec.app.resizable === false || rec.state === 'min' || this.mq.matches) return;
     this._setState(rec, rec.state === 'max' ? 'normal' : 'max');
     this.focus(id);
   }
