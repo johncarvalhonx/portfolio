@@ -565,6 +565,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
 .glass::before,.aero-btn::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;background:radial-gradient(120% 108% at 50% -8%,rgba(255,255,255,.72) 0%,rgba(255,255,255,.34) 42%,rgba(255,255,255,.12) 48.5%,rgba(255,255,255,0) 50%);transition:opacity .15s ease}
 .aero-btn:active::before{opacity:.55}
 .aero-btn.glass:active{box-shadow:inset 0 2px 7px rgba(0,25,70,.42),inset 0 0 0 1px rgba(255,255,255,.3),0 2px 6px var(--drop)}
+/* @include src/vista-desktop.css */
 </style>
 </helmet>
 
@@ -1237,88 +1238,10 @@ a{color:#0a5aa8}a:hover{color:#063d75}
       </div>
     </section>
 
-    <!-- TRAJETÓRIA: janela estilo explorador -->
-    <section id="trajetoria" class="wrap" aria-labelledby="traj-titulo" style="position: relative; max-width: 1240px; margin: 0 auto; padding: 56px 24px 96px; display: flex; flex-direction: column; gap: 28px">
-      <div style="display: flex; flex-direction: column; gap: 8px">
-        <h2 id="traj-titulo" class="sec-title" style="margin: 0; font-size: clamp(32px, 4vw, 46px); font-weight: 800; color: #0b3a66; letter-spacing: -.5px">Trajetória</h2>
-      </div>
-
-      <div class="reveal" style="border-radius: 14px; overflow: hidden; border: 1px solid rgba(20,60,110,.55); box-shadow: 0 0 0 1px rgba(255,255,255,.6) inset, 0 24px 60px rgba(0,40,100,.3)">
-        <!-- barra de título -->
-        <div style="position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px 10px 16px; background: linear-gradient(180deg, rgba(150,200,240,.95) 0%, rgba(96,160,220,.92) 50%, rgba(70,135,205,.92) 51%, rgba(110,180,235,.92) 100%)">
-          <span style="display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; color: #0a2a4a; text-shadow: 0 1px 0 rgba(255,255,255,.6)">
-            <svg aria-hidden="true" width="20" height="20" sc-camel-view-box="0 0 24 24" fill="#ffd25a" stroke="#b07a10" stroke-width="1.2" stroke-linejoin="round"><path d="M3 6h7l2 2h9v11H3z"></path></svg>
-            Trajetória profissional
-          </span>
-          <span aria-hidden="true" style="display: flex; gap: 2px">
-            <span style="width: 30px; height: 20px; border-radius: 5px 0 0 5px; background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(200,225,245,.55) 50%, rgba(150,195,235,.55) 51%, rgba(200,230,250,.7)); border: 1px solid rgba(20,60,110,.5); display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 2px; background: #0a2a4a; margin-top: 6px"></span></span>
-            <span style="width: 30px; height: 20px; background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(200,225,245,.55) 50%, rgba(150,195,235,.55) 51%, rgba(200,230,250,.7)); border: 1px solid rgba(20,60,110,.5); display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 8px; border: 1.5px solid #0a2a4a; box-sizing: border-box"></span></span>
-            <span style="width: 46px; height: 20px; border-radius: 0 5px 5px 0; background: linear-gradient(180deg, #f5a593 0%, #e0583e 48%, #c42e17 52%, #e0583e 100%); border: 1px solid #7a1608; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 13px; font-weight: 800; line-height: 1">✕</span>
-          </span>
-        </div>
-        <!-- barra de endereço -->
-        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 8px 12px; background: linear-gradient(180deg, rgba(225,240,252,.97), rgba(200,225,245,.97)); border-bottom: 1px solid rgba(20,60,110,.25)">
-          <span aria-hidden="true" style="display: flex; gap: 4px">
-            <span style="width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #8ad3ff 0%, #3aa0ea 48%, #136fc4 52%, #2a8fdd 100%); border: 1px solid #0b5ba6; box-shadow: inset 0 1px 0 rgba(255,255,255,.8)"><svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></span>
-            <span style="width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #e9f3fb, #c6dbec); border: 1px solid #8fb3d1"><svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="#6a8aa6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span>
-          </span>
-          <span style="flex: 1 1 260px; min-width: 0; display: flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 4px; background: #ffffff; border: 1px solid #8fb3d1; box-shadow: inset 0 1px 2px rgba(0,40,90,.15); font-size: 15px; color: #1d3f60">
-            Computador
-            <svg aria-hidden="true" width="10" height="10" sc-camel-view-box="0 0 24 24" fill="none" stroke="#5a7a96" stroke-width="3"><path d="M9 6l6 6-6 6"></path></svg>
-            João Carvalho
-            <svg aria-hidden="true" width="10" height="10" sc-camel-view-box="0 0 24 24" fill="none" stroke="#5a7a96" stroke-width="3"><path d="M9 6l6 6-6 6"></path></svg>
-            <strong>Trajetória</strong>
-          </span>
-        </div>
-
-        <!-- corpo da janela -->
-        <div style="display: flex; flex-wrap: wrap; background: linear-gradient(180deg, #ffffff, #f4f9fd)">
-          <!-- experiência -->
-          <div style="flex: 999 1 560px; min-width: 0; padding: 28px 30px; display: flex; flex-direction: column; gap: 4px; border-right: 1px solid #d6e6f3">
-            <h3 style="margin: 0 0 14px; font-size: 15px; font-weight: 800; color: #1d5a8f">Experiência</h3>
-            <sc-for list="{{jobs}}" as="j" hint-placeholder-count="4">
-              <div style="display: flex; gap: 18px">
-                <div aria-hidden="true" style="flex: none; width: 22px; display: flex; flex-direction: column; align-items: center">
-                  <span style="width: 20px; height: 20px; border-radius: 50%; background: {{j.dot}}; border: 2px solid #ffffff; box-shadow: 0 0 0 1px {{j.ring}}, 0 2px 6px rgba(0,50,120,.35)"></span>
-                  <span style="flex: 1; width: 2px; margin: 4px 0; background: linear-gradient(180deg, #9cc9ec, #cfe6d6)"></span>
-                </div>
-                <div style="flex: 1; min-width: 0; padding-bottom: 26px; display: flex; flex-direction: column; gap: 4px">
-                  <span style="font-size: 13px; font-weight: 700; color: #2f6a24">{{j.period}}</span>
-                  <span style="font-size: 18px; font-weight: 800; color: #0b3a66">{{j.role}}</span>
-                  <span style="font-size: 15px; font-weight: 600; color: #1d5a8f">{{j.org}}</span>
-                  <span style="font-size: 15px; line-height: 1.6; color: #2e5578">{{j.desc}}</span>
-                </div>
-              </div>
-            </sc-for>
-          </div>
-          <!-- formação + certificações -->
-          <div style="flex: 1 1 340px; min-width: 0; padding: 28px 30px; display: flex; flex-direction: column; gap: 26px; background: linear-gradient(180deg, rgba(232,244,252,.7), rgba(236,249,238,.7))">
-            <div style="display: flex; flex-direction: column; gap: 14px">
-              <h3 style="margin: 0; font-size: 15px; font-weight: 800; color: #1d5a8f">Formação</h3>
-              <div style="display: flex; gap: 14px; align-items: flex-start; padding: 16px; border-radius: 16px; background: linear-gradient(180deg, #ffffff, #eef7fd); border: 1px solid #c4ddf0; box-shadow: 0 4px 12px rgba(0,60,130,.1)">
-                <span aria-hidden="true" style="flex: none; width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #8ad3ff 0%, #3aa0ea 48%, #136fc4 52%, #2a8fdd 100%); border: 1px solid #0b5ba6; box-shadow: inset 0 1px 0 rgba(255,255,255,.8)">
-                  <svg width="24" height="24" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"></path><path d="M6 11v5c3 2 9 2 12 0v-5"></path></svg>
-                </span>
-                <div style="display: flex; flex-direction: column; gap: 3px">
-                  <span style="font-size: 15px; font-weight: 800; color: #0b3a66">Bacharelado em Ciência da Computação</span>
-                  <span style="font-size: 15px; color: #2e5578">UNIP, São Paulo</span>
-                </div>
-              </div>
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 12px">
-              <h3 style="margin: 0; font-size: 15px; font-weight: 800; color: #1d5a8f">Certificações na Udemy</h3>
-              <sc-for list="{{certs}}" as="ce" hint-placeholder-count="5">
-                <div style="display: flex; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 12px; background: rgba(255,255,255,.85); border: 1px solid #d3e6f3">
-                  <span aria-hidden="true" style="flex: none; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #b6f08a 0%, #5cc23a 48%, #2a8a17 52%, #48ad2c 100%); border: 1px solid #1f6e10">
-                    <svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
-                  </span>
-                  <span style="font-size: 15px; font-weight: 600; line-height: 1.4; color: #17406a">{{ce}}</span>
-                </div>
-              </sc-for>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- TRAJETÓRIA: desktop Windows Vista (motor em src/vista-desktop.js, app em src/apps/trajetoria.js) -->
+    <section id="trajetoria" class="vd-section" aria-labelledby="traj-titulo">
+      <h2 id="traj-titulo" class="vd-sr-only">Trajetória</h2>
+      <div id="vista-desktop"></div>
     </section>
   </main>
 
@@ -1387,6 +1310,9 @@ a{color:#0a5aa8}a:hover{color:#063d75}
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;sky&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Dia&quot;,&quot;Entardecer&quot;,&quot;Aurora&quot;],&quot;default&quot;:&quot;Dia&quot;,&quot;section&quot;:&quot;Ambiente&quot;},&quot;animado&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Ambiente&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:4400}}">
+/* @include src/vista-desktop.js */
+/* @include src/apps/trajetoria.js */
+
 class Component extends DCLogic {
   constructor(props) {
     super(props);
@@ -1410,6 +1336,18 @@ class Component extends DCLogic {
       setTimeout(() => document.querySelectorAll('section[id]').forEach((el) => this.spy.observe(el)), 0);
     }
     this.onScroll();
+    setTimeout(() => {
+      const mount = document.getElementById('vista-desktop');
+      if (!mount || this.vd) return;
+      this.vd = window.vistaDesktop = new VistaDesktop(mount);
+      this.vd.registerApp(VD_TRAJETORIA_APP);
+      this.vd.addDesktopIcon({ label: 'Lixeira', icon: VD_ICON_TRASH, appId: null });
+      this.vd.addDesktopIcon({ label: 'Trajetória profissional', icon: VD_ICON_FOLDER, appId: 'trajetoria' });
+      this.vd.addStartEntry({ label: 'Trajetória profissional', icon: VD_ICON_FOLDER, appId: 'trajetoria' });
+      this.vd.addStartEntry({ label: 'Campo Minado', appId: null });
+      this.vd.addStartEntry({ label: 'Paciência', appId: null });
+      this.vd.open('trajetoria');
+    }, 0);
     const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if ('IntersectionObserver' in window && !calm) {
       document.documentElement.classList.add('js-reveal');
@@ -1424,6 +1362,7 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     if (this.timer) clearInterval(this.timer);
+    if (this.vd) { this.vd.destroy(); this.vd = null; window.vistaDesktop = null; }
     if (this.swapT) clearTimeout(this.swapT);
     if (this.onScroll) window.removeEventListener('scroll', this.onScroll);
     if (this.io) this.io.disconnect();
@@ -1572,21 +1511,6 @@ class Component extends DCLogic {
     const toolNames = ['Python', 'FastAPI', 'Java', 'Spring', 'TypeScript', 'JavaScript', 'React', 'MySQL', 'MongoDB', 'Docker', 'GitHub Actions', 'Git', 'Linux', 'HTML', 'CSS', 'Postman', 'VS Code'];
     const tools = toolNames.map((name, i) => ({ name, dot: dots[i % 3][0], dotDark: dots[i % 3][1] }));
 
-    const jobs = [
-      { period: 'out 2025 – atual', role: 'Analista de Sistemas Sênior', org: 'Claro Brasil', desc: 'Backend, APIs e integrações; sustentação de serviços em produção; instrumentação de logging e alertas.', dot: 'radial-gradient(circle at 35% 30%, #d9ffb8, #3fbf2a 60%, #1f7a12)', ring: '#2f9a1f' },
-      { period: 'jan 2023 – atual', role: 'Desenvolvedor Backend', org: 'Autônomo', desc: 'APIs e ferramentas em Python; integrações com serviços externos.', dot: 'radial-gradient(circle at 35% 30%, #d6f2ff, #3aa0ea 60%, #0d5fb8)', ring: '#1478cc' },
-      { period: 'ago – out 2025', role: 'Analista de Sistemas', org: 'Polícia Civil (DIPOL/DTI)', desc: 'Suporte e análise de sistemas internos.', dot: 'radial-gradient(circle at 35% 30%, #d6f2ff, #3aa0ea 60%, #0d5fb8)', ring: '#1478cc' },
-      { period: 'mai 2024 – jul 2025', role: 'Digitador', org: 'PRODESP', desc: 'Tratamento e estruturação de dados.', dot: 'radial-gradient(circle at 35% 30%, #d6f2ff, #3aa0ea 60%, #0d5fb8)', ring: '#1478cc' }
-    ];
-
-    const certs = [
-      'Programação concorrente e assíncrona com Python',
-      'Python do básico ao avançado',
-      'React com TypeScript',
-      'Desenvolvimento web completo (HTML, CSS e JavaScript)',
-      'Java e Spring Boot com MySQL e MongoDB'
-    ];
-
     const contacts = [
       { label: 'E-mail', value: 'joaopedrovillasboascarvalho@gmail.com', href: 'mailto:joaopedrovillasboascarvalho@gmail.com', orb: blueOrb, icon: 'M3 6h18v12H3z M3 7l9 6 9-6' },
       { label: 'LinkedIn', value: 'in/joaopedrovbcarvalho', href: 'https://www.linkedin.com/in/joaopedrovbcarvalho', orb: tealOrb, icon: 'M3 8h18v12H3z M8 8V5h8v3 M3 13h18' },
@@ -1644,8 +1568,6 @@ class Component extends DCLogic {
       projects,
       skills,
       tools,
-      jobs,
-      certs,
       contacts: contacts.filter((c) => c.label !== 'E-mail'),
       ghostProjects,
       ghostAnim,
