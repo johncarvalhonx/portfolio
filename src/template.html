@@ -1336,7 +1336,7 @@ class Component extends DCLogic {
       setTimeout(() => document.querySelectorAll('section[id]').forEach((el) => this.spy.observe(el)), 0);
     }
     this.onScroll();
-    setTimeout(() => {
+    this.vdTimer = setTimeout(() => {
       const mount = document.getElementById('vista-desktop');
       if (!mount || this.vd) return;
       this.vd = window.vistaDesktop = new VistaDesktop(mount);
@@ -1362,6 +1362,7 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     if (this.timer) clearInterval(this.timer);
+    if (this.vdTimer) clearTimeout(this.vdTimer);
     if (this.vd) { this.vd.destroy(); this.vd = null; window.vistaDesktop = null; }
     if (this.swapT) clearTimeout(this.swapT);
     if (this.onScroll) window.removeEventListener('scroll', this.onScroll);

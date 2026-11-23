@@ -2,9 +2,15 @@
    Uso: const d = new VistaDesktop(div); d.registerApp({...}); d.addDesktopIcon({...}); d.open('id');
    Detalhes e exemplo de app novo no README. Classes CSS em src/vista-desktop.css (prefixo vd-). */
 
-const VD_ICON_FOLDER = '<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><defs><linearGradient id="vdf1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe58a"/><stop offset="1" stop-color="#f2b53a"/></linearGradient><linearGradient id="vdf2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2b8"/><stop offset=".5" stop-color="#ffd35c"/><stop offset="1" stop-color="#eba624"/></linearGradient></defs><path d="M4 10a3 3 0 0 1 3-3h12l4 4h18a3 3 0 0 1 3 3v26a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" fill="url(#vdf1)" stroke="#b27b14" stroke-width="1.2"/><path d="M4 18a3 3 0 0 1 3-3h34a3 3 0 0 1 3 3v21a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" fill="url(#vdf2)" stroke="#b27b14" stroke-width="1.2"/><path d="M6 19h36" stroke="#fff" stroke-opacity=".7"/></svg>';
+const VD_ICON_FOLDER = '<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M4 10a3 3 0 0 1 3-3h12l4 4h18a3 3 0 0 1 3 3v26a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" fill="url(#vdf1)" stroke="#b27b14" stroke-width="1.2"/><path d="M4 18a3 3 0 0 1 3-3h34a3 3 0 0 1 3 3v21a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" fill="url(#vdf2)" stroke="#b27b14" stroke-width="1.2"/><path d="M6 19h36" stroke="#fff" stroke-opacity=".7"/></svg>';
 
-const VD_ICON_TRASH = '<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><defs><linearGradient id="vdt1" x1="0" x2="1"><stop offset="0" stop-color="#b9d0e4"/><stop offset=".5" stop-color="#e9f4fc"/><stop offset="1" stop-color="#9cb6cc"/></linearGradient></defs><path d="M10 12h28l-3 31a3 3 0 0 1-3 2.6H16a3 3 0 0 1-3-2.6z" fill="url(#vdt1)" stroke="#5f7f9a" stroke-width="1.4" fill-opacity=".85"/><path d="M8 11h32" stroke="#5f7f9a" stroke-width="3" stroke-linecap="round"/><path d="M18 8h12v3H18z" fill="#cfe1ef" stroke="#5f7f9a"/><path d="M17 18v22M24 18v22M31 18v22" stroke="#7d9bb4" stroke-width="1.4" opacity=".7"/><path d="M20 4l4 6-6-1z" fill="#44b04a"/></svg>';
+const VD_ICON_TRASH = '<svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M10 12h28l-3 31a3 3 0 0 1-3 2.6H16a3 3 0 0 1-3-2.6z" fill="url(#vdt1)" stroke="#5f7f9a" stroke-width="1.4" fill-opacity=".85"/><path d="M8 11h32" stroke="#5f7f9a" stroke-width="3" stroke-linecap="round"/><path d="M18 8h12v3H18z" fill="#cfe1ef" stroke="#5f7f9a"/><path d="M17 18v22M24 18v22M31 18v22" stroke="#7d9bb4" stroke-width="1.4" opacity=".7"/><path d="M20 4l4 6-6-1z" fill="#44b04a"/></svg>';
+
+/* gradientes dos icones, definidos uma unica vez (svg 0x0, nao display:none) */
+const VD_ICON_DEFS = '<svg class="vd-defs" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute"><defs>' +
+  '<linearGradient id="vdf1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe58a"/><stop offset="1" stop-color="#f2b53a"/></linearGradient>' +
+  '<linearGradient id="vdf2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2b8"/><stop offset=".5" stop-color="#ffd35c"/><stop offset="1" stop-color="#eba624"/></linearGradient>' +
+  '<linearGradient id="vdt1" x1="0" x2="1"><stop offset="0" stop-color="#b9d0e4"/><stop offset=".5" stop-color="#e9f4fc"/><stop offset="1" stop-color="#9cb6cc"/></linearGradient></defs></svg>';
 
 const VD_ICON_WEB = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="#3a9be8" stroke="#1560a8"/><path d="M2.5 12h19M12 2.3c3 3 3 16.4 0 19.4M12 2.3c-3 3-3 16.4 0 19.4" fill="none" stroke="#fff" stroke-opacity=".8"/></svg>';
 const VD_ICON_MAIL = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="5" width="19" height="14" rx="1.5" fill="#f4f7fb" stroke="#5a7a96"/><path d="M3 6.5l9 6.5 9-6.5" fill="none" stroke="#5a7a96"/></svg>';
@@ -67,9 +73,9 @@ class VistaDesktop {
     const r = this.root;
     r.classList.add('vd');
     r.innerHTML =
-      '<div class="vd-wall">' + VD_WALLPAPER + '</div>' +
+      VD_ICON_DEFS + '<div class="vd-wall">' + VD_WALLPAPER + '</div>' +
       '<div class="vd-stage"><div class="vd-icons"></div></div>' +
-      '<div class="vd-start" role="menu" aria-label="Menu Iniciar" hidden>' +
+      '<div class="vd-start" role="group" aria-label="Menu Iniciar" hidden>' +
         '<div class="vd-sl">' +
           '<button class="vd-si" type="button" data-noop>' + VD_ICON_WEB + '<span><b>Internet</b><small>Navegador</small></span></button>' +
           '<button class="vd-si" type="button" data-noop>' + VD_ICON_MAIL + '<span><b>E-mail</b><small>Correio</small></span></button>' +
@@ -90,7 +96,7 @@ class VistaDesktop {
           '<line class="vd-h" x1="60" y1="60" x2="60" y2="36" stroke="#14283c" stroke-width="4" stroke-linecap="round"/><line class="vd-m" x1="60" y1="60" x2="60" y2="22" stroke="#14283c" stroke-width="3" stroke-linecap="round"/><line class="vd-s" x1="60" y1="66" x2="60" y2="18" stroke="#d23a24" stroke-width="1.6" stroke-linecap="round"/><circle cx="60" cy="60" r="3.5" fill="#d23a24"/></svg>' +
         '<div class="vd-cal"></div></div>' +
       '<div class="vd-bar">' +
-        '<button class="vd-orb" type="button" aria-label="Iniciar" aria-haspopup="menu" aria-expanded="false">' + VD_ORB_FLAG + '</button>' +
+        '<button class="vd-orb" type="button" aria-label="Iniciar" aria-haspopup="true" aria-expanded="false">' + VD_ORB_FLAG + '</button>' +
         '<div class="vd-ql"><button class="vd-q" type="button" data-act="show" aria-label="Mostrar área de trabalho" title="Mostrar área de trabalho"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="4" width="16" height="11" fill="#7fc4f5" stroke="#fff" stroke-width="1.3"/><path d="M6 17h8" stroke="#fff" stroke-width="1.6"/></svg></button></div>' +
         '<div class="vd-tbs"></div>' +
         '<div class="vd-tray">' +
@@ -311,6 +317,7 @@ class VistaDesktop {
   minimize(id) {
     const rec = this.wins.get(id);
     if (!rec || rec.state === 'min') return;
+    rec.el.classList.remove('opening');
     const r = rec.el.getBoundingClientRect();
     const b = rec.tb.getBoundingClientRect();
     rec.el.style.setProperty('--tx', Math.round(b.left + b.width / 2 - (r.left + r.width * 0.05)) + 'px');
@@ -385,6 +392,7 @@ class VistaDesktop {
 
   _clamp(rec) {
     const W = this.stage.clientWidth, H = this.stage.clientHeight;
+    if (!W || !H) return; // palco sem layout (oculto/impressao): nao mexe na geometria
     rec.w = Math.min(rec.w, W);
     rec.h = Math.min(rec.h, H);
     rec.x = Math.max(100 - rec.w, Math.min(rec.x, W - 100));
@@ -518,8 +526,12 @@ class VistaDesktop {
   _tick() {
     const n = this._now();
     const pad = (v) => String(v).padStart(2, '0');
-    this.timeEl.textContent = pad(n.h) + ':' + pad(n.m);
-    this.dateEl.textContent = pad(n.day) + '/' + pad(n.mo) + '/' + n.y;
+    const ts = pad(n.h) + ':' + pad(n.m), ds = pad(n.day) + '/' + pad(n.mo) + '/' + n.y;
+    if (this.timeEl.textContent !== ts) {
+      this.timeEl.textContent = ts;
+      this.timeEl.parentNode.setAttribute('aria-label', 'Data e hora: ' + ts + ', ' + ds);
+    }
+    this.dateEl.textContent = ds;
     this.hands.h.setAttribute('transform', 'rotate(' + ((n.h % 12) * 30 + n.m * 0.5) + ' 60 60)');
     this.hands.m.setAttribute('transform', 'rotate(' + (n.m * 6 + n.s * 0.1) + ' 60 60)');
     this.hands.s.setAttribute('transform', 'rotate(' + (n.s * 6) + ' 60 60)');

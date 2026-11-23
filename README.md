@@ -62,3 +62,13 @@ this.vd.addStartEntry({ label: 'Campo Minado', icon: VD_CAMPO_MINADO.icon, appId
 troque o `appId: null` delas pelo id do app.)
 
 No console do navegador, `window.vistaDesktop` dá acesso ao motor (`open('id')`, `close('id')`, `getState('id')`…).
+
+### Testes do desktop
+
+Com o site servido (`python -m http.server 5291`) e Chrome instalado (`pip install websockets`):
+
+```
+python tests/browser_runner.py http://127.0.0.1:5291/index.html 1440 900 saida.png tests/vista-desktop.behavior.js
+```
+
+O script imprime um JSON com o resultado de cada verificação (arrastar, limites, redimensionar, painéis, app de teste…).
