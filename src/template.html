@@ -524,6 +524,17 @@ a{color:#0a5aa8}a:hover{color:#063d75}
 @keyframes jumpR{0%{transform:rotate(40deg)}30%,100%{transform:rotate(-52deg)}}
 .still .jumper,.still .jump-y,.still .jump-r{animation-play-state:paused}
 @media (prefers-reduced-motion: reduce){.jumper,.jump-y,.jump-r{animation-play-state:paused}}
+/* rotulo de secao: selo de vidro com LED */
+.eyebrow{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 10px;border-radius:999px;font-size:12.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#1d6d14;background:linear-gradient(180deg,#ffffff 0%,#f3fcee 49%,#e2f6d6 50%,#eefbe6 100%);border:1px solid #b4e2a0;box-shadow:inset 0 1px 0 #fff,0 4px 12px rgba(40,120,30,.12)}
+.eyebrow::before{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#d9ffb8,#3fbf2a 60%,#1f7a12);box-shadow:0 0 6px rgba(80,220,60,.8)}
+/* menu: secao atual em vidro claro */
+.topnav .nav-link.on{background:linear-gradient(180deg,#ffffff 0%,#eef8ff 49%,#d4ecff 50%,#e8f6ff 100%)!important;color:#0b3a66!important;text-shadow:none!important;border-color:#ffffff!important;box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(255,255,255,.7),0 6px 16px rgba(0,50,130,.35)!important}
+/* projetos */
+.repo{display:inline-flex;align-items:center;gap:6px;font-family:Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace;font-size:12.5px;color:#4f7394;overflow-wrap:anywhere}
+.card .card-ico{transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.card:hover .card-ico{transform:translateY(-5px) scale(1.06)}
+.contact-grid{max-width:1040px;margin:0 auto}
+@media (prefers-reduced-motion: reduce){.card .card-ico{transition:none}}
 </style>
 </helmet>
 
@@ -1001,11 +1012,11 @@ a{color:#0a5aa8}a:hover{color:#063d75}
         </span>
       </a>
       <nav aria-label="Navegação principal" class="topnav" style="display: flex; flex-wrap: wrap; gap: 8px; padding: 7px; border-radius: 999px; background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.6); box-shadow: inset 0 1px 0 rgba(255,255,255,.75), 0 6px 20px rgba(0,50,120,.18); backdrop-filter: blur(12px)">
-        <a class="aero-btn" href="#inicio" style="display: inline-flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; color: #ffffff; font-weight: 600; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,25,70,.75); background: linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.16) 49%, rgba(255,255,255,0) 50%), linear-gradient(180deg, rgba(40,140,230,.78) 0%, rgba(20,105,200,.84) 50%, rgba(6,70,160,.92) 100%); border: 1px solid rgba(5,50,120,.85); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.38), inset 0 -8px 14px rgba(110,215,255,.45), 0 2px 6px rgba(0,60,130,.3)">Início</a>
-        <a class="aero-btn" href="#projetos" style="display: inline-flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; color: #ffffff; font-weight: 600; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,25,70,.75); background: linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.16) 49%, rgba(255,255,255,0) 50%), linear-gradient(180deg, rgba(40,140,230,.78) 0%, rgba(20,105,200,.84) 50%, rgba(6,70,160,.92) 100%); border: 1px solid rgba(5,50,120,.85); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.38), inset 0 -8px 14px rgba(110,215,255,.45), 0 2px 6px rgba(0,60,130,.3)">Projetos</a>
-        <a class="aero-btn" href="#habilidades" style="display: inline-flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; color: #ffffff; font-weight: 600; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,25,70,.75); background: linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.16) 49%, rgba(255,255,255,0) 50%), linear-gradient(180deg, rgba(40,140,230,.78) 0%, rgba(20,105,200,.84) 50%, rgba(6,70,160,.92) 100%); border: 1px solid rgba(5,50,120,.85); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.38), inset 0 -8px 14px rgba(110,215,255,.45), 0 2px 6px rgba(0,60,130,.3)">Habilidades</a>
-        <a class="aero-btn" href="#trajetoria" style="display: inline-flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; color: #ffffff; font-weight: 600; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,25,70,.75); background: linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.16) 49%, rgba(255,255,255,0) 50%), linear-gradient(180deg, rgba(40,140,230,.78) 0%, rgba(20,105,200,.84) 50%, rgba(6,70,160,.92) 100%); border: 1px solid rgba(5,50,120,.85); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.38), inset 0 -8px 14px rgba(110,215,255,.45), 0 2px 6px rgba(0,60,130,.3)">Trajetória</a>
-        <a class="aero-btn" href="#contato" style="display: inline-flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,40,0,.75); background: linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.16) 49%, rgba(255,255,255,0) 50%), linear-gradient(180deg, rgba(60,170,40,.8) 0%, rgba(30,130,20,.85) 50%, rgba(16,95,8,.92) 100%); border: 1px solid rgba(12,70,4,.85); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.38), inset 0 -8px 14px rgba(170,255,120,.45), 0 2px 6px rgba(20,90,10,.35)">Contato</a>
+        <a class="aero-btn nav-link {{nav_inicio}}" aria-current="{{cur_inicio}}" href="#inicio" style="display: inline-flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; color: #ffffff; font-weight: 600; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,25,70,.75); background: linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.16) 49%, rgba(255,255,255,0) 50%), linear-gradient(180deg, rgba(40,140,230,.78) 0%, rgba(20,105,200,.84) 50%, rgba(6,70,160,.92) 100%); border: 1px solid rgba(5,50,120,.85); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.38), inset 0 -8px 14px rgba(110,215,255,.45), 0 2px 6px rgba(0,60,130,.3)">Início</a>
+        <a class="aero-btn nav-link {{nav_projetos}}" aria-current="{{cur_projetos}}" href="#projetos" style="display: inline-flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; color: #ffffff; font-weight: 600; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,25,70,.75); background: linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.16) 49%, rgba(255,255,255,0) 50%), linear-gradient(180deg, rgba(40,140,230,.78) 0%, rgba(20,105,200,.84) 50%, rgba(6,70,160,.92) 100%); border: 1px solid rgba(5,50,120,.85); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.38), inset 0 -8px 14px rgba(110,215,255,.45), 0 2px 6px rgba(0,60,130,.3)">Projetos</a>
+        <a class="aero-btn nav-link {{nav_habilidades}}" aria-current="{{cur_habilidades}}" href="#habilidades" style="display: inline-flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; color: #ffffff; font-weight: 600; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,25,70,.75); background: linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.16) 49%, rgba(255,255,255,0) 50%), linear-gradient(180deg, rgba(40,140,230,.78) 0%, rgba(20,105,200,.84) 50%, rgba(6,70,160,.92) 100%); border: 1px solid rgba(5,50,120,.85); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.38), inset 0 -8px 14px rgba(110,215,255,.45), 0 2px 6px rgba(0,60,130,.3)">Habilidades</a>
+        <a class="aero-btn nav-link {{nav_trajetoria}}" aria-current="{{cur_trajetoria}}" href="#trajetoria" style="display: inline-flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; color: #ffffff; font-weight: 600; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,25,70,.75); background: linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.16) 49%, rgba(255,255,255,0) 50%), linear-gradient(180deg, rgba(40,140,230,.78) 0%, rgba(20,105,200,.84) 50%, rgba(6,70,160,.92) 100%); border: 1px solid rgba(5,50,120,.85); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.38), inset 0 -8px 14px rgba(110,215,255,.45), 0 2px 6px rgba(0,60,130,.3)">Trajetória</a>
+        <a class="aero-btn nav-link {{nav_contato}}" aria-current="{{cur_contato}}" href="#contato" style="display: inline-flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; text-shadow: 0 1px 2px rgba(0,40,0,.75); background: linear-gradient(180deg, rgba(255,255,255,.5) 0%, rgba(255,255,255,.16) 49%, rgba(255,255,255,0) 50%), linear-gradient(180deg, rgba(60,170,40,.8) 0%, rgba(30,130,20,.85) 50%, rgba(16,95,8,.92) 100%); border: 1px solid rgba(12,70,4,.85); backdrop-filter: blur(10px) saturate(1.6); -webkit-backdrop-filter: blur(10px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.38), inset 0 -8px 14px rgba(170,255,120,.45), 0 2px 6px rgba(20,90,10,.35)">Contato</a>
       </nav>
     </header>
 
@@ -1110,7 +1121,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
     <section id="projetos" class="wrap" aria-labelledby="projetos-titulo" style="position: relative; max-width: 1240px; margin: 0 auto; padding: 72px 24px 40px; display: flex; flex-direction: column; gap: 28px">
       <div class="reveal" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px">
         <div style="display: flex; flex-direction: column; gap: 8px; flex: 1 1 420px; min-width: 0">
-          <span style="font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #1d6d14">Portfólio</span>
+          <span class="eyebrow">Portfólio</span>
           <h2 id="projetos-titulo" class="sec-title" style="margin: 0; font-size: clamp(32px, 4vw, 46px); font-weight: 800; color: #0b3a66; letter-spacing: -.5px">Projetos</h2>
           <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #2e5578; max-width: 560px">Aplicações desktop, APIs e apps publicados no GitHub, desenvolvidos em projetos pessoais e autônomos.</p>
         </div>
@@ -1130,13 +1141,16 @@ a{color:#0a5aa8}a:hover{color:#063d75}
               <span aria-hidden="true" style="position: absolute; left: -40px; bottom: -70px; width: 260px; height: 140px; border-radius: 50%; background: rgba(255,255,255,.18)"></span>
               <span aria-hidden="true" style="position: absolute; right: 26px; top: 22px; width: 30px; height: 30px; border-radius: 50%; background: radial-gradient(circle at 30% 26%, rgba(255,255,255,1) 0 10%, rgba(255,255,255,.25) 26%, rgba(255,255,255,.06) 55%, rgba(255,255,255,.7) 100%)"></span>
               <span aria-hidden="true" style="position: absolute; right: 64px; top: 70px; width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle at 30% 26%, rgba(255,255,255,1) 0 12%, rgba(255,255,255,.2) 30%, rgba(255,255,255,.7) 100%)"></span>
-              <span aria-hidden="true" style="position: relative; width: 92px; height: 92px; border-radius: 26px; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.14)); border: 1px solid rgba(255,255,255,.9); box-shadow: 0 10px 24px rgba(0,40,100,.3), inset 0 1px 0 #ffffff">
+              <span aria-hidden="true" class="card-ico" style="position: relative; width: 92px; height: 92px; border-radius: 26px; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.14)); border: 1px solid rgba(255,255,255,.9); box-shadow: 0 10px 24px rgba(0,40,100,.3), inset 0 1px 0 #ffffff">
                 <svg width="46" height="46" sc-camel-view-box="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 1px 2px rgba(0,30,80,.45))"><path d="{{p.icon}}"></path></svg>
               </span>
             </div>
             <div style="flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 20px 22px 22px">
               <span style="align-self: flex-start; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .4px; background: {{p.chipBg}}; color: {{p.chipFg}}; border: 1px solid {{p.chipBorder}}">{{p.cat}}</span>
-              <h3 style="margin: 0; font-size: 22px; font-weight: 800; color: #0b3a66">{{p.name}}</h3>
+              <div style="display: flex; flex-direction: column; gap: 3px">
+                <h3 style="margin: 0; font-size: 22px; font-weight: 800; color: #0b3a66; letter-spacing: -.2px">{{p.title}}</h3>
+                <span class="repo"><svg aria-hidden="true" width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v12"></path><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg><span>johncarvalhonx/{{p.name}}</span></span>
+              </div>
               <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #2e5578; flex: 1">{{p.desc}}</p>
               <div style="display: flex; flex-wrap: wrap; gap: 6px">
                 <sc-for list="{{p.stack}}" as="s" hint-placeholder-count="3">
@@ -1156,7 +1170,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
     <!-- HABILIDADES -->
     <section id="habilidades" class="wrap" aria-labelledby="hab-titulo" style="position: relative; max-width: 1240px; margin: 0 auto; padding: 56px 24px 40px; display: flex; flex-direction: column; gap: 28px">
       <div style="display: flex; flex-direction: column; gap: 8px">
-        <span style="font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #1d6d14">O que eu faço</span>
+        <span class="eyebrow">O que eu faço</span>
         <h2 id="hab-titulo" class="sec-title" style="margin: 0; font-size: clamp(32px, 4vw, 46px); font-weight: 800; color: #0b3a66; letter-spacing: -.5px">Habilidades</h2>
       </div>
 
@@ -1198,7 +1212,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
     <!-- TRAJETÓRIA: janela estilo explorador -->
     <section id="trajetoria" class="wrap" aria-labelledby="traj-titulo" style="position: relative; max-width: 1240px; margin: 0 auto; padding: 56px 24px 96px; display: flex; flex-direction: column; gap: 28px">
       <div style="display: flex; flex-direction: column; gap: 8px">
-        <span style="font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: #1d6d14">Experiência e formação</span>
+        <span class="eyebrow">Experiência e formação</span>
         <h2 id="traj-titulo" class="sec-title" style="margin: 0; font-size: clamp(32px, 4vw, 46px); font-weight: 800; color: #0b3a66; letter-spacing: -.5px">Trajetória</h2>
       </div>
 
@@ -1302,7 +1316,7 @@ a{color:#0a5aa8}a:hover{color:#063d75}
         <h2 id="contato-titulo" class="sec-title" style="margin: 0; font-size: clamp(34px, 4.4vw, 52px); font-weight: 800; color: #ffffff; letter-spacing: -.5px; text-shadow: 0 2px 0 rgba(0,40,90,.35), 0 6px 20px rgba(0,20,60,.45)">Contato</h2>
         <p style="margin: 0; max-width: 560px; font-size: 18px; line-height: 1.6; color: #ffffff; text-shadow: 0 1px 3px rgba(0,30,70,.7)">Para projetos, oportunidades ou conversas sobre backend e integrações.</p>
       </div>
-      <div class="grid-4" style="width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; text-align: left">
+      <div class="grid-4 contact-grid" style="width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; text-align: left">
         <sc-for list="{{contacts}}" as="ct" hint-placeholder-count="4">
           <a class="glink" href="{{ct.href}}" style="display: flex; align-items: center; gap: 14px; padding: 18px; border-radius: 20px; text-decoration: none; background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(225,244,255,.85)); border: 1px solid #ffffff; box-shadow: 0 0 0 1px rgba(255,255,255,.5), 0 12px 28px rgba(0,30,80,.32), inset 0 1px 0 #ffffff; min-width: 0">
             <span aria-hidden="true" style="position: relative; flex: none; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: {{ct.orb}}; border: 1px solid rgba(255,255,255,.85); box-shadow: 0 4px 10px rgba(0,40,100,.35); overflow: hidden">
@@ -1353,6 +1367,14 @@ class Component extends DCLogic {
       if (scrolled !== !!this.state.scrolled) this.setState({ scrolled });
     };
     window.addEventListener('scroll', this.onScroll, { passive: true });
+    if ('IntersectionObserver' in window) {
+      this.spy = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && e.target.id !== this.state.section) this.setState({ section: e.target.id });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      setTimeout(() => document.querySelectorAll('section[id]').forEach((el) => this.spy.observe(el)), 0);
+    }
     this.onScroll();
     const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if ('IntersectionObserver' in window && !calm) {
@@ -1371,6 +1393,7 @@ class Component extends DCLogic {
     if (this.swapT) clearTimeout(this.swapT);
     if (this.onScroll) window.removeEventListener('scroll', this.onScroll);
     if (this.io) this.io.disconnect();
+    if (this.spy) this.spy.disconnect();
   }
 
   pickTab(label) {
@@ -1475,13 +1498,13 @@ class Component extends DCLogic {
       { name: 'Evo', cat: 'Desktop', desc: 'Dashboard multimídia para segundo monitor, com sensores de hardware em tempo real via LibreHardwareMonitor.', stack: ['Tauri', 'Rust', 'React', 'TypeScript'], bg: 'linear-gradient(160deg, #0b4fa8 0%, #1f8fe6 55%, #5fd0ff 100%)', icon: 'M3 4h18v12H3z M8 20h8 M12 16v4 M7 12l3-3 3 2 4-4' },
       { name: 'Vitra', cat: 'Desktop', desc: 'Otimizador e limpador para Windows 10/11 (x64), com instalador próprio.', stack: ['Electron', 'React', 'TypeScript'], bg: 'linear-gradient(160deg, #08756a 0%, #1fae96 55%, #8ef0d0 100%)', icon: 'M13 2L4 14h7l-1 8 9-12h-7z' },
       { name: 'Valor.ia', cat: 'APIs & Web', desc: 'Assistente financeiro local por texto e voz, com painel web, API e SQLite.', stack: ['Python', 'Flask', 'SQLite'], bg: 'linear-gradient(160deg, #1656c4 0%, #36a0ee 50%, #7be08a 100%)', icon: 'M4 5h16v10H9l-5 4z M12 7v6 M14 8.5h-3a1.25 1.25 0 0 0 0 2.5h2a1.25 1.25 0 0 1 0 2.5h-3' },
-      { name: 'controledehoras', cat: 'Desktop', desc: 'App desktop para registrar horas extras e calcular ganhos e totais mensais e anuais.', stack: ['Python', 'PySide6', 'SQLite'], bg: 'linear-gradient(160deg, #2560c8 0%, #5fa9f5 55%, #bfe6ff 100%)', icon: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z M12 7v5l3 2' },
-      { name: 'ecomonitormobile', cat: 'Mobile', desc: 'Monitoramento ambiental: app Android que consome API própria de clima e qualidade do ar.', stack: ['Kotlin', 'Python', 'FastAPI'], bg: 'linear-gradient(160deg, #2a8226 0%, #62c242 55%, #c8f59a 100%)', icon: 'M7 2h10v20H7z M11 18h2 M12 6c-2.2 2-2.2 5 0 7c2.2-2 2.2-5 0-7z' },
-      { name: 'sustainable-habits-tracker', cat: 'APIs & Web', desc: 'API REST para acompanhar hábitos sustentáveis, com autenticação JWT e resumos periódicos.', stack: ['Python', 'FastAPI', 'Docker'], bg: 'linear-gradient(160deg, #0f7055 0%, #2fa874 50%, #9be8b8 100%)', icon: 'M5 19c0-8 6-14 14-14c0 8-6 14-14 14z M5 19l7-7' }
+      { name: 'controledehoras', title: 'Controle de Horas', cat: 'Desktop', desc: 'App desktop para registrar horas extras e calcular ganhos e totais mensais e anuais.', stack: ['Python', 'PySide6', 'SQLite'], bg: 'linear-gradient(160deg, #2560c8 0%, #5fa9f5 55%, #bfe6ff 100%)', icon: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z M12 7v5l3 2' },
+      { name: 'ecomonitormobile', title: 'EcoMonitor Mobile', cat: 'Mobile', desc: 'Monitoramento ambiental: app Android que consome API própria de clima e qualidade do ar.', stack: ['Kotlin', 'Python', 'FastAPI'], bg: 'linear-gradient(160deg, #2a8226 0%, #62c242 55%, #c8f59a 100%)', icon: 'M7 2h10v20H7z M11 18h2 M12 6c-2.2 2-2.2 5 0 7c2.2-2 2.2-5 0-7z' },
+      { name: 'sustainable-habits-tracker', title: 'Sustainable Habits', cat: 'APIs & Web', desc: 'API REST para acompanhar hábitos sustentáveis, com autenticação JWT e resumos periódicos.', stack: ['Python', 'FastAPI', 'Docker'], bg: 'linear-gradient(160deg, #0f7055 0%, #2fa874 50%, #9be8b8 100%)', icon: 'M5 19c0-8 6-14 14-14c0 8-6 14-14 14z M5 19l7-7' }
     ];
     const projects = all
       .filter((p) => cat === 'Todos' || p.cat === cat)
-      .map((p, i) => Object.assign({}, p, chip[p.cat], { url: base + p.name, delay: i * 70 }));
+      .map((p, i) => Object.assign({}, p, chip[p.cat], { url: base + p.name, title: p.title || p.name, delay: i * 70 }));
 
     const blueOrb = 'radial-gradient(circle at 50% 115%, #8fe3ff 0%, #2a9be8 40%, #0d5fb8 100%)';
     const greenOrb = 'radial-gradient(circle at 50% 115%, #d2ff9a 0%, #4fc23a 40%, #1f7a14 100%)';
@@ -1524,6 +1547,17 @@ class Component extends DCLogic {
     return {
       motionClass: animado ? 'live' : 'still',
       topbarClass: this.state.scrolled ? 'scrolled' : '',
+      nav_inicio: (this.state.section || 'inicio') === 'inicio' ? 'on' : '',
+      cur_inicio: (this.state.section || 'inicio') === 'inicio' ? 'location' : 'false',
+      nav_projetos: (this.state.section || 'inicio') === 'projetos' ? 'on' : '',
+      cur_projetos: (this.state.section || 'inicio') === 'projetos' ? 'location' : 'false',
+      nav_habilidades: (this.state.section || 'inicio') === 'habilidades' ? 'on' : '',
+      cur_habilidades: (this.state.section || 'inicio') === 'habilidades' ? 'location' : 'false',
+      nav_trajetoria: (this.state.section || 'inicio') === 'trajetoria' ? 'on' : '',
+      cur_trajetoria: (this.state.section || 'inicio') === 'trajetoria' ? 'location' : 'false',
+      nav_contato: (this.state.section || 'inicio') === 'contato' ? 'on' : '',
+      cur_contato: (this.state.section || 'inicio') === 'contato' ? 'location' : 'false',
+
       skyBg: sk.bg,
       sunGlow: sk.sun,
       rayOpacity: sk.rays,
