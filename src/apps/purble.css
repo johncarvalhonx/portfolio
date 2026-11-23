@@ -1,0 +1,87 @@
+/* ===== Purble Place (visual alegre, no espírito do Vista) ===== */
+.pp{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;border:1px solid #6f8396;border-top:0}
+.pp .vd-menubar{border-left:0;border-right:0}
+.pp-stage{position:relative;z-index:0;isolation:isolate;flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;
+ font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:linear-gradient(180deg,#bfe7ff 0%,#e8f7ff 55%,#d4f2c2 100%)}
+.pp-stage button{font-family:inherit;cursor:pointer}
+.pp-town{position:absolute;inset:0;width:100%;height:100%;display:block}
+.pp-bld{cursor:pointer;transition:transform .18s ease;transform-box:fill-box;transform-origin:50% 100%}
+.pp-bld:hover,.pp-bld:focus-visible{transform:translateY(-6px) scale(1.03);filter:drop-shadow(0 0 10px rgba(255,255,255,.95))}
+.pp-bld:focus{outline:none}
+.pp-hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);padding:6px 16px;border-radius:16px;background:rgba(77,35,137,.82);color:#fff;font-size:13px;font-weight:600;pointer-events:none}
+.pp-head{flex:none;display:flex;align-items:center;gap:12px;height:42px;padding:0 12px;background:linear-gradient(180deg,#9a63e0,#7440c2);color:#fff;box-shadow:0 2px 6px rgba(60,20,120,.35)}
+.pp-head b{flex:1;font-size:17px;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+.pp-lvl{font-size:12px;padding:3px 10px;border-radius:10px;background:rgba(255,255,255,.2)}
+.pp-back{height:28px;padding:0 12px;border-radius:14px;border:1px solid rgba(255,255,255,.7);color:#fff;font-size:12px;font-weight:600;
+ background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,.12) 50%,rgba(0,0,0,.08) 51%,rgba(255,255,255,.15))}
+.pp-back:hover{background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,.25) 50%,rgba(0,0,0,.02) 51%,rgba(255,255,255,.3))}
+.pp-foot{flex:none;display:flex;justify-content:center;gap:28px;padding:8px;font-size:13px;color:#3a2266}
+
+/* Pares */
+.pp-grid{flex:1;align-self:center;display:grid;gap:10px;align-content:center;padding:10px}
+.pp-card{width:var(--pp-card);height:var(--pp-card);padding:0;border:0;background:none;perspective:600px}
+.pp-card-in{position:relative;display:block;width:100%;height:100%;transition:transform .35s ease;transform-style:preserve-3d}
+.pp-card.up .pp-card-in{transform:rotateY(180deg)}
+.pp-back-face,.pp-front{position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 3px 8px rgba(60,20,120,.3)}
+.pp-back-face{border:3px solid #fff;background:radial-gradient(circle at 30% 30%,#c79bff 0 8%,transparent 9%) 0 0/26px 26px,radial-gradient(circle at 70% 70%,#a66cf0 0 8%,transparent 9%) 0 0/26px 26px,linear-gradient(160deg,#9a63e0,#5c2ea8)}
+.pp-front{transform:rotateY(180deg);background:linear-gradient(180deg,#fff,#f3ecff);border:3px solid #c9a8ef;display:flex;align-items:center;justify-content:center}
+.pp-front svg{width:78%;height:78%}
+.pp-card:hover:not(.up) .pp-back-face{filter:brightness(1.15)}
+.pp-card.gone{animation:pp-gone .35s ease forwards;pointer-events:none}
+.pp-card.peek .pp-front{border-color:#ffd21f}
+@keyframes pp-gone{to{opacity:0;transform:scale(.6)}}
+
+/* Fábrica de Bolos */
+.pp-factory{position:relative;flex:1;display:flex;flex-direction:column;padding:10px 14px 12px;gap:10px;min-height:0}
+.pp-order{position:absolute;right:16px;top:10px;z-index:3;width:150px;padding:8px;border-radius:14px;background:#fffbe8;border:3px solid #e0b54a;box-shadow:0 3px 10px rgba(120,80,0,.25);text-align:center;font-size:12px;color:#5a3a00}
+.pp-order b{display:block;font-size:14px}
+.pp-order-cake svg{width:120px;height:100px}
+.pp-order span{display:block}
+.pp-belt-zone{position:relative;height:200px;margin-right:170px;border-radius:14px;background:linear-gradient(180deg,#fff7fb,#ffe3f1);border:2px solid #f2b4d4;overflow:hidden}
+.pp-belt{position:absolute;left:0;right:0;bottom:24px;height:22px;background:repeating-linear-gradient(90deg,#6b7480 0 18px,#545c66 18px 36px);border-top:3px solid #8a939e;border-bottom:3px solid #3a4048;animation:pp-belt 1.2s linear infinite}
+@keyframes pp-belt{to{background-position:36px 0}}
+.pp-box{position:absolute;right:6px;bottom:24px;width:70px;height:62px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;border-radius:4px;background:linear-gradient(180deg,#ffd27a,#e5a43a);border:2px solid #a66a12;color:#5a3600;font-size:11px;font-weight:700}
+.pp-st-mark{position:absolute;top:0;width:70px;height:58px;margin-left:-35px;border-radius:0 0 14px 14px;display:flex;align-items:center;justify-content:center;
+ background:linear-gradient(180deg,#b9a6d8,#8a6fbf 55%,#6d52a6);border:2px solid #4d3a7a;border-top:0;color:#fff;font-size:18px;font-weight:800;text-shadow:0 1px 2px rgba(0,0,0,.4);box-shadow:0 3px 6px rgba(0,0,0,.25)}
+.pp-st-mark::after{content:"";position:absolute;left:50%;bottom:-14px;width:18px;height:14px;margin-left:-9px;background:linear-gradient(180deg,#6d52a6,#3e2a6a);clip-path:polygon(0 0,100% 0,70% 100%,30% 100%)}
+.pp-st-mark::before{content:"";position:absolute;right:7px;top:7px;width:8px;height:8px;border-radius:50%;background:#5a4a6a;box-shadow:inset 0 1px 1px rgba(0,0,0,.4)}
+.pp-st-mark.on::before{background:#7dff5a;box-shadow:0 0 6px #7dff5a}
+.pp-cake-on{position:absolute;bottom:44px;width:120px;height:100px;margin-left:-60px;transition:left .9s ease-in-out;z-index:2}
+.pp-cake-on.instant{transition:none}
+.pp-cake-on svg{width:100%;height:100%}
+.pp-verdict{position:absolute;right:20px;top:46px;font-size:44px;font-weight:800;opacity:0;transform:scale(.6);transition:opacity .2s,transform .2s}
+.pp-verdict.show{opacity:1;transform:scale(1)}
+.pp-verdict.ok{color:#2aa52a}.pp-verdict.bad{color:#e03a2a}
+.pp-stations{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;flex:1;min-height:0}
+.pp-station{padding:8px;border-radius:12px;background:#f3ecff;border:2px solid #d5c2f2;opacity:.55;transition:opacity .2s,box-shadow .2s,border-color .2s}
+.pp-station.on{opacity:1;border-color:#8a4fd1;box-shadow:0 0 0 3px rgba(138,79,209,.25),0 0 14px rgba(138,79,209,.45)}
+.pp-station b{display:block;font-size:13px;color:#4d2389;margin-bottom:6px}
+.pp-opts{display:flex;flex-wrap:wrap;gap:6px}
+.pp-opt{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px;border-radius:10px;border:2px solid #d5c2f2;background:#fff;font-size:11px;color:#3a2266}
+.pp-opt svg{width:58px;height:48px}
+.pp-opt:hover{border-color:#8a4fd1;background:#faf6ff}
+.pp-opt.sel{border-color:#2aa52a;background:#ecffe8}
+.pp-station:not(.on) .pp-opt{pointer-events:none}
+.pp-station .pp-opt{flex:1 1 60px}
+
+/* Loja de Bonecos */
+.pp-shop{flex:1;display:grid;grid-template-columns:200px 1fr 170px;gap:12px;padding:12px;min-height:0}
+.pp-doll-col{display:flex;flex-direction:column;align-items:center;gap:8px}
+.pp-mystery{display:flex;flex-direction:column;align-items:center;padding:6px;border-radius:12px;background:#efe6ff;border:2px dashed #8a4fd1;font-size:12px;color:#4d2389;font-weight:600}
+.pp-mystery svg{width:92px;height:115px}
+.pp-doll{flex:1;display:flex;align-items:center;justify-content:center}
+.pp-doll svg{width:180px;height:225px}
+.pp-parts{display:flex;flex-direction:column;gap:6px;overflow:auto;min-height:0}
+.pp-part{padding:4px 8px 5px;border-radius:12px;background:#fff;border:2px solid #e2d4f6}
+.pp-part b{display:block;font-size:12px;color:#4d2389;margin-bottom:2px}
+.pp-part .pp-opt{flex-direction:row;gap:4px;padding:2px 6px}
+.pp-part .pp-opt svg{width:34px;height:42px}
+.pp-part .pp-opt{flex:1 1 70px}
+.pp-check{align-self:center;margin-top:4px;height:36px;padding:0 30px;border-radius:18px;border:1px solid #3c7a1c;color:#fff;font-size:15px;font-weight:700;text-shadow:0 1px 1px rgba(0,0,0,.35);
+ background:linear-gradient(180deg,#9be05a,#5cb82e 50%,#3f9a18 51%,#62c234)}
+.pp-check:disabled{filter:grayscale(1);opacity:.6;cursor:default}
+.pp-hist{display:flex;flex-direction:column;min-height:0;padding:8px;border-radius:12px;background:#fffbe8;border:2px solid #e0b54a;font-size:12px;color:#5a3a00}
+.pp-hist ol{list-style:none;margin:6px 0 0;padding:0;overflow:auto;display:flex;flex-direction:column;gap:6px}
+.pp-hist li{display:flex;align-items:center;gap:8px}
+.pp-mini svg{width:36px;height:45px;display:block}
+@media (prefers-reduced-motion:reduce){.pp-card-in,.pp-cake-on,.pp-bld{transition:none}.pp-belt{animation:none}.pp-card.gone{animation:none;opacity:0}}

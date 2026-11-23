@@ -32,6 +32,7 @@ No celular (< 768px) o desktop não aparece: só o conteúdo da Trajetória, num
 | `src/apps/paciencia.js` / `.css` | Jogo Paciência — Klondike (visual do Vista) |
 | `src/apps/xadrez.js` / `.css` | Chess Titans: cena 3D, menus, opções |
 | `src/apps/xadrez-motor.js` | Regras de xadrez e IA (alfa-beta, 10 níveis); roda num Web Worker |
+| `src/apps/purble.js` / `.css` | Purble Place: praça, Pares, Fábrica de Bolos e Loja de Bonecos (arte própria) |
 | `assets/vendor/three.min.js` | three.js r128 (MIT), carregada só quando o xadrez abre |
 | `assets/wallpaper.webp` | Papel de parede do desktop |
 
@@ -78,6 +79,6 @@ Com o site servido (`python -m http.server 5291`) e Chrome instalado (`pip insta
 python tests/browser_runner.py http://127.0.0.1:5291/index.html 1440 900 saida.png tests/vista-desktop.behavior.js
 ```
 
-Os jogos têm `tests/vista-desktop.games.js` e `tests/vista-desktop.chess.js`; as regras do xadrez têm `node tests/xadrez-motor.test.js`. Para o celular use `tests/vista-desktop.mobile.js` com o argumento `mobile` ao final do comando.
+Os jogos têm `tests/vista-desktop.games.js` e `tests/vista-desktop.chess.js` e `tests/vista-desktop.purble.js`; as regras do xadrez têm `node tests/xadrez-motor.test.js`. Para o celular use `tests/vista-desktop.mobile.js` com o argumento `mobile` ao final do comando.
 
 O script imprime um JSON com o resultado de cada verificação (arrastar, limites, redimensionar, painéis, app de teste…).
